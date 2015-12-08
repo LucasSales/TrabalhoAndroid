@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityTabMensagens extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
