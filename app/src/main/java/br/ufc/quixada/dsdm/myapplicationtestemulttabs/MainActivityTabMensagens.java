@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 public class MainActivityTabMensagens extends AppCompatActivity {
 
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -44,8 +45,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout t2 = (TabLayout) findViewById(R.id.tabbar);
-        t2.setupWithViewPager(mViewPager);
+        TabLayout t1 = (TabLayout) findViewById(R.id.tabbar);
+        t1.setupWithViewPager(mViewPager);
     }
 
 
