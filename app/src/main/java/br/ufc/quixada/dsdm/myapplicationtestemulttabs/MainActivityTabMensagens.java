@@ -67,6 +67,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id1 == R.id.action_settings) {
             return true;
+        }else if(id1 == R.id.action_logout){
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

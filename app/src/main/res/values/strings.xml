@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">My ApplicationTesteMultTabs</string>
+    <string name="app_name">Mensageiro</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Mensagens</string>
+    <string name="title_section2">Grupos</string>
+    <string name="title_section3">Amigos</string>
 
     <string name="hello_world">Hello world!</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
 </resources>
