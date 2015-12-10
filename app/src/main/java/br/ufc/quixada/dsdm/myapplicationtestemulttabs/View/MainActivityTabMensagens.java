@@ -1,4 +1,4 @@
-package br.ufc.quixada.dsdm.myapplicationtestemulttabs;
+package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
