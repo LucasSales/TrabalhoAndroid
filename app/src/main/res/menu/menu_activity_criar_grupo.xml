@@ -7,6 +7,5 @@
         />-->
     <item android:id="@+id/action_send_message" android:title="Enviar Mensagem"
         android:titleCondensed="@string/avanca"
-
         app:showAsAction="ifRoom" />
 </menu>
