@@ -9,7 +9,5 @@
             android:orderInCategory="100" app:showAsAction="never" />
 
     </group>
-    <item android:id="@+id/action_send_message" android:title="Enviar Mensagem"
-        android:icon="@drawable/"
-        app:showAsAction="ifRoom" />
+
 </menu>
