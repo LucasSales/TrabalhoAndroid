@@ -15,8 +15,12 @@ public class ActivityCriarGrupo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_criar_grupo);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+
         ImageView image = (ImageView) findViewById(R.id.imageViewCriarGrupo);
-        image.setImageResource(R.drawable.ic_action_name2);
+        image.setImageResource(R.drawable.ic_action_name);
+
     }
 
     @Override
