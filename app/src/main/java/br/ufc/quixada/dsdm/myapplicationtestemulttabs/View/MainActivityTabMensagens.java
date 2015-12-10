@@ -1,4 +1,5 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -76,7 +77,11 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    public void onClickNovoGrupo(View view){
+        Intent i;
+        i = new Intent( this, ActivityCriarGrupo.class );
+        startActivity(i);
+    }
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.

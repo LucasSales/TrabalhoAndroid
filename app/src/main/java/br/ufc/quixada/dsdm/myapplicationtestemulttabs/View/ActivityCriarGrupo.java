@@ -1,9 +1,10 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
@@ -13,6 +14,9 @@ public class ActivityCriarGrupo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_criar_grupo);
+
+        ImageView image = (ImageView) findViewById(R.id.imageViewCriarGrupo);
+        image.setImageResource(R.drawable.ic_action_name2);
     }
 
     @Override
