@@ -11,4 +11,5 @@
     <string name="action_logout">Logout</string>
     <string name="title_activity_activity_criar_grupo">ActivityCriarGrupo</string>
     <string name="avanca">Avançar</string>
+    <string name="nome_grupo">Digite o Nome do Grupo</string>
 </resources>
