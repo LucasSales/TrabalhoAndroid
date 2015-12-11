@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +43,14 @@ public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Mensagem_Amigos> {
         TextView txtNomeAmigo = (TextView) convertView.findViewById(R.id.txtnomeamigo);
         TextView txtTrechoMensagem = (TextView) convertView.findViewById(R.id.txt_trecho_msn_amigo);
         TextView txtData = (TextView) convertView.findViewById(R.id.txtdata);
+        ImageView imagem = (ImageView) convertView.findViewById(R.id.imageViewAmigo);
 
+        Picasso.with(context).load(modelo.getImg_amigo()).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
 
         txtNomeAmigo.setText(modelo.getNome_amigo());
         txtTrechoMensagem.setText(modelo.getUltimo_texto());
         txtData.setText(modelo.getUltima_visualizacao());
+
 
 
         return convertView;

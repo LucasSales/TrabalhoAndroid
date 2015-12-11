@@ -12,7 +12,7 @@ public class Mensagem_Amigos {
     private String ultimo_texto;
     private String ultima_visualizacao;
     private long id_mensagem;
-    private Image img_amigo;
+    private String img_amigo;
 
 
     public String getNome_amigo() {
@@ -55,11 +55,11 @@ public class Mensagem_Amigos {
         this.id_mensagem = id_mensagem;
     }
 
-    public Image getImg_amigo() {
+    public String getImg_amigo() {
         return img_amigo;
     }
 
-    public void setImg_amigo(Image img_amigo) {
+    public void setImg_amigo(String img_amigo) {
         this.img_amigo = img_amigo;
     }
 }
