@@ -12,13 +12,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista_Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
 
 
+
+    private static  ListView listView;
+    private static ArrayList<Mensagem_Amigos> Array;
+    private static TextView tvvazio;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -42,6 +52,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -156,7 +167,41 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+
+
+
+            tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
+            listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
+            Array = new ArrayList<>();
+
             return rootView;
+
+
+
+    }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+
+            Mensagem_Amigos msn = new Mensagem_Amigos();
+
+            msn.setNome_amigo("Lucas Sales");
+            msn.setUltima_visualizacao("10:50");
+            msn.setUltimo_texto("Testando se funfou");
+            msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+
+
+            Array.add(msn);
+            if(!Array.isEmpty()){
+                Adaptador_Msn_Lista_Amigo adapter = new Adaptador_Msn_Lista_Amigo(getActivity(), Array);
+                listView.setAdapter(adapter);
+
+            }else{
+                tvvazio.setText("Nenhuma Nota");
+            }
+
         }
     }
 

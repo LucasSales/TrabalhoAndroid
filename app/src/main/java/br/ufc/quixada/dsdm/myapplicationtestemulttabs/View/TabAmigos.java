@@ -1,7 +1,5 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
-import android.app.Application;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
@@ -58,7 +55,7 @@ public class TabAmigos extends Fragment{
         msn.setNome_amigo("Lucas Sales");
         msn.setUltima_visualizacao("10:50");
         msn.setUltimo_texto("Testando se funfou");
-        msn.setImg_amigo("https://www.google.com.br/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiYk4PctNTJAhUDhJAKHQQsDw0QjRwIBw&url=http%3A%2F%2Fwww.ofuxico.com.br%2Fnoticias-sobre-famosos%2Fjustin-bieber-passeia-sem-camisa-pelas-ruas-de-cannes%2F2014%2F05%2F20-203759.html&psig=AFQjCNEGmDFDGzkJ4EnGtCqZtECBwLBveQ&ust=1449944054120212");
+        msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
 
 
         Array.add(msn);
