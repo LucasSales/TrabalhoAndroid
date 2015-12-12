@@ -71,17 +71,18 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+
+    //Faz com que quando selecione o item mensagem vá para a tela
+    public boolean onItemSelecteed(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id1 = item.getItemId();
+        int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id1 == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
-        }else if(id1 == R.id.action_logout){
+        }else if(id == R.id.action_logout){
             finish();
         }
 
@@ -93,6 +94,19 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         i = new Intent( this, ActivityCriarGrupo.class );
         startActivity(i);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == R.id.action_nova_mensagem){
+            Intent i;
+            i = new Intent( this, ActivityMensagem.class );
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -203,6 +217,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }
 
         }
+
+
+
     }
 
 }
