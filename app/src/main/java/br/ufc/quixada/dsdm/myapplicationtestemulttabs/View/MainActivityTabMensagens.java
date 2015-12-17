@@ -101,7 +101,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
         if(id == R.id.action_nova_mensagem){
             Intent i;
-            i = new Intent( this, ActivityMensagem.class );
+            i = new Intent( this, ActivityListaAmigos.class );
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
