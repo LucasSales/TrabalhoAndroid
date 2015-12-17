@@ -27,7 +27,10 @@
             android:name=".View.ActivityMensagem"
             android:label="@string/title_activity_activity_mensagem"
             android:parentActivityName=".View.MainActivityTabMensagens" >
-
+        </activity>
+        <activity
+            android:name="com.example.lucas.mensageiro.BatePapoActivity"
+            android:label="@string/title_activity_bate_papo" >
         </activity>
     </application>
 

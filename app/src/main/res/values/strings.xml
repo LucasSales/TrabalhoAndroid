@@ -13,4 +13,5 @@
     <string name="avanca">Avançar</string>
     <string name="nome_grupo">Digite o Nome do Grupo</string>
     <string name="title_activity_activity_mensagem">ActivityMensagem</string>
+    <string name="title_activity_bate_papo">BatePapoActivity</string>
 </resources>
