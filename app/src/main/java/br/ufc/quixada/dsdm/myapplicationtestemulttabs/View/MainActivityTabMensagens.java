@@ -18,7 +18,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
@@ -71,24 +70,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-
-    //Faz com que quando selecione o item mensagem vá para a tela
-    public boolean onItemSelecteed(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if(id == R.id.action_logout){
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    
 
     public void onClickNovoGrupo(View view){
         Intent i;
@@ -104,6 +86,11 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             Intent i;
             i = new Intent( this, ActivityListaAmigos.class );
             startActivity(i);
+        }else if (id == R.id.action_settings) {
+            Intent i = new Intent(this,ActivityConfiguracoes.class);
+            startActivity(i);
+        }else if(id == R.id.action_logout){
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

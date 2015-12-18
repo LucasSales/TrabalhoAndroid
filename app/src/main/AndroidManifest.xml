@@ -20,14 +20,10 @@
         </activity>
         <activity
             android:name=".View.ActivityListaAmigos"
-            android:label="@string/title_activity_activity_mensagem"
+            android:label="@string/title_activity_activity_ListaAmigos"
             android:parentActivityName=".View.MainActivityTabMensagens" >
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.BatePapoActivity"
-            android:label="@string/title_activity_bate_papo" >
-=======
             android:name=".View.ActivityLogin"
             android:label="@string/title_activity_activity_login" >
             <intent-filter>
@@ -39,7 +35,6 @@
         <activity
             android:name=".View.ActivityConfiguracoes"
             android:label="@string/title_activity_activity_configuracoes" >
->>>>>>> b770fa2f0837776ed4714634fcb00fa8653ecc1c
         </activity>
     </application>
 
