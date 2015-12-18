@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
@@ -101,7 +102,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
         if(id == R.id.action_nova_mensagem){
             Intent i;
-            i = new Intent( this, ActivityMensagem.class );
+            i = new Intent( this, ActivityListaAmigos.class );
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
@@ -209,7 +210,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             Array.add(msn);
             if(!Array.isEmpty()){
-                Adaptador_Msn_Lista_Amigo adapter = new Adaptador_Msn_Lista_Amigo(getActivity(), Array);
+                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), Array);
                 listView.setAdapter(adapter);
 
             }else{

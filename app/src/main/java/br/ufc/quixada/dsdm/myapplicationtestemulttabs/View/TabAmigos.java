@@ -52,10 +52,8 @@ public class TabAmigos extends Fragment{
 
         Mensagem_Amigos msn = new Mensagem_Amigos();
 
-        msn.setNome_amigo("Lucas Sales");
-        msn.setUltima_visualizacao("10:50");
-        msn.setUltimo_texto("Testando se funfou");
-        msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+        msn.setNome_amigo("Robson Cavalcante");
+        msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");
 
 
         Array.add(msn);
