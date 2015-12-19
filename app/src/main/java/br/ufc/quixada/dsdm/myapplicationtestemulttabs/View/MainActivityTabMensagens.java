@@ -177,15 +177,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
             Array = new ArrayList<>();
 
-            return rootView;
-
-
-
-    }
-
-        @Override
-        public void onStart() {
-            super.onStart();
 
             Mensagem_Amigos msn = new Mensagem_Amigos();
 
@@ -204,9 +195,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 tvvazio.setText("Nenhuma Nota");
             }
 
+            return rootView;
         }
-
-
 
     }
 

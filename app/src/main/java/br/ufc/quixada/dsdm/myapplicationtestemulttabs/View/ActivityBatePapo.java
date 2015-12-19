@@ -1,10 +1,21 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Mensagens_BatePapo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista_Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 /**
@@ -12,11 +23,24 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
  */
 public class ActivityBatePapo extends AppCompatActivity{
 
+    private ArrayList Array;
+    private ListView listView;
+    private TextView vazio;
+    private Adaptador_Mensagens_BatePapo adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bate_papo);
+
+        Array = new ArrayList();
+        listView = (ListView)findViewById(R.id.listViewMsnBatePapo);
+        vazio = (TextView) findViewById(R.id.textViewNenhumaMsn);
+
+
+
     }
 
     @Override
@@ -41,6 +65,23 @@ public class ActivityBatePapo extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Mensagem_Amigos msn = new Mensagem_Amigos();
+         msn.setTexto("funfou");
+         msn.setUltima_visualizacao("10:00");
 
 
+        Array.add(msn);
+        if(!Array.isEmpty()){
+            adapter = new Adaptador_Mensagens_BatePapo(this, Array);
+            listView.setAdapter(adapter);
+
+        }else{
+            vazio.setText("Nenhuma Mensagem");
+        }
+
+    }
 }

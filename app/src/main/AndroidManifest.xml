@@ -24,6 +24,11 @@
             android:parentActivityName=".View.MainActivityTabMensagens" >
         </activity>
         <activity
+            android:name=".View.ActivityBatePapo"
+            android:label="@string/title_activity_bate_papo"
+            android:parentActivityName=".View.MainActivityTabMensagens" >
+        </activity>
+        <activity
             android:name=".View.ActivityLogin"
             android:label="@string/title_activity_activity_login" >
             <intent-filter>
