@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:onClick="onClickNovoGrupo"
-        app:backgroundTint="#000" />
+        app:backgroundTint="@color/material_grey_300" />
 
 
 </RelativeLayout>
