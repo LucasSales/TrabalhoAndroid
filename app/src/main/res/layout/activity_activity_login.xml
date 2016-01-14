@@ -42,5 +42,5 @@
         android:text="Cadastra-se"
         android:id="@+id/button_cadastrar"
         android:layout_alignTop="@+id/button_login"
-        android:layout_alignStart="@+id/editText_senha" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

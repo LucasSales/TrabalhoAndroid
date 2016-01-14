@@ -1,5 +1,6 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -39,7 +40,8 @@ public class ActivityCriarGrupo extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(this,ActivityConfiguracoes.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

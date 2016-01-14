@@ -20,7 +20,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 /**
  * Created by Lucas on 05/12/2015.
  */
-public class TabAmigos extends Fragment{
+public class  TabAmigos extends Fragment{
     private static final String NUMERO_SESSAO = "numero_sessao";
 
 
