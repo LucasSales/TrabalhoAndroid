@@ -10,8 +10,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/txtnomeamigo"
+        android:layout_marginBottom="18dp"
         android:layout_alignBottom="@+id/imageViewAmigo"
-        android:layout_toEndOf="@+id/imageViewAmigo" />
+        android:layout_toEndOf="@+id/imageViewAmigo"
+        android:layout_marginStart="22dp" />
 
     <ImageView
         android:layout_width="wrap_content"

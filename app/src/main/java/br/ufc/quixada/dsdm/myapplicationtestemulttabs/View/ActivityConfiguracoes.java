@@ -1,5 +1,6 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,8 +31,8 @@ public class ActivityConfiguracoes extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

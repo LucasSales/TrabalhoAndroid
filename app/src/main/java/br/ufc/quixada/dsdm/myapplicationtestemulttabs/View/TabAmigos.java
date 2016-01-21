@@ -1,12 +1,15 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 /**
  * Created by Lucas on 05/12/2015.
  */
-public class TabAmigos extends Fragment{
+public class  TabAmigos extends Fragment{
     private static final String NUMERO_SESSAO = "numero_sessao";
 
 
@@ -35,20 +38,11 @@ public class TabAmigos extends Fragment{
     }
 
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle instanciaSalva){
-        View rootView = inflater.inflate(R.layout.tab_amigos,container,false);
+        final View rootView = inflater.inflate(R.layout.tab_amigos,container,false);
 
         vazio = (TextView) rootView.findViewById(R.id.textViewVazio);
         listView = (ListView) rootView.findViewById(R.id.listViewMensagemAmigos);
         Array = new ArrayList<>();
-
-        return rootView;
-
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
         Mensagem_Amigos msn = new Mensagem_Amigos();
 
@@ -62,8 +56,25 @@ public class TabAmigos extends Fragment{
             listView.setAdapter(adapter);
 
         }else{
-            vazio.setText("Nenhuma Nota");
+            vazio.setText("Nenhuma Mensagem");
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent inter = new Intent(rootView.getContext(), ActivityBatePapo.class);
+                startActivity(inter);
+
+
+            }
+        });
+
+
+
+        return rootView;
+
 
     }
 }

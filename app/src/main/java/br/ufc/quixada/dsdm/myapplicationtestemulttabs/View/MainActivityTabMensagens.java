@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -168,7 +169,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
 
 
@@ -177,15 +178,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
             Array = new ArrayList<>();
 
-            return rootView;
-
-
-
-    }
-
-        @Override
-        public void onStart() {
-            super.onStart();
 
             Mensagem_Amigos msn = new Mensagem_Amigos();
 
@@ -203,10 +195,21 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }else{
                 tvvazio.setText("Nenhuma Nota");
             }
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent inter = new Intent(rootView.getContext(), ActivityBatePapo.class);
+                    startActivity(inter);
+
+                }
+            });
+
+
+
+            return rootView;
         }
-
-
 
     }
 
