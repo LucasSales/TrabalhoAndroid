@@ -17,7 +17,7 @@ import java.util.List;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 /**
- * Created by Ronson Cavalcante on 10/12/2015.
+ * Created by Robson Cavalcante on 10/12/2015.
  */
 public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Mensagem_Amigos> {
 

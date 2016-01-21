@@ -3,6 +3,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class  TabAmigos extends Fragment{
         msn.setNome_amigo("Robson Cavalcante");
         msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");
 
+        Log.i("Error", "Iniciou Amigos");
 
         Array.add(msn);
         if(!Array.isEmpty()){
