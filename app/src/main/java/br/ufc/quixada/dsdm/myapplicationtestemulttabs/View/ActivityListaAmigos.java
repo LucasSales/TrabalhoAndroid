@@ -32,6 +32,23 @@ public class ActivityListaAmigos extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewListaAmigos2);
 
 
+        Mensagem_Amigos msn = new Mensagem_Amigos();
+
+        msn.setNome_amigo("Robson Cavalcante");
+        msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");
+
+
+        array.add(msn);
+        if(!array.isEmpty()){
+            Adaptador_Msn_Lista_Amigo adapter = new Adaptador_Msn_Lista_Amigo(this, array);
+            listView.setAdapter(adapter);
+
+        }else{
+            vazio.setText("Nenhum Amigo");
+        }
+
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -70,28 +87,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        Mensagem_Amigos msn = new Mensagem_Amigos();
-
-        msn.setNome_amigo("Robson Cavalcante");
-        msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");
-
-
-        array.add(msn);
-        if(!array.isEmpty()){
-            Adaptador_Msn_Lista_Amigo adapter = new Adaptador_Msn_Lista_Amigo(this, array);
-            listView.setAdapter(adapter);
-
-        }else{
-            vazio.setText("Nenhum Amigo");
-        }
-
-
-
-    }
 
 
 }

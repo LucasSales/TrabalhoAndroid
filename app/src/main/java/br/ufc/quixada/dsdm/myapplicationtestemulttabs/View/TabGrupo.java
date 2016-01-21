@@ -30,8 +30,8 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 public class TabGrupo extends Fragment {
     private static final String NUMERO_SESSAO = "numero_sessao";
 
-    List<Mensagem_Grupo> listGroup;
-    HashMap<Long, List<Mensagem_Amigos>> listData;
+    List<String> listGroup;
+    HashMap<String, List<Mensagem_Amigos>> listData;
 
     public static TabGrupo newInstance(int numeroSessao){
         TabGrupo fragment = new TabGrupo();
@@ -45,7 +45,7 @@ public class TabGrupo extends Fragment {
         final View rootView = inflater.inflate(R.layout.tab_grupo,container,false);
 
         buiderList();
-        Log.i("Error", "Iniciou Lista ");
+
         ExpandableListView expandableListView = (ExpandableListView) rootView.findViewById(R.id.expandableListView);
         expandableListView.setAdapter(new Adaptador_Mensagens_Grupo(rootView.getContext(), listGroup, listData));
         Log.i("Error", "Chamou Adapter");
@@ -88,40 +88,40 @@ public class TabGrupo extends Fragment {
         // utilizar objetos de mensagens em vez de String
 
         listGroup = new ArrayList<>();
-        listData = new HashMap<Long, List<Mensagem_Amigos>>();
+        listData = new HashMap<String, List<Mensagem_Amigos>>();
 
         //Grupo
 
 
-        listGroup.add(new Mensagem_Grupo( (long) 1 ,"UFC", "Turma 2013.1"));
-        listGroup.add(new Mensagem_Grupo( (long) 2, "UFC", "Turma 2014.1"));
-        listGroup.add(new Mensagem_Grupo( (long) 3, "UFC", "Turma 2015.1"));
-        listGroup.add(new Mensagem_Grupo( (long) 4, "UFC", "Turma 2016.1"));
+        listGroup.add("UFC");
+        listGroup.add("Praça");
+        listGroup.add("Anexo UFC");
+        listGroup.add("Pastelaria Marivaldo");
 
         // filhos
         List<Mensagem_Amigos> auxList = new ArrayList<Mensagem_Amigos>();
         auxList.add(new Mensagem_Amigos("Lucas", "teste no grupo", "teste no grupo", "12:00", 1, "null"));
         auxList.add(new Mensagem_Amigos("Robson", "teste no grupo", "oi", "13:00", 2, "null"));
         auxList.add(new Mensagem_Amigos("Roger", "teste no grupo", "Olá", "14:00", 3, "null"));
-        listData.put(listGroup.get(0).getIdMensagem(),auxList);
+        listData.put(listGroup.get(0),auxList);
 
         auxList = new ArrayList<Mensagem_Amigos>();
         auxList.add(new Mensagem_Amigos("Maria", "teste no grupo", "teste no grupo", "12:00", 4, "null"));
         auxList.add(new Mensagem_Amigos("Jose", "teste no grupo", "oi", "13:00", 5, "null"));
         auxList.add(new Mensagem_Amigos("Joao", "teste no grupo", "Olá", "14:00", 6, "null"));
-        listData.put(listGroup.get(1).getIdMensagem(),auxList);
+        listData.put(listGroup.get(1),auxList);
 
         auxList = new ArrayList<Mensagem_Amigos>();
         auxList.add(new Mensagem_Amigos("Mateus", "teste no grupo", "teste no grupo", "12:00", 7, "null"));
         auxList.add(new Mensagem_Amigos("Paulo", "teste no grupo", "oi", "13:00", 8, "null"));
         auxList.add(new Mensagem_Amigos("Carla", "teste no grupo", "Olá", "14:00", 9, "null"));
-        listData.put(listGroup.get(2).getIdMensagem(),auxList);
+        listData.put(listGroup.get(2),auxList);
 
         auxList = new ArrayList<Mensagem_Amigos>();
         auxList.add(new Mensagem_Amigos("Marcos", "teste no grupo", "teste no grupo", "12:00", 10, "null"));
         auxList.add(new Mensagem_Amigos("Paula", "teste no grupo", "oi", "13:00", 11, "null"));
         auxList.add(new Mensagem_Amigos("Debora", "teste no grupo", "Olá", "14:00", 12, "null"));
-        listData.put(listGroup.get(3).getIdMensagem(),auxList);
+        listData.put(listGroup.get(3),auxList);
 
 
 
