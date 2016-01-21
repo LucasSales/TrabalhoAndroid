@@ -70,7 +70,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    
+
 
     public void onClickNovoGrupo(View view){
         Intent i;
