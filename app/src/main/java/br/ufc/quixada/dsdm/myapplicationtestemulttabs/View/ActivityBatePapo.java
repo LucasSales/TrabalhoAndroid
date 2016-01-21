@@ -19,7 +19,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 /**
- * Created by Ronson Cavalcante on 18/12/2015.
+ * Created by Robson Cavalcante on 18/12/2015.
  */
 public class ActivityBatePapo extends AppCompatActivity{
 
