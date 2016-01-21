@@ -1,0 +1,19 @@
+create database Mensageiro;
+
+create table mensagem( 
+	idLocal int NOT NULL, 
+	nomeRemetente varchar(255), 
+	nomeDestinatario varchar(255), 
+	hora varchar(55), 
+	mensagem varchar(500), 
+	trecho varchar(100) 
+);
+
+create table 
+
+
+
+
+
+
+
