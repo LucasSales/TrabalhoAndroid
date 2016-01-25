@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    mInformationTextView.setText(getString(R.string.gcm_send_message));
+                    //mInformationTextView.setText(getString(R.string.gcm_send_message));
 
                 } else {
-                    mInformationTextView.setText(getString(R.string.token_error_message));
+                    //mInformationTextView.setText(getString(R.string.token_error_message));
                 }
             }
         };

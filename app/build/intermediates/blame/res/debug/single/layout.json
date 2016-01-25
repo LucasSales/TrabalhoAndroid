@@ -8,16 +8,20 @@
         "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/design/23.0.0/res/layout/design_layout_tab_icon.xml"
     },
     {
-        "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
-        "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/layout/notification_template_big_media_narrow.xml"
-    },
-    {
         "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
         "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/design/23.0.0/res/layout/design_navigation_item_header.xml"
     },
     {
+        "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
         "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
         "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/design/23.0.0/res/layout/design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/activity_main4.xml",
+        "source": "/home/lucas/git/TrabalhoAndroid/app/src/main/res/layout/activity_main4.xml"
     },
     {
         "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",

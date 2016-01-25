@@ -28,6 +28,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import de.greenrobot.event.EventBus;
 
 public class MyGcmListenerService extends GcmListenerService {

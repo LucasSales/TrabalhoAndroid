@@ -9,10 +9,17 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Optional permission for App measurement to run. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Permissions required for GCM -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <!-- [START gcm_permission] -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="gcm.play.android.samples.com.gcmquickstart.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- [END gcm_permission] -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -40,6 +47,8 @@
         <activity
             android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityLogin"
             android:label="@string/title_activity_activity_login" >
+
+            <!-- Depois colocar no Login -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +59,47 @@
             android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityConfiguracoes"
             android:label="@string/title_activity_activity_configuracoes" >
         </activity>
+        <activity
+            android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="gcm.play.android.samples.com.gcmquickstart" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+
+        <!-- [START gcm_listener] -->
+        <service
+            android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MyInstanceIDListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService"
+            android:exported="false" >
+        </service>
 
         <provider
             android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
