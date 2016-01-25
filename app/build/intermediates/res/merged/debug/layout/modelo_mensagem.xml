@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/txtnomeamigo"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="78dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txt_trecho_msn_amigo"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/txtnomeamigo"
+        android:layout_alignStart="@+id/txtnomeamigo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txtdata"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewAmigo"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/txt_trecho_msn_amigo"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/txt_trecho_msn_amigo" />
+
+</RelativeLayout>
