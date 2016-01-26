@@ -3,11 +3,11 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM;
 /**
  * Created by lucas on 25/01/16.
  */
-public class PushMessage {
+public class PushMessage2 {
     private String titulo;
     private String mensagem;
 
-    public PushMessage(String titulo, String menssagem){
+    public PushMessage2(String titulo, String menssagem){
         this.titulo = titulo;
         this.mensagem = menssagem;
     }

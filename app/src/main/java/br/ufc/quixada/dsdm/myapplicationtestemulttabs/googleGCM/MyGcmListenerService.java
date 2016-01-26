@@ -71,7 +71,7 @@ public class MyGcmListenerService extends GcmListenerService {
          * In some cases it may be useful to show a notification indicating to the user
          * that a message was received.
          */
-        EventBus.getDefault().post(new PushMessage("teste",message));
+        EventBus.getDefault().post(new PushMessage2("teste",message));
         sendNotification(message);
         // [END_EXCLUDE]
     }
