@@ -72,6 +72,10 @@
         "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/drawable/abc_textfield_search_material.xml"
     },
     {
+        "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/drawable/ic_stat_ic_notification.png",
+        "source": "/home/lucas/git/TrabalhoAndroid/app/src/main/res/drawable/ic_stat_ic_notification.png"
+    },
+    {
         "merged": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
         "source": "/home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/drawable/abc_item_background_holo_dark.xml"
     },

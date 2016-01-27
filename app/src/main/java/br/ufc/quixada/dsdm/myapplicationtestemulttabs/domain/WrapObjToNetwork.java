@@ -22,9 +22,8 @@ public class WrapObjToNetwork {
         this.userFrom = userFrom;
         this.method = method;
     }
-    public WrapObjToNetwork(User user, String method) {
+    public WrapObjToNetwork(User user) {
         this.user = user;
-        this.method = method;
     }
     public WrapObjToNetwork(Message message, String method) {
         this.message = message;

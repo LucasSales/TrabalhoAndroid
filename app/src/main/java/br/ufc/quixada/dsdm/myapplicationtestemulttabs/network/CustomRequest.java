@@ -1,5 +1,7 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.network;
 
+import android.util.Log;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -36,6 +38,7 @@ public class CustomRequest extends Request<JSONObject> {
         try {
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
+            Log.i("LOG","erro: " +jsonString );
             return Response.success(new JSONObject(jsonString),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {

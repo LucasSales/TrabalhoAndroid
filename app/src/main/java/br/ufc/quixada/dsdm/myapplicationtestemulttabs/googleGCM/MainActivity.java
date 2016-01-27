@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
+        /*mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        mInformationTextView = (TextView) findViewById(R.id.informationTextView);
+        mInformationTextView = (TextView) findViewById(R.id.informationTextView);*/
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.

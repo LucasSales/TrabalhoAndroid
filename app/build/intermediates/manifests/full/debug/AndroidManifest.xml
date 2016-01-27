@@ -47,13 +47,6 @@
         <activity
             android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityLogin"
             android:label="@string/title_activity_activity_login" >
-
-            <!-- Depois colocar no Login -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityConfiguracoes"
@@ -62,6 +55,13 @@
         <activity
             android:name="br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity"
             android:label="@string/app_name" >
+
+            <!-- Depois colocar no Login -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- [START gcm_receiver] -->

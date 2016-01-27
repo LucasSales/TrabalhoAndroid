@@ -29,10 +29,16 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.Transaction;
+
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    public static final String LOG = "LOG";
 
     public RegistrationIntentService() {
         super(TAG);
@@ -41,8 +47,9 @@ public class RegistrationIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String senderId = "96107784738";
-        try {
+        String senderId = "480708892495";
+        boolean status = sharedPreferences.getBoolean("status",false);
+        /*try {
             // [START register_for_gcm]
             // Initially this call goes out to the network to retrieve the token, subsequent calls
             // are local.
@@ -74,7 +81,31 @@ public class RegistrationIntentService extends IntentService {
         }
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(QuickstartPreferences.REGISTRATION_COMPLETE);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);*/
+
+
+
+        synchronized (LOG){
+            InstanceID instanceID = InstanceID.getInstance(this);
+            try{
+
+                if(!status){
+                    String token = instanceID.getToken(senderId,
+                            GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+
+                    Log.i(LOG,"Token: "+token);
+
+                    sharedPreferences.edit().putBoolean("status", token != null && token.trim().length() > 0).apply();
+
+                    sendRegistrationToServer(token);
+                }
+
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     /**
@@ -83,10 +114,13 @@ public class RegistrationIntentService extends IntentService {
      * Modify this method to associate the user's GCM registration token with any server-side account
      * maintained by your application.
      *
-     * @param token The new token.
+     * @param token The ne9w token.
      */
     private void sendRegistrationToServer(String token) {
+        User user = new User();
+        user.setRegistrationId(token);
         // Add custom implementation, as needed.
+        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(user), RegistrationIntentService.class.getName());
     }
 
     /**

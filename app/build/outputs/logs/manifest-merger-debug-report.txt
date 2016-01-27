@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:2:1-129:12
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:2:1-131:12
 	package
 		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:3:5-61
 		INJECTED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml
@@ -55,7 +55,7 @@ ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:16:5
 	android:name
 		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:16:22-65
 application
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:27:5-127:19
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:27:5-129:19
 MERGED from [com.google.android.gms:play-services-measurement:8.1.0] /home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.1.0/AndroidManifest.xml:26:5-46:19
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] /home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:23.0.0] /home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/AndroidManifest.xml:22:5-20
@@ -116,77 +116,77 @@ ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:46:9
 	android:name
 		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:47:13-50
 activity#br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityLogin
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:51:9-61:20
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:51:9-56:20
 	android:label
 		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:53:13-66
 	android:name
 		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:52:13-47
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:55:13-59:29
-action#android.intent.action.MAIN
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:56:17-69
-	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:56:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:58:17-77
-	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:58:27-74
 activity#br.ufc.quixada.dsdm.myapplicationtestemulttabs.View.ActivityConfiguracoes
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:62:9-65:20
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:57:9-60:20
 	android:label
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:64:13-74
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:59:13-74
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:63:13-55
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:58:13-55
 activity#br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:72:9-76:20
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:67:9-78:20
 	android:label
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:74:13-45
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:69:13-45
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:73:13-51
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:68:13-51
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:72:13-76:29
+action#android.intent.action.MAIN
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:73:17-69
+	android:name
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:73:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:75:17-77
+	android:name
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:75:27-74
 receiver#com.google.android.gms.gcm.GcmReceiver
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:79:9-87:20
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:81:9-89:20
 	android:exported
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:81:13-36
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:83:13-36
 	android:permission
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:82:13-73
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:84:13-73
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:80:13-66
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:82:13-66
 intent-filter#com.google.android.c2dm.intent.RECEIVE+gcm.play.android.samples.com.gcmquickstart
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:83:13-86:29
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:85:13-88:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:84:17-81
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:86:17-81
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:84:25-78
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:86:25-78
 category#gcm.play.android.samples.com.gcmquickstart
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:85:17-87
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:87:17-87
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:85:27-84
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:87:27-84
 service#br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MyGcmListenerService
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:91:9-97:19
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:93:9-99:19
 	android:exported
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:93:13-37
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:95:13-37
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:92:13-59
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:94:13-59
 intent-filter#com.google.android.c2dm.intent.RECEIVE
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:94:13-96:29
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:96:13-98:29
 service#br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MyInstanceIDListenerService
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:100:9-106:19
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:102:9-108:19
 	android:exported
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:102:13-37
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:104:13-37
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:101:13-66
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:103:13-66
 intent-filter#com.google.android.gms.iid.InstanceID
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:103:13-105:29
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:105:13-107:29
 action#com.google.android.gms.iid.InstanceID
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:104:17-79
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:106:17-79
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:104:25-77
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:106:25-77
 service#br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService
-ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:108:9-112:19
+ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:110:9-114:19
 	android:exported
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:110:13-37
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:112:13-37
 	android:name
-		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:109:13-64
+		ADDED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml:111:13-64
 uses-sdk
 INJECTED from /home/lucas/git/TrabalhoAndroid/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.google.android.gms:play-services-measurement:8.1.0] /home/lucas/git/TrabalhoAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.1.0/AndroidManifest.xml:18:5-42

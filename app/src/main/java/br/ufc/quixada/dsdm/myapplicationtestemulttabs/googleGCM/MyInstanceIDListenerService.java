@@ -17,6 +17,8 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.google.android.gms.iid.InstanceIDListenerService;
 
@@ -33,6 +35,12 @@ public class MyInstanceIDListenerService extends InstanceIDListenerService {
     @Override
     public void onTokenRefresh() {
         // Fetch updated Instance ID token and notify our app's server of any changes (if applicable).
+        //GOOGLE IMPLEMENTAçãro
+        //Intent intent = new Intent(this, RegistrationIntentService.class);
+       // startService(intent);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putBoolean("status", false).apply();
+
         Intent intent = new Intent(this, RegistrationIntentService.class);
         startService(intent);
     }
