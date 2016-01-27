@@ -18,11 +18,10 @@
 
 
 
-
-
-
-
-
+    <service
+        android:name=".app.service.ServiceLocal"
+        android:enabled="true"
+        android:exported="true"></service>
 
     <application
         android:allowBackup="true"
