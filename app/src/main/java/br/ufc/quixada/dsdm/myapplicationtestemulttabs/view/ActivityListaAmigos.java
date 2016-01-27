@@ -7,20 +7,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 public class ActivityListaAmigos extends AppCompatActivity {
 
     private ArrayList array;
     private TextView vazio;
     private ListView listView;
+    private ServiceLocal sl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
         array = new ArrayList<>();
         vazio = (TextView) findViewById(R.id.textViewNenhumAmigo);
         listView = (ListView) findViewById(R.id.listViewListaAmigos2);
+        sl = new ServiceLocal();
 
 
         Mensagem_Amigos msn = new Mensagem_Amigos();
@@ -86,8 +92,35 @@ public class ActivityListaAmigos extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void onClickStartService(){
+        // Intent i = new Intent(this, AndroidService.class);
+        // startService(i);
+        Toast t = Toast.makeText(this, "Start Service", Toast.LENGTH_LONG);
+        sl = new ServiceLocal();
+        Intent intent = new Intent(this, ServiceLocal.class);
+        sl.startService(intent);
+    }
+    public void onClickStopService(){
+        //  Intent i = new Intent(this, AndroidService.class);
+        //  stopService(i);
+        Toast t = Toast.makeText(this, "Stot Service", Toast.LENGTH_LONG);
+        sl.onDestroy();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    onClickStartService();
+                else
+                    onClickStopService();
 
+            }
+        });
 
+    }
 }

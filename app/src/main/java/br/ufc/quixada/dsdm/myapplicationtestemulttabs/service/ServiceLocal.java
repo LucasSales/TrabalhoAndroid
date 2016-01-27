@@ -63,7 +63,7 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
 
     @Override
     public void onLocationChanged(Location location) {
-        // realizar a busca das mensagens com a nova localização
+        // realizar a busca das mensagens
 
         Log.i("ServiceLocal", "OnLocationChanged funfou  | " + location.toString());
     }
