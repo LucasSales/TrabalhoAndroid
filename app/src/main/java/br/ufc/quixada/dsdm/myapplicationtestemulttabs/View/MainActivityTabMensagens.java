@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,17 +17,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 import java.util.ArrayList;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.Model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
 
 
-
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static  ListView listView;
     private static ArrayList<Mensagem_Amigos> Array;
     private static TextView tvvazio;
@@ -62,6 +67,30 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
         TabLayout t1 = (TabLayout) findViewById(R.id.tabbar);
         t1.setupWithViewPager(mViewPager);
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
+        }
+    }
+
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i("LOG", "This device is not supported.");
+
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
 
@@ -139,6 +168,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }
             return null;
         }
+
     }
 
     /**
