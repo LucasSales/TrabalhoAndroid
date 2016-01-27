@@ -92,6 +92,8 @@ public class ActivityListaAmigos extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*
     public void onClickStartService(){
         // Intent i = new Intent(this, AndroidService.class);
         // startService(i);
@@ -122,5 +124,5 @@ public class ActivityListaAmigos extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }
