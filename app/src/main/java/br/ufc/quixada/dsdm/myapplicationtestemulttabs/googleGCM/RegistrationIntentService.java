@@ -120,6 +120,7 @@ public class RegistrationIntentService extends IntentService {
     private void sendRegistrationToServer(String token) {
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
+        usuario.setNickname("Novinha");
         // Add custom implementation, as needed.
         NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName());
     }

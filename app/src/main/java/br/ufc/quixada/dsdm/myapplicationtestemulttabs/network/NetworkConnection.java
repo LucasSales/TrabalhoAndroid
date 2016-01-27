@@ -79,7 +79,7 @@ public class NetworkConnection {
         Log.i("LOG", "params: " + gson.toJson(obj).toString());
 
         CustomRequest request = new CustomRequest(Request.Method.POST,
-                "http://192.168.1.30:80/Servidor/fronteira.php",
+                "http://192.168.1.10:80/Servidor/Fronteira.php",
                 params,
                 new Response.Listener<JSONObject>(){
 

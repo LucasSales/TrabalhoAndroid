@@ -7,18 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Adaptador_Msn_Lista_Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 public class ActivityListaAmigos extends AppCompatActivity {
 
