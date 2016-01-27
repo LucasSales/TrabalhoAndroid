@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -15,6 +19,7 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_login);
+
     }
 
     @Override
@@ -43,4 +48,5 @@ public class ActivityLogin extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivityTabMensagens.class);
         startActivity(intent);
     }
+
 }

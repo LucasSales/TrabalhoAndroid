@@ -31,6 +31,7 @@ import java.io.IOException;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.Transaction;
 
@@ -117,10 +118,10 @@ public class RegistrationIntentService extends IntentService {
      * @param token The ne9w token.
      */
     private void sendRegistrationToServer(String token) {
-        User user = new User();
-        user.setRegistrationId(token);
+        Usuario usuario = new Usuario();
+        usuario.setRegistrationId(token);
         // Add custom implementation, as needed.
-        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(user), RegistrationIntentService.class.getName());
+        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName());
     }
 
     /**

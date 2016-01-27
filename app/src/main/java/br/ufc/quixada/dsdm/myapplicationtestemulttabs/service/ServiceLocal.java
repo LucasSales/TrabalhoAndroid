@@ -15,6 +15,9 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 
 import java.util.ArrayList;
@@ -24,8 +27,8 @@ import java.util.List;
 /**
  * Created by Ronson Cavalcante on 27/01/2016.
  */
-public class ServiceLocal{
-    /*
+public class ServiceLocal extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+
     private GoogleApiClient mGoogleApiClient;
     private final IBinder mBinder = (IBinder) new ServiceLocal();
     private Location UltimoLocal;
@@ -68,7 +71,7 @@ public class ServiceLocal{
 
     }
 
-    @Override
+
     public void onLocationChanged(Location location) {
         // realizar a busca das mensagens
 
@@ -92,7 +95,7 @@ public class ServiceLocal{
             mLocationRequest.setSmallestDisplacement(10);
             mLocationRequest.setFastestInterval(5000);
             mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (LocationListener) this);
             UltimoLocal = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         }
 
@@ -100,7 +103,7 @@ public class ServiceLocal{
 
     protected void stopLocationUpdates() {
 
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, (LocationListener) this);
     }
 
 
@@ -127,7 +130,7 @@ public class ServiceLocal{
         public ServiceLocal getServiceLocal(){
             return ServiceLocal.this;
         }
-    }*/
+    }
 
 
 }

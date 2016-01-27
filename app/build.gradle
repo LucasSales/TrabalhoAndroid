@@ -35,6 +35,8 @@ dependencies {
 
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    compile 'com.google.android.gms:play-services:8.1.0'
+
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.1'
     androidTestCompile 'com.android.support.test:runner:0.2'

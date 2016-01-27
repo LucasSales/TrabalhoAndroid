@@ -25,7 +25,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
     private ArrayList array;
     private TextView vazio;
     private ListView listView;
-    private ServiceLocal sl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
         array = new ArrayList<>();
         vazio = (TextView) findViewById(R.id.textViewNenhumAmigo);
         listView = (ListView) findViewById(R.id.listViewListaAmigos2);
-        sl = new ServiceLocal();
+
 
 
         Mensagem_Amigos msn = new Mensagem_Amigos();
@@ -93,36 +93,4 @@ public class ActivityListaAmigos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    public void onClickStartService(){
-        // Intent i = new Intent(this, AndroidService.class);
-        // startService(i);
-        Toast t = Toast.makeText(this, "Start Service", Toast.LENGTH_LONG);
-        sl = new ServiceLocal();
-        Intent intent = new Intent(this, ServiceLocal.class);
-        sl.startService(intent);
-    }
-    public void onClickStopService(){
-        //  Intent i = new Intent(this, AndroidService.class);
-        //  stopService(i);
-        Toast t = Toast.makeText(this, "Stot Service", Toast.LENGTH_LONG);
-        sl.onDestroy();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    onClickStartService();
-                else
-                    onClickStopService();
-
-            }
-        });
-
-    }*/
 }

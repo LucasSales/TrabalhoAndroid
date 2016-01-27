@@ -2,12 +2,14 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain;
 
 import java.util.LinkedList;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+
 /**
  * Created by viniciusthiengo on 7/26/15.
  */
 public class WrapObjToNetwork {
-    private User user;
-    private User userFrom;
+    private Usuario usuarioRemetente;
+    private Usuario usuarioDestinatario;
     private Message message;
     private LinkedList<Message> messages;
     private String method;
@@ -17,26 +19,42 @@ public class WrapObjToNetwork {
         this.messages = messages;
         this.method = method;
     }
-    public WrapObjToNetwork(User user, User userFrom, String method) {
-        this.user = user;
-        this.userFrom = userFrom;
+    public WrapObjToNetwork(Usuario usuarioRemetente, Usuario usuarioDestinatario, String method) {
+        this.usuarioRemetente = usuarioRemetente;
+        this.usuarioDestinatario = usuarioDestinatario;
         this.method = method;
     }
-    public WrapObjToNetwork(User user) {
-        this.user = user;
+    public WrapObjToNetwork(Usuario usuario) {
+        this.usuarioRemetente = usuario;
     }
     public WrapObjToNetwork(Message message, String method) {
         this.message = message;
         this.method = method;
     }
 
+    public Usuario getUsuarioRemetente() {
 
-    public User getUser() {
-        return user;
+        return usuarioRemetente;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsuarioRemetente(Usuario usuarioRemetente) {
+        this.usuarioRemetente = usuarioRemetente;
+    }
+
+    public Usuario getUsuarioDestinatario() {
+        return usuarioDestinatario;
+    }
+
+    public void setUsuarioDestinatario(Usuario usuarioDestinatario) {
+        this.usuarioDestinatario = usuarioDestinatario;
+    }
+
+    public Usuario getUsuario() {
+        return usuarioRemetente;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuarioRemetente = usuario;
     }
 
     public Message getMessage() {
@@ -55,13 +73,6 @@ public class WrapObjToNetwork {
         this.method = method;
     }
 
-    public User getUserFrom() {
-        return userFrom;
-    }
-
-    public void setUserFrom(User userFrom) {
-        this.userFrom = userFrom;
-    }
 
     public LinkedList<Message> getMessages() {
         return messages;
