@@ -21,21 +21,22 @@
         android:id="@+id/listViewMsnBatePapo"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewNenhumaMsn"
-        android:layout_above="@+id/editText3" />
+        android:layout_above="@+id/msgArea" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/msgArea"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/imageButton" />
+        android:layout_toStartOf="@+id/enviar" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
+        android:id="@+id/enviar"
         android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/editText3"
-        android:layout_alignEnd="@+id/listViewMsnBatePapo" />
+        android:layout_alignTop="@+id/msgArea"
+        android:layout_alignEnd="@+id/listViewMsnBatePapo"
+        android:onClick="cadastrarMensagem"/>
 </RelativeLayout>

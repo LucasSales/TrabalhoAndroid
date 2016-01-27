@@ -18,29 +18,20 @@ public class Message implements Parcelable {
     public static final String MESSAGE_KEY = "br.com.thiengo.gcmexample.domain.Message.MESSAGE_KEY";
     public static final String MESSAGES_SUMMARY_KEY = "br.com.thiengo.gcmexample.domain.Message.MESSAGES_SUMMARY_KEY";
 
-    private long id;
     private User userFrom;
     private User userTo;
     private String message;
-    private long regTime;
-    private int wasRead;
-    private String ackId;
+    private double latitude;
+    private double longitude;
 
 
     public Message() {}
-    public Message(User userFrom, User userTo, String message, long regTime) {
+    public Message(User userFrom, String message,User userTo ,double latitude, double longitude) {
         this.userFrom = userFrom;
-        this.userTo = userTo;
         this.message = message;
-        this.regTime = regTime;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.userTo = userTo;
     }
 
     public User getUserFrom() {
@@ -67,34 +58,10 @@ public class Message implements Parcelable {
         this.message = message;
     }
 
-    public int getWasRead() {
-        return wasRead;
-    }
-
-    public void setWasRead(int wasRead) {
-        this.wasRead = wasRead;
-    }
-
-    public long getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(long regTime) {
-        this.regTime = regTime;
-    }
-
-    public String getAckId() {
-        return ackId;
-    }
-
-    public void setAckId(String ackId) {
-        this.ackId = ackId;
-    }
 
     public String getRegTimeForHuman(){
         String aux = "";
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis( regTime );
 
         aux += c.get(Calendar.DAY_OF_MONTH) < 10 ? "0"+c.get(Calendar.DAY_OF_MONTH) : c.get(Calendar.DAY_OF_MONTH);
         aux += "/";
@@ -116,23 +83,15 @@ public class Message implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.id);
         dest.writeParcelable(this.userFrom, 0);
         dest.writeParcelable(this.userTo, 0);
         dest.writeString(this.message);
-        dest.writeLong(this.regTime);
-        dest.writeInt(this.wasRead);
-        dest.writeString(this.ackId);
     }
 
     protected Message(Parcel in) {
-        this.id = in.readLong();
         this.userFrom = in.readParcelable(User.class.getClassLoader());
         this.userTo = in.readParcelable(User.class.getClassLoader());
         this.message = in.readString();
-        this.regTime = in.readLong();
-        this.wasRead = in.readInt();
-        this.ackId = in.readString();
     }
 
     public static final Creator<Message> CREATOR = new Creator<Message>() {
