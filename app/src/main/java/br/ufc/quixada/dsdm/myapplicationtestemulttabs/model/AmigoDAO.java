@@ -20,6 +20,7 @@ public class AmigoDAO {
     public void inserir(Amigo amigo){
         ContentValues valores = new ContentValues();
         valores.put("nome",amigo.getNickname());
+        valores.put("_id",amigo.getIdAmigo());
 
         db.insert("amigos",null,valores);
     }

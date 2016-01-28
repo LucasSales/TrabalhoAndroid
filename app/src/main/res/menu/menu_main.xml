@@ -9,7 +9,14 @@
             android:orderInCategory="100" app:showAsAction="never" />
 
     </group>
-    <item android:id="@+id/action_nova_mensagem" android:title="Enviar Mensagem"
+    <item
+        android:id="@+id/action_nova_mensagem"
+        android:title="Enviar Mensagem"
         android:icon="@drawable/ic_action_name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_add_amigo"
+        android:title="AddAmigo"
+        android:icon="@drawable/ic_person_add_white_24dp"
         app:showAsAction="ifRoom" />
 </menu>

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -121,6 +122,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             startActivity(i);
         }else if(id == R.id.action_logout){
             finish();
+        }else if(id == R.id.action_add_amigo){
+            Intent i = new Intent(this,ActivityAdicionarAmigo.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

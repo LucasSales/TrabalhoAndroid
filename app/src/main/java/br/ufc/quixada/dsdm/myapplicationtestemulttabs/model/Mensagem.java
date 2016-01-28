@@ -7,26 +7,26 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
  */
 public class Mensagem {
 
-    private Usuario userFrom;
-    private Usuario userTo;
+    private  String idFrom;
+    private String idTo;
     private String message;
     private double latitude;
     private double longitude;
 
-    public Usuario getUserFrom() {
-        return userFrom;
+    public String getIdFrom() {
+        return idFrom;
     }
 
-    public void setUserFrom(Usuario userFrom) {
-        this.userFrom = userFrom;
+    public void setIdFrom(String idFrom) {
+        this.idFrom = idFrom;
     }
 
-    public Usuario getUserTo() {
-        return userTo;
+    public String getIdTo() {
+        return idTo;
     }
 
-    public void setUserTo(Usuario userTo) {
-        this.userTo = userTo;
+    public void setIdTo(String idTo) {
+        this.idTo = idTo;
     }
 
     public String getMessage() {

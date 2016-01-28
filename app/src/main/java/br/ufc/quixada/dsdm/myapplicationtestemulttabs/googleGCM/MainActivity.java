@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);*/
         tv = (TextView) findViewById(R.id.textView);
         Amigo amigo = new Amigo();
-        amigo.setIdAmigo(15);
+        amigo.setIdAmigo(2);
 
-        String url = "http://192.168.1.30:80/Servidor/FronteiraBuscarAmigo.php";
+        String url = "http://192.168.1.10:80/Servidor/FronteiraBuscarAmigo.php";
         NetworkConnection.getInstance(this).executeBusca( new WrapObjToNetwork(amigo), RegistrationIntentService.class.getName(), url);
 
     }

@@ -21,7 +21,7 @@ public class Adaptador_Mensagens_BatePapo extends ArrayAdapter<Mensagem_Amigos> 
     private Activity context;
 
     public Adaptador_Mensagens_BatePapo(Activity context, List<Mensagem_Amigos> lista) {
-        super(context, R.layout.modelo_bate_papo, lista);
+        super(context, R.layout.modelo_mensagem_amigo, lista);
         this.lista = lista;
         this.context = context;
     }

@@ -22,6 +22,7 @@ import java.util.HashMap;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 
 /**
  * Created by viniciusthiengo on 7/26/15.
@@ -162,7 +163,62 @@ public class NetworkConnection {
         addRequestQueue(request);
 
 
+    }
+    public void executeBuscaAmigo( final WrapObjToNetwork obj, String tag, String url ){
+        Gson gson = new Gson();
 
+        if( obj == null ){
+            return;
+        }
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("jsonObject", gson.toJson(obj));
+        Log.i("LOG", "params: " + gson.toJson(obj).toString());
+
+        CustomRequest request = new CustomRequest(Request.Method.POST,
+                url,
+                params,
+                new Response.Listener<JSONObject>(){
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.i("LOG","onResponse: " + response.toString());
+                        JSONArray pessoas = null;
+                        try {
+                            pessoas = response.getJSONArray("pessoas");
+                            for (int i =0; i < pessoas.length();i++){
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson2 = builder.create();
+
+                                //pessoas pq é pessoas q eu to pegando
+                                final Amigo ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), Amigo.class);
+                                Log.i("Amigo","Nome: " +ob.getNickname());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "onErrorResponse(): " + error.getMessage());
+                //mTransaction.doAfter(null);
+            }
+        });//final dos parametros do CustimRequest
+
+
+
+
+        request.setTag(tag);
+        request.setRetryPolicy(new DefaultRetryPolicy(5000,
+                1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addRequestQueue(request);
 
 
     }
