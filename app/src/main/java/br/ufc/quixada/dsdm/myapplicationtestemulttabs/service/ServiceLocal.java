@@ -1,50 +1,42 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.service;
 
-import android.Manifest;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Service;
+import android.content.Intent;
+import android.location.Location;
+import android.os.Binder;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
+public class ServiceLocal extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener{
 
-/**
- * Created by Ronson Cavalcante on 27/01/2016.
- */
-public class ServiceLocal extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private GoogleApiClient mGoogleApiClient;
-    private final IBinder mBinder = (IBinder) new ServiceLocal();
-    private Location UltimoLocal;
-    private Boolean Conectado;
-
-    @Nullable
-    @Override
-
-
-    public IBinder onBind(Intent intent) {
-        return mBinder;
-    }
+    private final IBinder mBinder = new LocalBinder();
+    public boolean playConnected = false;
+    private Location lastLocation;
 
     @Override
     public void onCreate() {
-
+        Log.i("Android Service", "entrou onCreate");
         mGoogleApiClient = new GoogleApiClient.Builder(getBaseContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -53,85 +45,86 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
 
         super.onCreate();
     }
-
-
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        startLocationUpdates();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.i("ServiceLocal", "Conexão Suspensa");
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i("ServiceLocal", "Falha na Conexão");
-
-    }
-
-
-    public void onLocationChanged(Location location) {
-        // realizar a busca das mensagens
-
-        Log.i("ServiceLocal", "OnLocationChanged funfou  | " + location.toString());
+    public IBinder onBind(Intent intent) {
+        return mBinder;
     }
 
     @Override
     public void onDestroy() {
-        if (mGoogleApiClient != null) {
-            stopLocationUpdates();
+        Log.i("Android Service", "onDestroy");
+        if(mGoogleApiClient != null) {
+            pararAtualizacaoLocalizacao();
             mGoogleApiClient.disconnect();
-            Conectado = false;
+            playConnected = false;
         }
         super.onDestroy();
     }
 
-    protected void startLocationUpdates() {
-        if (mGoogleApiClient != null && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            LocationRequest mLocationRequest = new LocationRequest();
-            mLocationRequest.setInterval(10000);
-            mLocationRequest.setSmallestDisplacement(10);
-            mLocationRequest.setFastestInterval(5000);
-            mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (LocationListener) this);
-            UltimoLocal = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
 
-    }
-
-    protected void stopLocationUpdates() {
-
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, (LocationListener) this);
-    }
-
-
-    public Location getUltimoLocal() {
-        Location l = LocationServices
-                .FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
-        if(mGoogleApiClient != null &&ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-            UltimoLocal = l;
-        return l;
-    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(mGoogleApiClient != null && !Conectado){
+        Log.i("Android Service", "onStartCommand");
+        if(mGoogleApiClient != null && !playConnected){
             mGoogleApiClient.connect();
-            Conectado = true;
+            playConnected = true;
         }
         return super.onStartCommand(intent, flags, startId);
     }
 
-    //Retorna a instancia do Serviço
-    public class LocalBilder extends Binder{
-        public ServiceLocal getServiceLocal(){
-            return ServiceLocal.this;
-        }
+    @Override
+    public void onConnected(Bundle bundle) {
+        Log.i("Android Service", "Conectado Serviço");
+        iniciarAtualizacaoLocalizacao();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.i("Android Service", "Conexao Suspendida");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.i("Android Service", "Conexao falhou");
     }
 
 
-}
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.i("Android Service", "Localização alterada " + location.toString());
 
+
+    }
+
+    protected void iniciarAtualizacaoLocalizacao() {
+        Log.d("Android Service", "Entrou IniciarAtualização");
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setSmallestDisplacement(10);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+    }
+
+    protected void pararAtualizacaoLocalizacao() {
+        Log.d("Android Service", "pararAtualizacaoLocalizacao()");
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+    }
+
+
+    public Location getUltimaLocalizacao(){
+        if (mGoogleApiClient != null) {
+            lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        }
+
+        return lastLocation;
+    }
+
+    public class LocalBinder extends Binder {
+        public ServiceLocal getService() {
+            return ServiceLocal.this;
+        }
+    }
+}
