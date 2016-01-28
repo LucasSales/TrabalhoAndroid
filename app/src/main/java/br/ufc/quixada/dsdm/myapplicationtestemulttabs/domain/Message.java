@@ -8,7 +8,7 @@ import java.util.Calendar;
 /**
  * Created by viniciusthiengo on 8/23/15.
  */
-public class Message implements Parcelable {
+public class Message {
     public static final String METHOD_SAVE = "save-message";
     public static final String METHOD_REMOVE = "remove-message";
     public static final String METHOD_LOAD_OLD = "load-old-messages";
@@ -75,32 +75,4 @@ public class Message implements Parcelable {
 
         return( aux );
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.userFrom, 0);
-        dest.writeParcelable(this.userTo, 0);
-        dest.writeString(this.message);
-    }
-
-    protected Message(Parcel in) {
-        this.userFrom = in.readParcelable(User.class.getClassLoader());
-        this.userTo = in.readParcelable(User.class.getClassLoader());
-        this.message = in.readString();
-    }
-
-    public static final Creator<Message> CREATOR = new Creator<Message>() {
-        public Message createFromParcel(Parcel source) {
-            return new Message(source);
-        }
-
-        public Message[] newArray(int size) {
-            return new Message[size];
-        }
-    };
 }

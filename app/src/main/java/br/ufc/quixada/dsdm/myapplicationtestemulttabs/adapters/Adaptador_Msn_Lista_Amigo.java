@@ -14,6 +14,8 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
 
 /**
  * Created by Robson Cavalcante on 10/12/2015.
@@ -31,7 +33,8 @@ public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Mensagem_Amigos> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        UsuarioDAO dao = new UsuarioDAO(context);
+        List<Usuario> usuario = dao.buscar();
 
         if (convertView == null) {
             LayoutInflater layoutInflater = context.getLayoutInflater();
@@ -43,7 +46,7 @@ public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Mensagem_Amigos> {
         ImageView imagem = (ImageView) convertView.findViewById(R.id.imageViewAmigo);
 
         Picasso.with(context).load(modelo.getImg_amigo()).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
-        txtNomeAmigo.setText(modelo.getNome_amigo());
+        txtNomeAmigo.setText(usuario.get(0).getNickname());
 
         return convertView;
     }

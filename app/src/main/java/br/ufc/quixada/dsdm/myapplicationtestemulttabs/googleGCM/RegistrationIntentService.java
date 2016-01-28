@@ -28,10 +28,12 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.Transaction;
 
@@ -120,9 +122,13 @@ public class RegistrationIntentService extends IntentService {
     private void sendRegistrationToServer(String token) {
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("Novinha");
+        usuario.setNickname("HEUHRU");
+
+        String url = "http://192.168.1.30:80/Servidor/Fronteira.php";
         // Add custom implementation, as needed.
-        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName());
+        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName(),url);
+
+        cadastroUsuario(usuario,token);
     }
 
     /**
@@ -140,5 +146,19 @@ public class RegistrationIntentService extends IntentService {
         }
     }
     // [END subscribe_topics]
+
+    public void cadastroUsuario(Usuario usuario, String token){
+        boolean existe=false;
+        UsuarioDAO dao = new UsuarioDAO(this);
+        List<Usuario> lista = dao.buscar();
+        for(int i = 0; i < lista.size(); i++){
+            if(lista.get(i).getRegistrationId().equals(token)){
+                existe = true;
+                Log.i("USER","Usuario: " + lista.get(i).getNickname());
+            }
+        }
+        if(!existe)
+            dao.inserir(usuario);
+    }
 
 }

@@ -10,13 +10,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
 import java.util.HashMap;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 
 /**
@@ -61,13 +65,13 @@ public class NetworkConnection {
     public void execute1( Transaction t, String tag ){
         mTransaction = t;
         WrapObjToNetwork obj = t.doBefore();
-        execute(obj, tag);
+        //execute(obj, tag);
 
     }
 
 
 
-    public void execute( final WrapObjToNetwork obj, String tag ){
+    public void execute( final WrapObjToNetwork obj, String tag, String url ){
         Gson gson = new Gson();
 
         if( obj == null ){
@@ -79,7 +83,7 @@ public class NetworkConnection {
         Log.i("LOG", "params: " + gson.toJson(obj).toString());
 
         CustomRequest request = new CustomRequest(Request.Method.POST,
-                "http://192.168.1.10:80/Servidor/Fronteira.php",
+                url,
                 params,
                 new Response.Listener<JSONObject>(){
 
@@ -101,5 +105,65 @@ public class NetworkConnection {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         addRequestQueue(request);
+    }
+
+    public void executeBusca( final WrapObjToNetwork obj, String tag, String url ){
+        Gson gson = new Gson();
+
+        if( obj == null ){
+            return;
+        }
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("jsonObject", gson.toJson(obj));
+        Log.i("LOG", "params: " + gson.toJson(obj).toString());
+
+        CustomRequest request = new CustomRequest(Request.Method.POST,
+                url,
+                params,
+                new Response.Listener<JSONObject>(){
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.i("LOG","onResponse: " + response.toString());
+                        JSONArray pessoas = null;
+                        try {
+                            pessoas = response.getJSONArray("pessoas");
+                            for (int i =0; i < pessoas.length();i++){
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson2 = builder.create();
+                                final User ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), User.class);
+                                Log.i("Usuairo","Nome: " +ob.getNome());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "onErrorResponse(): " + error.getMessage());
+                //mTransaction.doAfter(null);
+            }
+        });//final dos parametros do CustimRequest
+
+
+
+
+        request.setTag(tag);
+        request.setRetryPolicy(new DefaultRetryPolicy(5000,
+                1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addRequestQueue(request);
+
+
+
+
+
     }
 }

@@ -12,8 +12,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "mensageiro";
 
-    public BancoDeDados(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public BancoDeDados(Context context) {
+        super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
     public BancoDeDados(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
@@ -23,14 +23,12 @@ public class BancoDeDados extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table usuario(" +
-                "_id integer primary key autoincrement," +
-                "nome text not null," +
-                "email text not null," +
-                "senha text not null" +
+                "_id text primary key," +
+                "nome text not null" +
                 ");");
         db.execSQL("create table amigos(" +
-                "_idAmigo integer," +
-                "nome text not null," +
+                "_id integer primary key," +
+                "nick text not null" +
                 ");");
     }
 

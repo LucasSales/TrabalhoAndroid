@@ -33,6 +33,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,15 +72,21 @@ public class MainActivity extends AppCompatActivity {
         };
         mInformationTextView = (TextView) findViewById(R.id.informationTextView);*/
 
-        if (checkPlayServices()) {
+        /*if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
 
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
 
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);*/
         tv = (TextView) findViewById(R.id.textView);
+        Amigo amigo = new Amigo();
+        amigo.setIdAmigo(15);
+
+        String url = "http://192.168.1.30:80/Servidor/FronteiraBuscarAmigo.php";
+        NetworkConnection.getInstance(this).executeBusca( new WrapObjToNetwork(amigo), RegistrationIntentService.class.getName(), url);
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain;
 
 import java.util.LinkedList;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 
@@ -11,6 +12,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 public class WrapObjToNetwork {
     private Usuario usuarioRemetente;
     private Usuario usuarioDestinatario;
+    private Amigo amigo;
     private Mensagem message;
     private LinkedList<Message> messages;
     private String method;
@@ -31,6 +33,17 @@ public class WrapObjToNetwork {
     public WrapObjToNetwork(Mensagem message, String method) {
         this.message = message;
         this.method = method;
+    }
+    public WrapObjToNetwork(Amigo amigo) {
+        this.amigo = amigo;
+    }
+
+    public Amigo getAmigo() {
+        return amigo;
+    }
+
+    public void setAmigo(Amigo amigo) {
+        this.amigo = amigo;
     }
 
     public Usuario getUsuarioRemetente() {
