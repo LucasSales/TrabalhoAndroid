@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     private Integer id;
     private  ServiceLocal service;
     private boolean conectado = false;
-
+    private ImageView imgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class ActivityBatePapo extends AppCompatActivity{
         listView = (ListView)findViewById(R.id.listViewMsnBatePapo);
         vazio = (TextView) findViewById(R.id.textViewNenhumaMsn);
 
-
+        imgBtn = (ImageView) findViewById(R.id.enviarMsg);
+        imgBtn.setImageResource(R.drawable.ic_send_black_24dp);
 
         Intent i = new Intent(this, ServiceLocal.class);
         startService(i);
@@ -126,7 +128,7 @@ public class ActivityBatePapo extends AppCompatActivity{
             msg.setIdFrom(token);
             msg.setIdTo(id.toString());
             msg.setLocal(localizacao);
-
+            tx.setText(null);
             Log.i("ID", "id: " + id);
 
             service.onDestroy();

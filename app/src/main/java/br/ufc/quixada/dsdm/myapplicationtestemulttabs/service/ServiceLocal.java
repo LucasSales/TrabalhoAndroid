@@ -90,22 +90,26 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.i("Android Service", "Localização:" + location.toString());
+
 
         UsuarioDAO dao = new UsuarioDAO(this);
         List<Usuario> usuario = dao.buscar();
-        String token = usuario.get(0).getRegistrationId();
 
-        Location local = this.getUltimaLocalizacao();
-        Local localizacao = new Local();
-        localizacao.setLatitude(local.getLatitude());
-        localizacao.setLongitude(local.getLongitude());
 
-        VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
+        if(usuario.size() > 0){
+            String token = usuario.get(0).getRegistrationId();
+            Log.i("Android Service", "Localização:" + location.toString());
+            Location local = this.getUltimaLocalizacao();
+            Local localizacao = new Local();
+            localizacao.setLatitude(local.getLatitude());
+            localizacao.setLongitude(local.getLongitude());
 
-        String url = "http://192.168.1.10:80/Servidor/FronteiraPegarMSG.php";
-        // Add custom implementation, as needed.
-        NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
+            VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
+
+            String url = "http://192.168.1.10:80/Servidor/FronteiraPegarMSG.php";
+            // Add custom implementation, as needed.
+            NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
+        }
 
 
 

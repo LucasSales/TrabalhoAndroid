@@ -31,12 +31,14 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.PushMessage2;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static  ListView listView;
-    private static ArrayList<Mensagem_Amigos> Array;
+    private static ArrayList<Mensagem_Amigos> listaMensagemAmigo;
     private static TextView tvvazio;
     private  ServiceLocal service;
     private boolean conectado = false;
@@ -224,6 +226,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             return null;
         }
 
+
     }
 
     /**
@@ -261,7 +264,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
-            Array = new ArrayList<>();
+            listaMensagemAmigo = new ArrayList<>();
 
 
             Mensagem_Amigos msn = new Mensagem_Amigos();
@@ -272,9 +275,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
 
 
-            Array.add(msn);
-            if(!Array.isEmpty()){
-                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), Array);
+            listaMensagemAmigo.add(msn);
+            if(!listaMensagemAmigo.isEmpty()){
+                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
                 listView.setAdapter(adapter);
 
             }else{
@@ -295,6 +298,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             return rootView;
         }
+
 
     }
 
