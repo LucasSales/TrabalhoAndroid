@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,10 +22,13 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.AdaptadorBuscaAmigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 
 public class ActivityAdicionarAmigo extends AppCompatActivity {
     ImageButton imageButton;
@@ -41,14 +47,14 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton.setImageResource(icon);
 
+
     }
 
     public void buscarAmigo(View view){
 
         String url = "http://192.168.1.10:80/Servidor/FronteiraBusca.php";
         final Amigo amigo = new Amigo();
-        //final Amigo[] amigos = null;
-        final ArrayList<Amigo> amigos = new ArrayList<>();
+
         nomeBusca = (EditText) findViewById(R.id.editTextNomeBusca);
 
         if(nomeBusca.getText().toString() != null){
@@ -69,7 +75,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
                     //MONTANDO URL
                     Request rq = new Request.Builder()
-                            .url("http://192.168.1.10:80/Servidor/FronteiraBusca.php")
+                            .url("http://192.168.1.30/Servidor/FronteiraBusca.php")
                             .post(rb)
                             .build();
                     Log.i("HUEHUE", "teste: " + gson.toJson(amigo).toString());
@@ -86,12 +92,25 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
                         Gson gson2 = builder.create();
                         final Amigo[] ob = gson2.fromJson(resultado, Amigo[].class);
 
-
+                        final List<Amigo> amigos = Arrays.asList(ob);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                adaptadorBuscaAmigo = new AdaptadorBuscaAmigo((Activity) getBaseContext(), ob);
+                                adaptadorBuscaAmigo = new AdaptadorBuscaAmigo(ActivityAdicionarAmigo.this, amigos, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        AmigoDAO amigoDAO = new AmigoDAO(ActivityAdicionarAmigo.this);
+                                        Button button = (Button) v;
+                                        Amigo amigo = (Amigo) button.getTag();
+
+                                        amigoDAO.inserir(amigo);
+
+                                        Toast.makeText(getApplicationContext(), "add "+amigo.getId(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                                 listView.setAdapter(adaptadorBuscaAmigo);
+
+
                             }
                         });
 
