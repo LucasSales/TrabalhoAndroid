@@ -7,6 +7,15 @@ public class Local {
     private int id;
     private double latitude;
     private double longitude;
+    private float distancia = (float) 0.1;
+
+    public float getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(float distancia) {
+        this.distancia = distancia;
+    }
 
     public int getId() {
         return id;

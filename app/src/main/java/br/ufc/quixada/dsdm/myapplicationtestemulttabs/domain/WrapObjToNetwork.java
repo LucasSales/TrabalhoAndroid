@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.VerificaMensagem;
 
 /**
  * Created by viniciusthiengo on 7/26/15.
@@ -12,6 +13,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 public class WrapObjToNetwork {
     private Usuario usuarioRemetente;
     private Usuario usuarioDestinatario;
+    private VerificaMensagem temMensagem;
     private Amigo amigo;
     private Mensagem message;
     private LinkedList<Message> messages;
@@ -37,6 +39,10 @@ public class WrapObjToNetwork {
         this.amigo = amigo;
     }
 
+    public WrapObjToNetwork(VerificaMensagem temMensagem){
+        this.temMensagem = temMensagem;
+    }
+
     public Amigo getAmigo() {
         return amigo;
     }
@@ -44,6 +50,7 @@ public class WrapObjToNetwork {
     public void setAmigo(Amigo amigo) {
         this.amigo = amigo;
     }
+
 
     public Usuario getUsuarioRemetente() {
 

@@ -75,7 +75,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
                     //MONTANDO URL
                     Request rq = new Request.Builder()
-                            .url("http://192.168.1.30/Servidor/FronteiraBusca.php")
+                            .url("http://192.168.1.10/Servidor/FronteiraBusca.php")
                             .post(rb)
                             .build();
                     Log.i("HUEHUE", "teste: " + gson.toJson(amigo).toString());

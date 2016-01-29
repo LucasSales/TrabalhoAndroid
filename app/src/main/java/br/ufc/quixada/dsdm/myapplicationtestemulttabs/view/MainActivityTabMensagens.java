@@ -1,6 +1,11 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,11 +30,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
@@ -39,6 +46,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
     private static  ListView listView;
     private static ArrayList<Mensagem_Amigos> Array;
     private static TextView tvvazio;
+    private  ServiceLocal service;
+    private boolean conectado = false;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -84,7 +93,39 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
+
+        //pegar latitude e longitude
+
+        Intent i = new Intent(this, ServiceLocal.class);
+        startService(i);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bindService(new Intent(this, ServiceLocal.class), mConnection,
+                Context.BIND_AUTO_CREATE);
+
+        if(conectado) {
+            Location local = MainActivityTabMensagens.this.service.getUltimaLocalizacao();
+        }
+    }
+    //SERVICE PARA PEGAR LOCALIZACAO
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            ServiceLocal.LocalBinder binder = (ServiceLocal.LocalBinder) service;
+            MainActivityTabMensagens.this.service =  binder.getService();
+            conectado = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            conectado = false;
+        }
+    };
 
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();

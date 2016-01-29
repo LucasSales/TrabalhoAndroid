@@ -129,6 +129,8 @@ public class ActivityBatePapo extends AppCompatActivity{
 
             Log.i("ID", "id: " + id);
 
+            service.onDestroy();
+
             NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
         }
         // Add custom implementation, as needed.

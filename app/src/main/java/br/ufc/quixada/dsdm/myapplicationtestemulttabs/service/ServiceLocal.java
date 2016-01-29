@@ -14,17 +14,15 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 
-import android.app.Service;
-import android.content.Intent;
-import android.location.Location;
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.util.Log;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
+import java.util.List;
+
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.VerificaMensagem;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 
 public class ServiceLocal extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener{
 
@@ -86,13 +84,29 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i("Android Service", "Conexao falhou");
+        Log.i("Android Service", "Conexao1 falhou");
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.i("Android Service", "Localização alterada " + location.toString());
+        Log.i("Android Service", "Localização:" + location.toString());
+
+        UsuarioDAO dao = new UsuarioDAO(this);
+        List<Usuario> usuario = dao.buscar();
+        String token = usuario.get(0).getRegistrationId();
+
+        Location local = this.getUltimaLocalizacao();
+        Local localizacao = new Local();
+        localizacao.setLatitude(local.getLatitude());
+        localizacao.setLongitude(local.getLongitude());
+
+        VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
+
+        String url = "http://192.168.1.10:80/Servidor/FronteiraPegarMSG.php";
+        // Add custom implementation, as needed.
+        NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
+
 
 
     }
