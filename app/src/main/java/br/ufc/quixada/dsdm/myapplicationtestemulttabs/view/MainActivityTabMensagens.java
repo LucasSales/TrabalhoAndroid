@@ -22,8 +22,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
@@ -68,6 +71,13 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
         TabLayout t1 = (TabLayout) findViewById(R.id.tabbar);
         t1.setupWithViewPager(mViewPager);
+
+        AmigoDAO aDao = new AmigoDAO(this);
+        List<Amigo> a = aDao.buscar();
+
+        if(a.size() > 0)
+            Log.i("TEM GENTE","GENTE"+ a.get(0).getNick());
+
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
 

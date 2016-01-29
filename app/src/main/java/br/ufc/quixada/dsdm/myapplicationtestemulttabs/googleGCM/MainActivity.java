@@ -32,9 +32,12 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import java.util.List;
+
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 import de.greenrobot.event.EventBus;
 
@@ -87,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         String url = "http://192.168.1.30:80/Servidor/FronteiraBuscarAmigo.php";
         NetworkConnection.getInstance(this).executeBusca( new WrapObjToNetwork(amigo), RegistrationIntentService.class.getName(), url);
 
-        Amigo a;
+
+
+
 
     }
 

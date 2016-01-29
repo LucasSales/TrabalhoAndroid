@@ -9,16 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by lucas on 27/01/16.
  */
 public class BancoDeDados extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "mensageiro";
 
     public BancoDeDados(Context context) {
         super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
-    public BancoDeDados(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
-        super(context, name, factory, version, errorHandler);
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -28,7 +25,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
                 ");");
         db.execSQL("create table amigos(" +
                 "_id integer primary key," +
-                "nick text not null" +
+                "nome text not null" +
                 ");");
     }
 

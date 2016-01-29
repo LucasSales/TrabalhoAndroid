@@ -3,16 +3,24 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Mensagens_BatePapo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
 
 /**
  * Created by Robson Cavalcante on 18/12/2015.
@@ -23,7 +31,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     private ListView listView;
     private TextView vazio;
     private Adaptador_Mensagens_BatePapo adapter;
-
+    private Integer id;
 
 
     @Override
@@ -81,4 +89,28 @@ public class ActivityBatePapo extends AppCompatActivity{
         }
 
     }
+
+    public void mandarMsg(View view){
+        UsuarioDAO dao = new UsuarioDAO(this);
+        List<Usuario> usuarios = dao.buscar();
+
+        id = getIntent().getIntExtra("id", -1);
+        Log.i("ID","id: " + id);
+        String url = "http://192.168.1.30:80/Servidor/Fronteira.php";
+        Mensagem msg = new Mensagem();
+
+        TextView tx = (TextView) findViewById(R.id.msgArea);
+        msg.setMessage(tx.getText().toString());
+        msg.getIdFrom(usuarios.get(0).getRegistrationId());
+        msg.setIdTo(id.toString());
+        msg.setLatitude(123);
+        msg.setLongitude(123);
+        // Add custom implementation, as needed.
+        NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(usuario), ActivityBatePapo.class.getName(), url);
+
+
+
+
+    }
+
 }

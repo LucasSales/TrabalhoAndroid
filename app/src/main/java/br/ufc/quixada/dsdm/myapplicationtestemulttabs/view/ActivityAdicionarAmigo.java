@@ -105,7 +105,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
                                         amigoDAO.inserir(amigo);
 
-                                        Toast.makeText(getApplicationContext(), "add "+amigo.getId(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "add "+amigo.getNick(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 listView.setAdapter(adaptadorBuscaAmigo);

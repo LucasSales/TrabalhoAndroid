@@ -2,7 +2,12 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BancoDeDados;
 
@@ -20,7 +25,7 @@ public class AmigoDAO {
     public void inserir(Amigo amigo){
         ContentValues valores = new ContentValues();
         valores.put("nome",amigo.getNick());
-        valores.put("_id",amigo.getIdAmigo());
+        valores.put("_id",amigo.getId());
 
         db.insert("amigos",null,valores);
     }
@@ -31,8 +36,31 @@ public class AmigoDAO {
 
     public void atualizar(Amigo amigo){
         ContentValues valores = new ContentValues();
-        valores.put("nome",amigo.getNick());
+        valores.put("nick",amigo.getNick());
 
-        db.update("amigo", valores, "_id=?", new String[]{"" + amigo.getIdAmigo()});
+        db.update("amigos", valores, "_id=?", new String[]{"" + amigo.getId()});
+    }
+    public List<Amigo> buscar(){
+        List<Amigo> listaAmigos = new ArrayList<>();
+        String[] colunas = new String[]{"_id","nome"};
+        Cursor cursor = db.query("amigos",colunas,null,null,null,null,"nome ASC");
+
+
+        if(cursor.getCount() > 0 ){
+            cursor.moveToFirst();
+            do {
+                Amigo amigo = new Amigo();
+
+                amigo.setId(cursor.getInt(0));
+                amigo.setNick(cursor.getString(1));
+
+
+
+                listaAmigos.add(amigo);
+            }while(cursor.moveToNext());
+        }
+
+
+        return listaAmigos;
     }
 }
