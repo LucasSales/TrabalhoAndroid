@@ -38,5 +38,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignTop="@+id/msgArea"
         android:layout_alignEnd="@+id/listViewMsnBatePapo"
-        android:onClick="cadastrarMensagem"/>
+        android:onClick="mandarMsg"/>
 </RelativeLayout>

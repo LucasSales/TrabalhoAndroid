@@ -30,9 +30,8 @@ public class WrapObjToNetwork {
     public WrapObjToNetwork(Usuario usuario) {
         this.usuarioRemetente = usuario;
     }
-    public WrapObjToNetwork(Mensagem message, String method) {
+    public WrapObjToNetwork(Mensagem message) {
         this.message = message;
-        this.method = method;
     }
     public WrapObjToNetwork(Amigo amigo) {
         this.amigo = amigo;

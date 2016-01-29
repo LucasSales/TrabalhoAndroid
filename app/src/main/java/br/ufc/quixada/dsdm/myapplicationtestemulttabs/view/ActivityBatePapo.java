@@ -1,7 +1,12 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,23 +20,27 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Mensagens_BatePapo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.network.NetworkConnection;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 /**
  * Created by Robson Cavalcante on 18/12/2015.
  */
 public class ActivityBatePapo extends AppCompatActivity{
 
-    private ArrayList Array;
+    private ArrayList listaAmigos;
     private ListView listView;
     private TextView vazio;
     private Adaptador_Mensagens_BatePapo adapter;
     private Integer id;
+    private  ServiceLocal service;
+    private boolean conectado = false;
 
 
     @Override
@@ -39,10 +48,14 @@ public class ActivityBatePapo extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bate_papo);
 
-        Array = new ArrayList();
+        listaAmigos = new ArrayList();
         listView = (ListView)findViewById(R.id.listViewMsnBatePapo);
         vazio = (TextView) findViewById(R.id.textViewNenhumaMsn);
 
+
+
+        Intent i = new Intent(this, ServiceLocal.class);
+        startService(i);
 
 
     }
@@ -74,14 +87,11 @@ public class ActivityBatePapo extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
 
-        Mensagem_Amigos msn = new Mensagem_Amigos();
-         msn.setTexto("funfou");
-         msn.setUltima_visualizacao("10:00");
+        bindService(new Intent(this, ServiceLocal.class), mConnection,
+                Context.BIND_AUTO_CREATE);
 
-
-        Array.add(msn);
-        if(!Array.isEmpty()){
-            adapter = new Adaptador_Mensagens_BatePapo(this, Array);
+        if(!listaAmigos.isEmpty()){
+            adapter = new Adaptador_Mensagens_BatePapo(this, listaAmigos);
             listView.setAdapter(adapter);
 
         }else{
@@ -90,27 +100,58 @@ public class ActivityBatePapo extends AppCompatActivity{
 
     }
 
+
+
     public void mandarMsg(View view){
         UsuarioDAO dao = new UsuarioDAO(this);
         List<Usuario> usuarios = dao.buscar();
 
+
+
+
         id = getIntent().getIntExtra("id", -1);
-        Log.i("ID","id: " + id);
-        String url = "http://192.168.1.30:80/Servidor/Fronteira.php";
+
+        String url = "http://192.168.1.10:80/Servidor/FronteiraCadastroMSG.php";
         Mensagem msg = new Mensagem();
 
         TextView tx = (TextView) findViewById(R.id.msgArea);
-        msg.setMessage(tx.getText().toString());
-        msg.getIdFrom(usuarios.get(0).getRegistrationId());
-        msg.setIdTo(id.toString());
-        msg.setLatitude(123);
-        msg.setLongitude(123);
+        if(conectado){
+            Location local = ActivityBatePapo.this.service.getUltimaLocalizacao();
+            Local localizacao = new Local();
+            localizacao.setLatitude(local.getLatitude());
+            localizacao.setLongitude(local.getLongitude());
+
+            String token = usuarios.get(0).getRegistrationId();
+            msg.setMessage(tx.getText().toString());
+            msg.setIdFrom(token);
+            msg.setIdTo(id.toString());
+            msg.setLocal(localizacao);
+
+            Log.i("ID", "id: " + id);
+
+            NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
+        }
         // Add custom implementation, as needed.
-        NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(usuario), ActivityBatePapo.class.getName(), url);
+
 
 
 
 
     }
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            ServiceLocal.LocalBinder binder = (ServiceLocal.LocalBinder) service;
+            ActivityBatePapo.this.service =  binder.getService();
+            conectado = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            conectado = false;
+        }
+    };
 
 }

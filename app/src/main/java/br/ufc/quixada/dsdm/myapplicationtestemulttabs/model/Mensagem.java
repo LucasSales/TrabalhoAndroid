@@ -7,11 +7,19 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
  */
 public class Mensagem {
 
-    private  String idFrom;
+    private String idFrom;
     private String idTo;
     private String message;
-    private double latitude;
-    private double longitude;
+    private int id_loc;
+    private Local local;
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+    }
 
     public String getIdFrom() {
         return idFrom;
@@ -37,19 +45,11 @@ public class Mensagem {
         this.message = message;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public int getId_loc() {
+        return id_loc;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setId_loc(int id_loc) {
+        this.id_loc = id_loc;
     }
 }

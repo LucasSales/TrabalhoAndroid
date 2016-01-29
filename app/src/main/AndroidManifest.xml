@@ -16,10 +16,7 @@
 
     <!-- [END gcm_permission] -->
 
-    <service
-        android:name=".app.service.ServiceLocal"
-        android:enabled="true"
-        android:exported="true" />
+
 
     <application
         android:allowBackup="true"
@@ -78,6 +75,11 @@
         </receiver>
         <!-- [END gcm_receiver] -->
 
+
+        <service
+            android:name=".service.ServiceLocal"
+            android:enabled="true"
+            android:exported="true" />
 
         <!-- [START gcm_listener] -->
         <service
