@@ -16,7 +16,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
  * Created by lucas on 28/01/16.
  */
 public class AdaptadorBuscaAmigo extends ArrayAdapter<Amigo> {
-    public AdaptadorBuscaAmigo(Activity context, List<Amigo> lista) {
+    public AdaptadorBuscaAmigo(Activity context, Amigo[] lista) {
         super(context, R.layout.amigo_busca, lista);
     }
 

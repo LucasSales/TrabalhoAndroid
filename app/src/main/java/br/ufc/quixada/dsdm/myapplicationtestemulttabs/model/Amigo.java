@@ -6,7 +6,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.model;
 public class Amigo {
     private int id;
     private int idAmigo;
-    private String nickname;
+    private String nick;
 
     public int getId() {
         return id;
@@ -26,11 +26,11 @@ public class Amigo {
         this.idAmigo = idAmigo;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNick() {
+        return nick;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 }

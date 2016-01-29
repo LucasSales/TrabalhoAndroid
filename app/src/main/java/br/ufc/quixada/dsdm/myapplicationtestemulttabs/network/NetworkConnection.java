@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
@@ -29,7 +30,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
  */
 public class NetworkConnection {
     public static final String TAG = "LOG";
-
+    public static final List<Amigo> amigos = null;
     private static NetworkConnection instance;
     private Context mContext;
     private RequestQueue mRequestQueue;
@@ -164,12 +165,16 @@ public class NetworkConnection {
 
 
     }
+
+
     public void executeBuscaAmigo( final WrapObjToNetwork obj, String tag, String url ){
         Gson gson = new Gson();
 
         if( obj == null ){
             return;
         }
+
+
 
         HashMap<String, String> params = new HashMap<>();
         params.put("jsonObject", gson.toJson(obj));
@@ -193,7 +198,8 @@ public class NetworkConnection {
 
                                 //pessoas pq é pessoas q eu to pegando
                                 final Amigo ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), Amigo.class);
-                                Log.i("Amigo","Nome: " +ob.getNickname());
+                                Log.i("Amigo","Nome: " +ob.getId());
+                                //amigos.add(ob);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -219,7 +225,5 @@ public class NetworkConnection {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         addRequestQueue(request);
-
-
     }
 }

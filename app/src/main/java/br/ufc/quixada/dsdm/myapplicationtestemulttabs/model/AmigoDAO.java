@@ -19,7 +19,7 @@ public class AmigoDAO {
 
     public void inserir(Amigo amigo){
         ContentValues valores = new ContentValues();
-        valores.put("nome",amigo.getNickname());
+        valores.put("nome",amigo.getNick());
         valores.put("_id",amigo.getIdAmigo());
 
         db.insert("amigos",null,valores);
@@ -31,7 +31,7 @@ public class AmigoDAO {
 
     public void atualizar(Amigo amigo){
         ContentValues valores = new ContentValues();
-        valores.put("nome",amigo.getNickname());
+        valores.put("nome",amigo.getNick());
 
         db.update("amigo", valores, "_id=?", new String[]{"" + amigo.getIdAmigo()});
     }
