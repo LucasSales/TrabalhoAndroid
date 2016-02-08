@@ -1,15 +1,20 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,13 +30,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.PushMessage2;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.QuickstartPreferences;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
@@ -101,8 +110,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         Intent i = new Intent(this, ServiceLocal.class);
         startService(i);
     }
-
-    @Override
+    //TAVA DANDO ERRO POR ISSO COMENTEI
+   /* @Override
     protected void onStart() {
         super.onStart();
         bindService(new Intent(this, ServiceLocal.class), mConnection,
@@ -111,7 +120,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         if(conectado) {
             Location local = MainActivityTabMensagens.this.service.getUltimaLocalizacao();
         }
-    }
+    }*/
     //SERVICE PARA PEGAR LOCALIZACAO
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
@@ -238,7 +247,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-
+        BroadCastMsg mRegistrationBroadcastReceiver;
+        BroadcastReceiver br;
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -259,7 +269,32 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+            mRegistrationBroadcastReceiver =  new BroadCastMsg();
 
+            String a = mRegistrationBroadcastReceiver.getResultData();
+
+
+
+            /*br = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+
+                    String mensagens = intent.getStringExtra("mensagem");
+                    //Log.i("BROADCAST","boradcast");
+
+
+                    Gson gson = new Gson();
+                    final String[] ob = gson.fromJson(mensagens, String[].class);
+
+                    List<String> listMensagens = Arrays.asList(ob);
+                    for(int i = 0; i<listMensagens.size();i++){
+                        Log.i("MSG","mensagens :" + listMensagens.get(i).toString());
+                    }
+
+                    Log.i("BROADCAST2", "MANDO PARACA");
+                }
+
+            };*/
 
 
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
@@ -295,10 +330,23 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             });
 
 
+            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("mensagens "));
 
             return rootView;
         }
 
+        @Override
+        public void onResume() {
+            super.onResume();
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+        }
+
+        @Override
+        public void onPause() {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+            super.onPause();
+        }
 
     }
 

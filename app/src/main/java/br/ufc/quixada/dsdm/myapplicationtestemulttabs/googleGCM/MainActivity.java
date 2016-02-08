@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        /*mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
+        mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+                /*mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(context);
                 boolean sentToken = sharedPreferences
@@ -70,10 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     //mInformationTextView.setText(getString(R.string.token_error_message));
-                }
+                }*/
+                Log.i("Entro nessa bagaça","asdgasjdgjhasgdjgasda");
             }
         };
-        mInformationTextView = (TextView) findViewById(R.id.informationTextView);*/
+        mInformationTextView = (TextView) findViewById(R.id.informationTextView);
 
         /*if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Amigo amigo = new Amigo();
         amigo.setIdAmigo(2);
 
-        String url = "http://192.168.1.30:80/Servidor/FronteiraBuscarAmigo.php";
+        String url = "http://192.168.129.147:80/Servidor/FronteiraBuscarAmigo.php";
         NetworkConnection.getInstance(this).executeBusca( new WrapObjToNetwork(amigo), RegistrationIntentService.class.getName(), url);
 
 

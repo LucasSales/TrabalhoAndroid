@@ -52,7 +52,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
     public void buscarAmigo(View view){
 
-        String url = "http://192.168.1.10:80/Servidor/FronteiraBusca.php";
+        String url = "http://192.168.129.147:80/Servidor/FronteiraBusca.php";
         final Amigo amigo = new Amigo();
 
         nomeBusca = (EditText) findViewById(R.id.editTextNomeBusca);
@@ -75,7 +75,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
                     //MONTANDO URL
                     Request rq = new Request.Builder()
-                            .url("http://192.168.1.10/Servidor/FronteiraBusca.php")
+                            .url("http://192.168.129.147:80/Servidor/FronteiraBusca.php")
                             .post(rb)
                             .build();
                     Log.i("HUEHUE", "teste: " + gson.toJson(amigo).toString());

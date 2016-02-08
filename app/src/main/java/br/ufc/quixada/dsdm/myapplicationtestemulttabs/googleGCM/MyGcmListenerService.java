@@ -18,17 +18,27 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.view.MainActivityTabMensagens;
 import de.greenrobot.event.EventBus;
 
 public class MyGcmListenerService extends GcmListenerService {
@@ -46,6 +56,8 @@ public class MyGcmListenerService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         final String message = data.getString("msg");
+
+
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
@@ -70,8 +82,21 @@ public class MyGcmListenerService extends GcmListenerService {
          * In some cases it may be useful to show a notification indicating to the user
          * that a message was received.
          */
-        EventBus.getDefault().post(new PushMessage2("teste",message));
-        sendNotification(message);
+
+        if(message != null) {
+
+            //Intent registrationComplete = new Intent("mensagens");
+            //registrationComplete.putExtra("mensagens",message);
+            //LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
+            //Log.i("BROADCAST", "MANDO PARACA");
+
+            /*Intent smsIntent = new Intent("RECEBER_MENSAGEM");
+            smsIntent.putExtra("mensagem", message);
+            sendBroadcast(smsIntent);*/
+            Intent i = new Intent(this, MainActivityTabMensagens.class);
+            i.putExtra("mensagem",message);
+            sendNotification(message);
+        }
         // [END_EXCLUDE]
     }
     // [END receive_message]
@@ -101,4 +126,6 @@ public class MyGcmListenerService extends GcmListenerService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
+
 }

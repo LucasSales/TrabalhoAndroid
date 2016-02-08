@@ -113,7 +113,7 @@ public class ActivityBatePapo extends AppCompatActivity{
 
         id = getIntent().getIntExtra("id", -1);
 
-        String url = "http://192.168.1.10:80/Servidor/FronteiraCadastroMSG.php";
+        String url = "http://192.168.129.147:80/Servidor/FronteiraCadastroMSG.php";
         Mensagem msg = new Mensagem();
 
         TextView tx = (TextView) findViewById(R.id.msgArea);

@@ -32,6 +32,7 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
     public boolean playConnected = false;
     private Location lastLocation;
 
+
     @Override
     public void onCreate() {
         Log.i("Android Service", "entrou onCreate");
@@ -92,25 +93,7 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
     public void onLocationChanged(Location location) {
 
 
-        UsuarioDAO dao = new UsuarioDAO(this);
-        List<Usuario> usuario = dao.buscar();
-
-
-        if(usuario.size() > 0){
-            String token = usuario.get(0).getRegistrationId();
-            Log.i("Android Service", "Localização:" + location.toString());
-            Location local = this.getUltimaLocalizacao();
-            Local localizacao = new Local();
-            localizacao.setLatitude(local.getLatitude());
-            localizacao.setLongitude(local.getLongitude());
-
-            VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
-
-            String url = "http://192.168.1.10:80/Servidor/FronteiraPegarMSG.php";
-            // Add custom implementation, as needed.
-            NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
-        }
-
+        Log.i("Android Service", "Localização:" + location.toString());
 
 
     }
@@ -118,12 +101,33 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
     protected void iniciarAtualizacaoLocalizacao() {
         Log.d("Android Service", "Entrou IniciarAtualização");
         LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setSmallestDisplacement(10);
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setSmallestDisplacement(1);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+
+        UsuarioDAO dao = new UsuarioDAO(this);
+        List<Usuario> usuario = dao.buscar();
+
+        if(usuario.size() > 0){
+            String token = usuario.get(0).getRegistrationId();
+
+
+            Location local = this.getUltimaLocalizacao();
+            Local localizacao = new Local();
+            localizacao.setLatitude(local.getLatitude());
+            localizacao.setLongitude(local.getLongitude());
+
+            VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
+
+            String url = "http://192.168.129.147:80/Servidor/FronteiraPegarMSG.php";
+            // Add custom implementation, as needed.
+            NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
+        }
+
     }
 
     protected void pararAtualizacaoLocalizacao() {

@@ -21,9 +21,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 
 /**
  * Created by viniciusthiengo on 7/26/15.
@@ -167,7 +169,7 @@ public class NetworkConnection {
     }
 
 
-    public void executeBuscaAmigo( final WrapObjToNetwork obj, String tag, String url ){
+    public void executeBuscaMsg( final WrapObjToNetwork obj, String tag, String url ){
         Gson gson = new Gson();
 
         if( obj == null ){
@@ -180,6 +182,7 @@ public class NetworkConnection {
         params.put("jsonObject", gson.toJson(obj));
         Log.i("LOG", "params: " + gson.toJson(obj).toString());
 
+        
         CustomRequest request = new CustomRequest(Request.Method.POST,
                 url,
                 params,
@@ -197,8 +200,11 @@ public class NetworkConnection {
                                 Gson gson2 = builder.create();
 
                                 //pessoas pq é pessoas q eu to pegando
-                                final Amigo ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), Amigo.class);
-                                Log.i("Amigo","Nome: " +ob.getId());
+                                final Mensagem_Amigos[] ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), Mensagem_Amigos[].class);
+
+
+
+                                //Log.i("Amigo","Nome: " +ob.getId());
                                 //amigos.add(ob);
                             }
                         } catch (JSONException e) {

@@ -120,13 +120,16 @@ public class RegistrationIntentService extends IntentService {
      * @param token The ne9w token.
      */
     private void sendRegistrationToServer(String token) {
+
+
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("Roger");
+        usuario.setNickname("Robson");
 
-        String url = "http://192.168.1.10:80/Servidor/Fronteira.php";
+
+        String url = "http://192.168.129.147:80/Servidor/Fronteira.php";
         // Add custom implementation, as needed.
-        NetworkConnection.getInstance(this).execute( new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName(),url);
+        NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName(),url);
 
         cadastroUsuario(usuario,token);
     }

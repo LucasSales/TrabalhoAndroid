@@ -75,11 +75,21 @@
         </receiver>
         <!-- [END gcm_receiver] -->
 
-
+        <!-- SERVICER E BROADCASTS-->
         <service
             android:name=".service.ServiceLocal"
             android:enabled="true"
             android:exported="true" />
+
+        <receiver android:name=".controle.BroadCastMsg">
+            <intent-filter>
+                <action android:name="RECEBER_MENSAGEM"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
+
+        <!--FIM SERVICE E BRADCASTS -->
 
         <!-- [START gcm_listener] -->
         <service
