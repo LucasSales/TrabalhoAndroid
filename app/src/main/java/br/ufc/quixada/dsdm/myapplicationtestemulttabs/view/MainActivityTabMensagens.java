@@ -247,8 +247,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        BroadCastMsg mRegistrationBroadcastReceiver;
-        BroadcastReceiver br;
+        BroadcastReceiver mRegistrationBroadcastReceiver;
+        static List<String> listMensagens;
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -271,11 +271,10 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             mRegistrationBroadcastReceiver =  new BroadCastMsg();
 
-            String a = mRegistrationBroadcastReceiver.getResultData();
 
 
 
-            /*br = new BroadcastReceiver() {
+            mRegistrationBroadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
 
@@ -286,29 +285,38 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                     Gson gson = new Gson();
                     final String[] ob = gson.fromJson(mensagens, String[].class);
 
-                    List<String> listMensagens = Arrays.asList(ob);
+                    listMensagens = Arrays.asList(ob);
                     for(int i = 0; i<listMensagens.size();i++){
                         Log.i("MSG","mensagens :" + listMensagens.get(i).toString());
                     }
 
-                    Log.i("BROADCAST2", "MANDO PARACA");
+
                 }
 
-            };*/
+            };
 
 
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
             listaMensagemAmigo = new ArrayList<>();
 
-
             Mensagem_Amigos msn = new Mensagem_Amigos();
 
-            msn.setNome_amigo("Lucas Sales");
-            msn.setUltima_visualizacao("10:50");
-            msn.setUltimo_texto("Testando se funfou");
-            msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+            if(listMensagens == null){
 
+
+                msn.setNome_amigo("Lucas Sales");
+                msn.setUltima_visualizacao("10:50");
+                msn.setUltimo_texto("Não tem msg");
+                msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+
+            }else{
+                msn.setNome_amigo("A miseravi");
+                msn.setUltima_visualizacao("10:50");
+                msn.setUltimo_texto(listMensagens.get(0).toString());
+                msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+
+            }
 
             listaMensagemAmigo.add(msn);
             if(!listaMensagemAmigo.isEmpty()){
@@ -318,6 +326,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }else{
                 tvvazio.setText("Nenhuma Nota");
             }
+
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
@@ -338,13 +348,13 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         @Override
         public void onResume() {
             super.onResume();
-            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                    new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+            LocalBroadcastManager.getInstance(getContext()).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter("MENSAGENS"));
         }
 
         @Override
         public void onPause() {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+            LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
             super.onPause();
         }
 

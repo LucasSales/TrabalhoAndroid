@@ -85,16 +85,10 @@ public class MyGcmListenerService extends GcmListenerService {
 
         if(message != null) {
 
-            //Intent registrationComplete = new Intent("mensagens");
-            //registrationComplete.putExtra("mensagens",message);
-            //LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
-            //Log.i("BROADCAST", "MANDO PARACA");
+            Intent registrationComplete = new Intent("MENSAGENS");
+            registrationComplete.putExtra("mensagem", message);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
 
-            /*Intent smsIntent = new Intent("RECEBER_MENSAGEM");
-            smsIntent.putExtra("mensagem", message);
-            sendBroadcast(smsIntent);*/
-            Intent i = new Intent(this, MainActivityTabMensagens.class);
-            i.putExtra("mensagem",message);
             sendNotification(message);
         }
         // [END_EXCLUDE]
@@ -107,7 +101,7 @@ public class MyGcmListenerService extends GcmListenerService {
      * @param message GCM message received.
      */
     private void sendNotification(String message) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivityTabMensagens.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
