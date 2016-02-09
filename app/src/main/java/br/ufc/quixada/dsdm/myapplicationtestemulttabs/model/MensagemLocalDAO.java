@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class MensagemLocalDAO {
         ContentValues valores = new ContentValues();
         valores.put("nomeAmigo", mensagem.getNomeAmigo());
         valores.put("texto", mensagem.getMensagem());
-        //valores.put("_id",mensagem.getId());
+        valores.put("_idAmigo",mensagem.getIdAmigo());
 
         db.insert("mensagem",null,valores);
     }
@@ -40,12 +41,14 @@ public class MensagemLocalDAO {
 
         db.update("amigos", valores, "_id=?", new String[]{"" + amigo.getId()});
     }*/
-    public List<MensagemLocal> buscar(Integer id){
+    public List<MensagemLocal> buscar(){
         List<MensagemLocal> listaMensagens = new ArrayList<>();
         String[] colunas = new String[]{"_idAmigo","texto","nomeAmigo"};
         Cursor cursor = db.query("mensagem",colunas,null,null,null,null,null);
 
-        //Cursor cursor = db.rawQuery("select * from mensagem where idAmigo = ?",new String[]{"" + id});
+
+
+
         if(cursor.getCount() > 0 ){
             cursor.moveToFirst();
             do {
@@ -63,4 +66,27 @@ public class MensagemLocalDAO {
 
         return listaMensagens;
     }
+
+    public List<MensagemLocal> buscarPorID(Integer id){
+        List<MensagemLocal> listaMensagens = new ArrayList<>();
+        String sql = "SELECT * FROM mensagem WHERE _idAmigo="+id;
+        Cursor cursor = db.rawQuery(sql,null);
+
+        Log.i("ID", "TEMA ALGIO AQUI CARAI:" + cursor.getCount());
+        if(cursor.getCount() > 0 ){
+            cursor.moveToFirst();
+            do {
+                MensagemLocal msg = new MensagemLocal();
+
+                msg.setIdAmigo(cursor.getInt(0));
+                msg.setMensagem(cursor.getString(1));
+                msg.setNomeAmigo(cursor.getString(2));
+
+
+                listaMensagens.add(msg);
+            }while(cursor.moveToNext());
+        }
+        return listaMensagens;
+    }
+
 }

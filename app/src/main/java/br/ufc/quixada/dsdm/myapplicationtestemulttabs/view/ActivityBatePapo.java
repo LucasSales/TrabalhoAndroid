@@ -137,12 +137,12 @@ public class ActivityBatePapo extends AppCompatActivity{
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    MensagemLocal msglocal = new MensagemLocal();
+                    final MensagemLocal msglocal = new MensagemLocal();
                     msglocal.setMensagem(msg.getMessage());
                     msglocal.setIdAmigo(id);
 
                     mensagemLocalDAO.inserir(msglocal);
-
+                    //Log.i("ID", "TEMA ALGIO AQUI CARAI:" + msglocal.getIdAmigo());
 
                     NetworkConnection.getInstance(ActivityBatePapo.this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
 
@@ -150,16 +150,28 @@ public class ActivityBatePapo extends AppCompatActivity{
                         @Override
                         public void run() {
                             List<MensagemLocal> listaMsgLocal = new ArrayList<>();
-                            listaMsgLocal = mensagemLocalDAO.buscar(id);
+                            //mecho aqui e tem q fazer uma verificaçãio se eu  consegur ajeitar
+                            listaMsgLocal = mensagemLocalDAO.buscarPorID(id);
 
 
-                            //Log.i("ID", "id: " + ml.getMensagem().toString());
 
 
                             if(listaMsgLocal.size() > 0) {
-                                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+                                //List<MensagemLocal> doCara = new ArrayList<MensagemLocal>();
 
-                                listView.setAdapter(adml);
+                                //for(MensagemLocal m : listaMsgLocal){
+                                    //if(m.getIdAmigo() == id){
+                                        //doCara.add(m);
+                                    //}
+                                //}
+
+                                //Log.i("ID", "TEMA ALGIO AQUI CARAI:" + doCara.size());
+                                //if(doCara.size() > 0){
+                                    adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+
+                                    listView.setAdapter(adml);
+                                //}
+
                             }
 
                             Log.i("ID", "id: " + id);

@@ -124,7 +124,7 @@ public class RegistrationIntentService extends IntentService {
 
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("Robson");
+        usuario.setNickname("TESTADOR");
 
 
         String url = "http://192.168.129.147:80/Servidor/Fronteira.php";
