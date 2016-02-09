@@ -63,6 +63,7 @@ public class  TabAmigos extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Amigo a = TabAmigos.this.Array.get(position);
                 Intent inter = new Intent(rootView.getContext(), ActivityBatePapo.class);
+                //mando o id do amig q ta no BD para o listAmigos
                 inter.putExtra("id", a.getId());
                 startActivity(inter);
 

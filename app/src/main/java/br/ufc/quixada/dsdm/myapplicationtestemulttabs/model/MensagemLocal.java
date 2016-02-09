@@ -6,7 +6,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.model;
 public class MensagemLocal {
     private String mensagem;
     private String nomeAmigo;
-    private int id;
+    private int idAmigo;
 
     public String getMensagem() {
         return mensagem;
@@ -24,11 +24,11 @@ public class MensagemLocal {
         this.nomeAmigo = nomeAmigo;
     }
 
-    public int getId() {
-        return id;
+    public int getIdAmigo() {
+        return idAmigo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAmigo(int idAmigo) {
+        this.idAmigo = idAmigo;
     }
 }

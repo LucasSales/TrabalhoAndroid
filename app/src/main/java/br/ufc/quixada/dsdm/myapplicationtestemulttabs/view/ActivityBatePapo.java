@@ -25,6 +25,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocalDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
@@ -45,7 +46,9 @@ public class ActivityBatePapo extends AppCompatActivity{
     private  ServiceLocal service;
     private boolean conectado = false;
     private ImageView imgBtn;
-    AdaptadorMensagemLocal adml;
+    private AdaptadorMensagemLocal adml;
+    private MensagemLocalDAO mensagemLocalDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,7 @@ public class ActivityBatePapo extends AppCompatActivity{
 
         Intent i = new Intent(this, ServiceLocal.class);
         startService(i);
-
+        mensagemLocalDAO = new MensagemLocalDAO(this);
 
     }
 
@@ -110,13 +113,12 @@ public class ActivityBatePapo extends AppCompatActivity{
         UsuarioDAO dao = new UsuarioDAO(this);
         List<Usuario> usuarios = dao.buscar();
 
-
-
-
+        //pega o id do amigo que eu estou enviando a msg
         id = getIntent().getIntExtra("id", -1);
 
         String url = "http://192.168.129.147:80/Servidor/FronteiraCadastroMSG.php";
-        Mensagem msg = new Mensagem();
+
+        final Mensagem msg = new Mensagem();
 
         TextView tx = (TextView) findViewById(R.id.msgArea);
         if(conectado){
@@ -131,21 +133,45 @@ public class ActivityBatePapo extends AppCompatActivity{
             msg.setIdTo(id.toString());
             msg.setLocal(localizacao);
 
-            MensagemLocal ml = new MensagemLocal();
-            ml.setMensagem(msg.getMessage());
+            //teste msg adapter
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MensagemLocal msglocal = new MensagemLocal();
+                    msglocal.setMensagem(msg.getMessage());
+                    msglocal.setIdAmigo(id);
 
-            List<MensagemLocal> l = new ArrayList<>();
-            l.add(ml);
-            Log.i("ID", "id: "+ml.getMensagem().toString());
-            if(ml.getMensagem() != null) {
-                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, l, 0);
+                    mensagemLocalDAO.inserir(msglocal);
 
-                listView.setAdapter(adml);
-            }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<MensagemLocal> listaMsgLocal = new ArrayList<>();
+                            listaMsgLocal = mensagemLocalDAO.buscar(id);
+
+
+                            //Log.i("ID", "id: " + ml.getMensagem().toString());
+
+
+                            if(listaMsgLocal.size() > 0) {
+                                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+
+                                listView.setAdapter(adml);
+                            }
+
+                            Log.i("ID", "id: " + id);
+                        }
+                    });
+
+
+
+                }
+            }).start();
+            //fim teste
             tx.setText(null);
-            Log.i("ID", "id: " + id);
 
-            //TESTANDO PAR VE SE N DA BUG
+            //É melhor sem isso parece q da mais certo sem desturir o serviço
             //service.onDestroy();
 
             NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);

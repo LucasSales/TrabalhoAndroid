@@ -31,7 +31,7 @@ public class MensagemLocalDAO {
     }
 
     public void deletar(MensagemLocal mensagem){
-        db.delete("mensagem", "_id=" + mensagem.getId(), null);
+        db.delete("mensagem", "_idAmigo=" + mensagem.getIdAmigo(), null);
     }
 
     /*public void atualizar(Amigo amigo){
@@ -40,18 +40,18 @@ public class MensagemLocalDAO {
 
         db.update("amigos", valores, "_id=?", new String[]{"" + amigo.getId()});
     }*/
-    public List<MensagemLocal> buscar(){
+    public List<MensagemLocal> buscar(Integer id){
         List<MensagemLocal> listaMensagens = new ArrayList<>();
-        String[] colunas = new String[]{"_id","texto","nomeAmigo"};
-        Cursor cursor = db.query("mensagem",colunas,null,null,null,null,"nomeAmigo ASC");
+        String[] colunas = new String[]{"_idAmigo","texto","nomeAmigo"};
+        Cursor cursor = db.query("mensagem",colunas,null,null,null,null,null);
 
-
+        //Cursor cursor = db.rawQuery("select * from mensagem where idAmigo = ?",new String[]{"" + id});
         if(cursor.getCount() > 0 ){
             cursor.moveToFirst();
             do {
                 MensagemLocal msg = new MensagemLocal();
 
-                msg.setId(cursor.getInt(0));
+                msg.setIdAmigo(cursor.getInt(0));
                 msg.setMensagem(cursor.getString(1));
                 msg.setNomeAmigo(cursor.getString(2));
 
