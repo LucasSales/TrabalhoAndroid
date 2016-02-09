@@ -43,6 +43,8 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.PushMessage2;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.QuickstartPreferences;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocalDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
@@ -249,6 +251,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
         BroadcastReceiver mRegistrationBroadcastReceiver;
         static List<String> listMensagens;
+        //private MensagemLocalDAO dao = new MensagemLocalDAO(getContext());
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -295,10 +299,15 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             };
 
-
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
             listaMensagemAmigo = new ArrayList<>();
+
+            //List<MensagemLocal> msgLocal = dao.buscar();
+            //if(msgLocal != null){
+
+            //}
+
 
             Mensagem_Amigos msn = new Mensagem_Amigos();
 

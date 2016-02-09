@@ -65,6 +65,7 @@ public class  TabAmigos extends Fragment{
                 Intent inter = new Intent(rootView.getContext(), ActivityBatePapo.class);
                 //mando o id do amig q ta no BD para o listAmigos
                 inter.putExtra("id", a.getId());
+                inter.putExtra("nomeAmigo", a.getNick());
                 startActivity(inter);
 
 
