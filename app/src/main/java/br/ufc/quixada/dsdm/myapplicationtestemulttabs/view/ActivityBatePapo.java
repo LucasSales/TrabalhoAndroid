@@ -138,14 +138,15 @@ public class ActivityBatePapo extends AppCompatActivity{
             l.add(ml);
             Log.i("ID", "id: "+ml.getMensagem().toString());
             if(ml.getMensagem() != null) {
-                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, l, 1);
+                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, l, 0);
 
                 listView.setAdapter(adml);
             }
             tx.setText(null);
             Log.i("ID", "id: " + id);
 
-            service.onDestroy();
+            //TESTANDO PAR VE SE N DA BUG
+            //service.onDestroy();
 
             NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
         }
