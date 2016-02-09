@@ -19,10 +19,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.AdaptadorMensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Mensagens_BatePapo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
@@ -43,7 +45,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     private  ServiceLocal service;
     private boolean conectado = false;
     private ImageView imgBtn;
-
+    AdaptadorMensagemLocal adml;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +130,18 @@ public class ActivityBatePapo extends AppCompatActivity{
             msg.setIdFrom(token);
             msg.setIdTo(id.toString());
             msg.setLocal(localizacao);
+
+            MensagemLocal ml = new MensagemLocal();
+            ml.setMensagem(msg.getMessage());
+
+            List<MensagemLocal> l = new ArrayList<>();
+            l.add(ml);
+            Log.i("ID", "id: "+ml.getMensagem().toString());
+            if(ml.getMensagem() != null) {
+                adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, l, 1);
+
+                listView.setAdapter(adml);
+            }
             tx.setText(null);
             Log.i("ID", "id: " + id);
 

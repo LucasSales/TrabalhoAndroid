@@ -14,12 +14,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="290dp"
-        android:layout_height="53dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/quem_recebe"
-        android:layout_below="@+id/quem_envia"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/novo"/>
+
 </RelativeLayout>

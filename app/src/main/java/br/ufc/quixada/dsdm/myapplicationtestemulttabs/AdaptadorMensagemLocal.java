@@ -1,6 +1,7 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class AdaptadorMensagemLocal extends ArrayAdapter<MensagemLocal> {
     private Activity context;
     private int quemMandou;
     public AdaptadorMensagemLocal(Activity context, List<MensagemLocal> lista, int quemMandou) {
-        super(context, R.layout.layout_mensagens,lista);
+        super(context, R.layout.layout_mensagem_enviada,lista);
 
         this.lista = lista;
         this.context = context;
@@ -30,19 +31,24 @@ public class AdaptadorMensagemLocal extends ArrayAdapter<MensagemLocal> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (convertView == null) {
-            LayoutInflater layoutInflater = context.getLayoutInflater();
-            convertView = layoutInflater.inflate(R.layout.modelo_mensagem_amigo, null);
-        }
+
         MensagemLocal ml = lista.get(position);
         if(quemMandou == 1){
+            if (convertView == null) {
+                LayoutInflater layoutInflater = context.getLayoutInflater();
+                convertView = layoutInflater.inflate(R.layout.layout_mensagem_enviada, null);
+            }
             TextView txtEuMandei = (TextView) convertView.findViewById(R.id.quem_envia);
-
+            Log.i("MENSAGEMADAPTADOR","É essa: " + ml.getMensagem());
             txtEuMandei.setText(ml.getMensagem());
 
-            return convertView;
+           return convertView;
         }else{
-            TextView txtEuRecebi = (TextView) convertView.findViewById(R.id.quem_recebe);
+            if (convertView == null) {
+                LayoutInflater layoutInflater = context.getLayoutInflater();
+                convertView = layoutInflater.inflate(R.layout.layout_mensagem_recebida, null);
+            }
+           TextView txtEuRecebi = (TextView) convertView.findViewById(R.id.quem_recebe);
 
             txtEuRecebi.setText(ml.getMensagem());
 
