@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="290dp"
+        android:layout_height="53dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/quem_envia"
+        android:background="@drawable/novo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="290dp"
+        android:layout_height="53dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/quem_recebe"
+        android:layout_below="@+id/quem_envia"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/novo"/>
+</RelativeLayout>
