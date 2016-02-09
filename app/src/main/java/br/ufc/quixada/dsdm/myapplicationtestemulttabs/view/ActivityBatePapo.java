@@ -116,7 +116,7 @@ public class ActivityBatePapo extends AppCompatActivity{
         //pega o id do amigo que eu estou enviando a msg
         id = getIntent().getIntExtra("id", -1);
 
-        String url = "http://192.168.129.147:80/Servidor/FronteiraCadastroMSG.php";
+        final String url = "http://192.168.129.147:80/Servidor/FronteiraCadastroMSG.php";
 
         final Mensagem msg = new Mensagem();
 
@@ -143,6 +143,8 @@ public class ActivityBatePapo extends AppCompatActivity{
 
                     mensagemLocalDAO.inserir(msglocal);
 
+
+                    NetworkConnection.getInstance(ActivityBatePapo.this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -174,7 +176,6 @@ public class ActivityBatePapo extends AppCompatActivity{
             //É melhor sem isso parece q da mais certo sem desturir o serviço
             //service.onDestroy();
 
-            NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
         }
         // Add custom implementation, as needed.
 
