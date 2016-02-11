@@ -1,4 +1,4 @@
-package br.ufc.quixada.dsdm.myapplicationtestemulttabs;
+package br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters;
 
 import android.app.Activity;
 import android.util.Log;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 
 /**

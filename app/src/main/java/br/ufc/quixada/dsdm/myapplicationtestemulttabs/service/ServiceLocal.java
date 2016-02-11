@@ -16,6 +16,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
@@ -123,7 +124,7 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
 
             VerificaMensagem temMsg = new VerificaMensagem(localizacao,token);
 
-            String url = "http://192.168.129.147:80/Servidor/FronteiraPegarMSG.php";
+            String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraPegarMSG.php";
             // Add custom implementation, as needed.
             NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(temMsg), RegistrationIntentService.class.getName(), url);
         }

@@ -30,6 +30,7 @@ import com.google.android.gms.iid.InstanceID;
 import java.io.IOException;
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
@@ -124,10 +125,10 @@ public class RegistrationIntentService extends IntentService {
 
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("TESTADOR");
+        usuario.setNickname("Robson");
 
 
-        String url = "http://192.168.129.147:80/Servidor/Fronteira.php";
+        String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/Fronteira.php";
         // Add custom implementation, as needed.
         NetworkConnection.getInstance(this).execute(new WrapObjToNetwork(usuario), RegistrationIntentService.class.getName(),url);
 

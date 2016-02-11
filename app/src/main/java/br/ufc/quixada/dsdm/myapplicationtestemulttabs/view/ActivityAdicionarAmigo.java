@@ -27,6 +27,7 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.AdaptadorBuscaAmigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 
@@ -52,7 +53,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
     public void buscarAmigo(View view){
 
-        String url = "http://192.168.129.147:80/Servidor/FronteiraBusca.php";
+        String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraBusca.php";
         final Amigo amigo = new Amigo();
 
         nomeBusca = (EditText) findViewById(R.id.editTextNomeBusca);
@@ -75,7 +76,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
 
                     //MONTANDO URL
                     Request rq = new Request.Builder()
-                            .url("http://192.168.129.147:80/Servidor/FronteiraBusca.php")
+                            .url("http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraBusca.php")
                             .post(rb)
                             .build();
                     Log.i("HUEHUE", "teste: " + gson.toJson(amigo).toString());

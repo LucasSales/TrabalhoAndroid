@@ -19,14 +19,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.AdaptadorMensagemLocal;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.AdaptadorMensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Mensagens_BatePapo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Local;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocalDAO;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
@@ -119,7 +119,7 @@ public class ActivityBatePapo extends AppCompatActivity{
         nomeAmigo = getIntent().getStringExtra("nomeAmigo");
         Log.i("Noem AMIGO:","eaeae : " + nomeAmigo);
 
-        final String url = "http://192.168.129.147:80/Servidor/FronteiraCadastroMSG.php";
+        final String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraCadastroMSG.php";
 
         final Mensagem msg = new Mensagem();
 
@@ -147,13 +147,15 @@ public class ActivityBatePapo extends AppCompatActivity{
                     mensagemLocalDAO.inserir(msglocal);
                     //Log.i("ID", "TEMA ALGIO AQUI CARAI:" + msglocal.getIdAmigo());
 
-                    NetworkConnection.getInstance(ActivityBatePapo.this).execute(new WrapObjToNetwork(msg), ActivityBatePapo.class.getName(), url);
+                    NetworkConnection.getInstance(ActivityBatePapo.this).execute(new WrapObjToNetwork(msg),
+                                                                                ActivityBatePapo.class.getName(),
+                                                                                url);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             List<MensagemLocal> listaMsgLocal = new ArrayList<>();
-                            //mecho aqui e tem q fazer uma verificaçãio se eu  consegur ajeitar
+                            //mecho aqui e tem q fazer uma verificaçãio se eu  consegur consertar
                             listaMsgLocal = mensagemLocalDAO.buscarPorID(id);
 
 
