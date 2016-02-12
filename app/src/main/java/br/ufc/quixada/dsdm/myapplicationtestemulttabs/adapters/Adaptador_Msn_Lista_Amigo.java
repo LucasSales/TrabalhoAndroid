@@ -14,9 +14,6 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Usuario;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.UsuarioDAO;
 
 /**
  * Created by Robson Cavalcante on 10/12/2015.

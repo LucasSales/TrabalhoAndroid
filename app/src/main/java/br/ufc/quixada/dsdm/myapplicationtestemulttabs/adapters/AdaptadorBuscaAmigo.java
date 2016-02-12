@@ -1,7 +1,6 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 
 /**
  * Created by lucas on 28/01/16.

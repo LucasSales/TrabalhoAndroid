@@ -122,10 +122,10 @@ public class RegistrationIntentService extends IntentService {
      */
     private void sendRegistrationToServer(String token) {
 
-
+        //É aqui que se registra um cara
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("Robson");
+        usuario.setNickname("Kadu");
 
 
         String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/Fronteira.php";

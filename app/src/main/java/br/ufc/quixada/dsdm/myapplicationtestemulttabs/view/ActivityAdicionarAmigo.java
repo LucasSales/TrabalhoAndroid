@@ -94,6 +94,7 @@ public class ActivityAdicionarAmigo extends AppCompatActivity {
                         final Amigo[] ob = gson2.fromJson(resultado, Amigo[].class);
 
                         final List<Amigo> amigos = Arrays.asList(ob);
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

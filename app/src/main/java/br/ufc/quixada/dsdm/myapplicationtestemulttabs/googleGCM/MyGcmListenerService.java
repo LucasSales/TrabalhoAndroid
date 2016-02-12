@@ -55,11 +55,11 @@ public class MyGcmListenerService extends GcmListenerService {
     // [START receive_message]
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        final String message = data.getString("msg");
-
+        //final String message = data.getString("msg");
+        final String messageJson = data.getString("msg");
 
         Log.d(TAG, "From: " + from);
-        Log.d(TAG, "Message: " + message);
+        Log.i(TAG, "Message: " + messageJson);
 
 
         
@@ -83,13 +83,13 @@ public class MyGcmListenerService extends GcmListenerService {
          * that a message was received.
          */
 
-        if(message != null) {
+        if(messageJson != null) {
 
             Intent registrationComplete = new Intent("MENSAGENS");
-            registrationComplete.putExtra("mensagem", message);
+            registrationComplete.putExtra("mensagem", messageJson);
             LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
 
-            sendNotification(message);
+            sendNotification(messageJson);
         }
         // [END_EXCLUDE]
     }

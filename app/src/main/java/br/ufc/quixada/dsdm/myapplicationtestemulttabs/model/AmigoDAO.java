@@ -26,7 +26,8 @@ public class AmigoDAO {
         ContentValues valores = new ContentValues();
         valores.put("nome",amigo.getNick());
         valores.put("_id",amigo.getId());
-
+        valores.put("token",amigo.getRegistro());
+        Log.i("DAOAMIGO", amigo.getRegistro());
         db.insert("amigos",null,valores);
     }
 
@@ -42,7 +43,7 @@ public class AmigoDAO {
     }
     public List<Amigo> buscar(){
         List<Amigo> listaAmigos = new ArrayList<>();
-        String[] colunas = new String[]{"_id","nome"};
+        String[] colunas = new String[]{"_id","nome","token"};
         Cursor cursor = db.query("amigos",colunas,null,null,null,null,"nome ASC");
 
 
@@ -53,7 +54,7 @@ public class AmigoDAO {
 
                 amigo.setId(cursor.getInt(0));
                 amigo.setNick(cursor.getString(1));
-
+                amigo.setRegistro(cursor.getString(2));
 
 
                 listaAmigos.add(amigo);

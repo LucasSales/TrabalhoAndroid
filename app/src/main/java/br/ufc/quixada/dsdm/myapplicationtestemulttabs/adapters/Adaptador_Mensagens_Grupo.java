@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 
 /**
  * Created by Ronson Cavalcante on 20/01/2016.
@@ -19,10 +19,10 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 public class Adaptador_Mensagens_Grupo  extends BaseExpandableListAdapter {
 
     private List<String> listGroup;
-    private HashMap<String, List<Mensagem_Amigos>> listData;
+    private HashMap<String, List<MensagemAmigos>> listData;
     private LayoutInflater inflater;
 
-    public Adaptador_Mensagens_Grupo(Context context, List<String> listGroup, HashMap<String, List<Mensagem_Amigos>> listData){
+    public Adaptador_Mensagens_Grupo(Context context, List<String> listGroup, HashMap<String, List<MensagemAmigos>> listData){
         this.listGroup = listGroup;
         this.listData = listData;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -45,7 +45,7 @@ public class Adaptador_Mensagens_Grupo  extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return (Mensagem_Amigos)listData.get(listGroup.get(groupPosition)).get(childPosition);
+        return (MensagemAmigos)listData.get(listGroup.get(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Adaptador_Mensagens_Grupo  extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        Mensagem_Amigos m  = (Mensagem_Amigos) getChild(groupPosition,childPosition);
+        MensagemAmigos m  = (MensagemAmigos) getChild(groupPosition,childPosition);
 
 
         if(convertView == null) {

@@ -5,11 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -37,19 +33,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.PushMessage2;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.QuickstartPreferences;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemJson;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocalDAO;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
-import de.greenrobot.event.EventBus;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
@@ -57,7 +51,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static  ListView listView;
-    private static ArrayList<Mensagem_Amigos> listaMensagemAmigo;
+    private static ArrayList<MensagemAmigos> listaMensagemAmigo;
+    //private static AmigoDAO aDao;
     private static TextView tvvazio;
     private  ServiceLocal service;
     private boolean conectado = false;
@@ -94,11 +89,11 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         TabLayout t1 = (TabLayout) findViewById(R.id.tabbar);
         t1.setupWithViewPager(mViewPager);
 
-        AmigoDAO aDao = new AmigoDAO(this);
-        List<Amigo> a = aDao.buscar();
+        //aDao =new AmigoDAO(this);
+        //List<Amigo> a = aDao.buscar();
 
-        if(a.size() > 0)
-            Log.i("TEM GENTE","GENTE"+ a.get(0).getNick());
+        //if(a.size() > 0)
+            //Log.i("TEM GENTE","GENTE"+ a.get(0).getNick());
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
@@ -178,9 +173,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.action_nova_mensagem){
-            Intent i;
-            i = new Intent( this, ActivityListaAmigos.class );
-            startActivity(i);
+            //Intent i;
+            //i = new Intent( this, ActivityListaAmigos.class );
+            //startActivity(i);
         }else if (id == R.id.action_settings) {
             Intent i = new Intent(this,ActivityConfiguracoes.class);
             startActivity(i);
@@ -250,7 +245,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         BroadcastReceiver mRegistrationBroadcastReceiver;
-        static List<String> listMensagens;
+        static List<MensagemJson> listMensagens;
         //private MensagemLocalDAO dao = new MensagemLocalDAO(getContext());
 
         /**
@@ -274,7 +269,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
             mRegistrationBroadcastReceiver =  new BroadCastMsg();
-
+            listaMensagemAmigo = new ArrayList<>();
 
 
 
@@ -283,16 +278,21 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 public void onReceive(Context context, Intent intent) {
 
                     String mensagens = intent.getStringExtra("mensagem");
-                    //Log.i("BROADCAST","boradcast");
 
 
-                    Gson gson = new Gson();
-                    final String[] ob = gson.fromJson(mensagens, String[].class);
-
-                    listMensagens = Arrays.asList(ob);
-                    for(int i = 0; i<listMensagens.size();i++){
-                        Log.i("MSG","mensagens :" + listMensagens.get(i).toString());
+                    if(!mensagens.isEmpty()){
+                        Gson gson = new Gson();
+                        final MensagemJson[] ob = gson.fromJson(mensagens, MensagemJson[].class);
+                        listMensagens = Arrays.asList(ob);
+                        if(!listMensagens.isEmpty()){
+                            for(int i = 0; i<listMensagens.size();i++){
+                                Log.i("MSG","mensagens :" + listMensagens.get(i).getMensagem().toString());
+                            }
+                        }
                     }
+
+
+
 
 
                 }
@@ -301,15 +301,49 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
-            listaMensagemAmigo = new ArrayList<>();
 
+
+
+
+            MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(getContext());
+            //List<MensagemLocal> msgListaLocal = daoMsgLocal.buscar();
+
+            AmigoDAO daoAmigo = new AmigoDAO(getContext());
+            List<Amigo> listAmigos = daoAmigo.buscar();
+
+            //List<MensagemAmigos> msgListAmigos= new ArrayList<>();
+
+            if(listAmigos != null){
+
+                for(Amigo amigo : listAmigos){
+                    List<MensagemLocal> msgListaLocal = daoMsgLocal.buscarPorID(amigo.getId());
+                    int tamanho = msgListaLocal.size();
+                    if(!msgListaLocal.isEmpty()){
+                        MensagemAmigos msgAmigo = new MensagemAmigos();
+                        msgAmigo.setNome_amigo(amigo.getNick());
+                        if(tamanho > 0)
+                            msgAmigo.setUltimo_texto(msgListaLocal.get(tamanho - 1).getMensagem().toString());
+                        else
+                            msgAmigo.setUltimo_texto(msgListaLocal.get(0).getMensagem().toString());
+                        msgAmigo.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+
+                        listaMensagemAmigo.add(msgAmigo);
+                    }
+
+                }
+            }
+
+            if(listaMensagemAmigo != null){
+                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
+                listView.setAdapter(adapter);
+            }
             //List<MensagemLocal> msgLocal = dao.buscar();
             //if(msgLocal != null){
 
             //}
 
 
-            Mensagem_Amigos msn = new Mensagem_Amigos();
+            /*MensagemAmigos msn = new MensagemAmigos();
 
             if(listMensagens == null){
 
@@ -322,7 +356,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }else{
                 msn.setNome_amigo("A miseravi");
                 msn.setUltima_visualizacao("10:50");
-                msn.setUltimo_texto(listMensagens.get(0).toString());
+                msn.setUltimo_texto(listMensagens.get(0).getMensagem().toString());
                 msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
 
             }
@@ -334,7 +368,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             }else{
                 tvvazio.setText("Nenhuma Nota");
-            }
+            }*/
 
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -349,7 +383,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             });
 
 
-            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("mensagens "));
+            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("mensagens"));
 
             return rootView;
         }
@@ -358,7 +392,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         public void onResume() {
             super.onResume();
             LocalBroadcastManager.getInstance(getContext()).registerReceiver(mRegistrationBroadcastReceiver,
-                    new IntentFilter("MENSAGENS"));
+                    new IntentFilter(Constantes.BROADCAST_NOME));
         }
 
         @Override

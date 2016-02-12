@@ -13,17 +13,17 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 
 /**
  * Created by Robson Cavalcante on 10/12/2015.
  */
-public class Adaptador_Msn_Lista extends ArrayAdapter<Mensagem_Amigos> {
+public class Adaptador_Msn_Lista extends ArrayAdapter<MensagemAmigos> {
 
-    private List<Mensagem_Amigos> lista;
+    private List<MensagemAmigos> lista;
     private Activity context;
 
-    public Adaptador_Msn_Lista(Activity context, List<Mensagem_Amigos> lista) {
+    public Adaptador_Msn_Lista(Activity context, List<MensagemAmigos> lista) {
         super(context, R.layout.modelo_mensagem_amigo, lista);
         this.lista = lista;
         this.context = context;
@@ -37,7 +37,7 @@ public class Adaptador_Msn_Lista extends ArrayAdapter<Mensagem_Amigos> {
             LayoutInflater layoutInflater = context.getLayoutInflater();
             convertView = layoutInflater.inflate(R.layout.modelo_mensagem, null);
         }
-        Mensagem_Amigos modelo = lista.get(position);
+        MensagemAmigos modelo = lista.get(position);
 
         TextView txtNomeAmigo = (TextView) convertView.findViewById(R.id.txtnomeamigo);
         TextView txtTrechoMensagem = (TextView) convertView.findViewById(R.id.txt_trecho_msn_amigo);

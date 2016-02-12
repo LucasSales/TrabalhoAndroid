@@ -3,7 +3,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.model;
 /**
  * Created by Robson Cavalcante on 10/12/2015.
  */
-public class Mensagem_Amigos {
+public class MensagemAmigos {
 
     private String nome_amigo;
     private String texto;
@@ -12,7 +12,7 @@ public class Mensagem_Amigos {
     private long id_mensagem;
     private String img_amigo;
 
-    public Mensagem_Amigos(String nome_amigo, String texto, String ultimo_texto, String ultima_visualizacao, long id_mensagem, String img_amigo) {
+    public MensagemAmigos(String nome_amigo, String texto, String ultimo_texto, String ultima_visualizacao, long id_mensagem, String img_amigo) {
         this.nome_amigo = nome_amigo;
         this.texto = texto;
         this.ultimo_texto = ultimo_texto;
@@ -20,7 +20,7 @@ public class Mensagem_Amigos {
         this.id_mensagem = id_mensagem;
         this.img_amigo = img_amigo;
     }
-    public Mensagem_Amigos(){}
+    public MensagemAmigos(){}
 
     public String getNome_amigo() {
         return nome_amigo;

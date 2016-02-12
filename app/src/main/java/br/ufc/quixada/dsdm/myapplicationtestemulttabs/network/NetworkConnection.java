@@ -11,7 +11,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,11 +20,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.User;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.WrapObjToNetwork;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 
 /**
  * Created by viniciusthiengo on 7/26/15.
@@ -200,7 +198,7 @@ public class NetworkConnection {
                                 Gson gson2 = builder.create();
 
                                 //pessoas pq é pessoas q eu to pegando
-                                final Mensagem_Amigos[] ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), Mensagem_Amigos[].class);
+                                final MensagemAmigos[] ob = gson2.fromJson(pessoas.getJSONObject(i).toString(), MensagemAmigos[].class);
 
 
 

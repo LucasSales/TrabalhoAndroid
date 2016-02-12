@@ -44,6 +44,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     private Adaptador_Mensagens_BatePapo adapter;
     private Integer id;
     private String nomeAmigo;
+    String token;
     private  ServiceLocal service;
     private boolean conectado = false;
     private ImageView imgBtn;
@@ -95,7 +96,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
 
-        bindService(new Intent(this, ServiceLocal.class), mConnection,
+         bindService(new Intent(this, ServiceLocal.class), mConnection,
                 Context.BIND_AUTO_CREATE);
 
         if(!listaAmigos.isEmpty()){
@@ -117,7 +118,8 @@ public class ActivityBatePapo extends AppCompatActivity{
         //pega o id do amigo que eu estou enviando a msg
         id = getIntent().getIntExtra("id", -1);
         nomeAmigo = getIntent().getStringExtra("nomeAmigo");
-        Log.i("Noem AMIGO:","eaeae : " + nomeAmigo);
+        token = getIntent().getStringExtra("token");
+        Log.i("Nome AMIGO:","eaeae : " + token);
 
         final String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraCadastroMSG.php";
 
@@ -143,7 +145,7 @@ public class ActivityBatePapo extends AppCompatActivity{
                     final MensagemLocal msglocal = new MensagemLocal();
                     msglocal.setMensagem(msg.getMessage());
                     msglocal.setIdAmigo(id);
-                    msglocal.setNomeAmigo(nomeAmigo)    ;
+                    msglocal.setNomeAmigo(nomeAmigo);
                     mensagemLocalDAO.inserir(msglocal);
                     //Log.i("ID", "TEMA ALGIO AQUI CARAI:" + msglocal.getIdAmigo());
 

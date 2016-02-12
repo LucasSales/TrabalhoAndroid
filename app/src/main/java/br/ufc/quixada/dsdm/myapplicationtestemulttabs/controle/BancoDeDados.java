@@ -25,7 +25,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
                 ");");
         db.execSQL("create table amigos(" +
                 "_id integer primary key," +
-                "nome text not null" +
+                "nome text not null," +
+                "token text not null" +
                 ");");
         db.execSQL("create table mensagem(" +
                 "_idAmigo integer," +

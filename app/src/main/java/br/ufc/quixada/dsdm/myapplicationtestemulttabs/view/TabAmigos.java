@@ -11,13 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista_Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 /**
@@ -66,6 +64,8 @@ public class  TabAmigos extends Fragment{
                 //mando o id do amig q ta no BD para o listAmigos
                 inter.putExtra("id", a.getId());
                 inter.putExtra("nomeAmigo", a.getNick());
+                inter.putExtra("token", a.getRegistro());
+                Log.i("TABAMIGOS",a.getRegistro());
                 startActivity(inter);
 
 

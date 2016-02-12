@@ -72,7 +72,6 @@ public class MensagemLocalDAO {
         String sql = "SELECT * FROM mensagem WHERE _idAmigo="+id;
         Cursor cursor = db.rawQuery(sql,null);
 
-        Log.i("ID", "TEMA ALGIO AQUI CARAI:" + cursor.getCount());
         if(cursor.getCount() > 0 ){
             cursor.moveToFirst();
             do {

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista_Amigo;
-import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Mensagem_Amigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 public class ActivityListaAmigos extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
 
 
 
-        Mensagem_Amigos msn = new Mensagem_Amigos();
+        MensagemAmigos msn = new MensagemAmigos();
 
         msn.setNome_amigo("Robson Cavalcante");
         msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");

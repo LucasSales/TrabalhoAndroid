@@ -7,6 +7,15 @@ public class Amigo {
     private int id;
     private int idAmigo;
     private String nick;
+    private String registro;
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
+    }
 
     public int getId() {
         return id;
