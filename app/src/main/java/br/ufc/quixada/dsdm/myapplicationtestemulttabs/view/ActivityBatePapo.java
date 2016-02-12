@@ -65,7 +65,19 @@ public class ActivityBatePapo extends AppCompatActivity{
 
         Intent i = new Intent(this, ServiceLocal.class);
         startService(i);
+
         mensagemLocalDAO = new MensagemLocalDAO(this);
+
+        id = getIntent().getIntExtra("id", -1);
+        List<MensagemLocal> listaMsgLocal = mensagemLocalDAO.buscarPorID(id);
+        Log.i("MSGS", "Tem mensagens " + id);
+
+        if(!listaMsgLocal.isEmpty()) {
+
+            adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+            listView.setAdapter(adml);
+        }
+
 
     }
 
@@ -99,13 +111,14 @@ public class ActivityBatePapo extends AppCompatActivity{
          bindService(new Intent(this, ServiceLocal.class), mConnection,
                 Context.BIND_AUTO_CREATE);
 
-        if(!listaAmigos.isEmpty()){
+
+        /*if(!listaAmigos.isEmpty()){
             adapter = new Adaptador_Mensagens_BatePapo(this, listaAmigos);
             listView.setAdapter(adapter);
 
         }else{
             vazio.setText("Nenhuma Mensagem");
-        }
+        }*/
 
     }
 
@@ -116,7 +129,7 @@ public class ActivityBatePapo extends AppCompatActivity{
         List<Usuario> usuarios = dao.buscar();
 
         //pega o id do amigo que eu estou enviando a msg
-        id = getIntent().getIntExtra("id", -1);
+        //id = getIntent().getIntExtra("id", -1);
         nomeAmigo = getIntent().getStringExtra("nomeAmigo");
         token = getIntent().getStringExtra("token");
         Log.i("Nome AMIGO:","eaeae : " + token);
@@ -163,7 +176,7 @@ public class ActivityBatePapo extends AppCompatActivity{
 
 
 
-                            if(listaMsgLocal.size() > 0) {
+                            if(!listaMsgLocal.isEmpty()) {
 
                                     adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
 
