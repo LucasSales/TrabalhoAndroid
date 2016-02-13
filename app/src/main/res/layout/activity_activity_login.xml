@@ -26,23 +26,21 @@
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText_login" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button_login"
-        android:layout_marginTop="47dp"
+        android:id="@+id/info"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="18sp"
+        />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/editText_senha"
-        android:layout_alignEnd="@+id/editText"
-        android:onClick="verificaLogin"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cadastra-se"
-        android:id="@+id/button_cadastrar"
-        android:layout_alignTop="@+id/button_login"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp" />
 
 </RelativeLayout>

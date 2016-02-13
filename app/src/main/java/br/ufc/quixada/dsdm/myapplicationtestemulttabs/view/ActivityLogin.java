@@ -1,5 +1,6 @@
 package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
 
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInstaller;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -19,7 +21,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -27,34 +31,53 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import com.facebook.FacebookSdk;
 
 import java.security.AccessController;
+import java.util.Arrays;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 public class ActivityLogin extends AppCompatActivity {
 
+    private TextView info;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private LoginManager loginManager;
+    private  TextView tvNome;
+    private ProfileTracker profileTracker;
 
-    CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        callbackManager = CallbackManager.Factory.create();
+
         setContentView(R.layout.activity_activity_login);
 
+        info = (TextView) findViewById(R.id.info);
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        tvNome = (TextView)findViewById(R.id.editText_login);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-        Button loginButton = (Button) findViewById(R.id.button_login);
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
 
-        //loginButton.setReadPermissions("user_friends");
-        /*loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-
+        profileTracker = new ProfileTracker() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                String nome =  Profile.getCurrentProfile().getFirstName();
-                Toast.makeText(getApplicationContext(), "Nome:"+ nome,  Toast.LENGTH_SHORT);
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                    profileTracker.startTracking();
+
+                String nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
+                tvNome.setText(nome);
 
             }
+        };
 
+        loginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(getApplicationContext(), "Logou", Toast.LENGTH_LONG);
+                verificaLogin();
+
+            }
 
             @Override
             public void onCancel() {
@@ -65,7 +88,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onError(FacebookException e) {
 
             }
-        });*/
+        });
     }
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
@@ -97,7 +120,7 @@ public class ActivityLogin extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void verificaLogin(View view){
+    public void verificaLogin(){
         Intent intent = new Intent(this,MainActivityTabMensagens.class);
         startActivity(intent);
     }
@@ -115,6 +138,12 @@ public class ActivityLogin extends AppCompatActivity {
         super.onPause();
         // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        profileTracker.stopTracking();
     }
 
 
