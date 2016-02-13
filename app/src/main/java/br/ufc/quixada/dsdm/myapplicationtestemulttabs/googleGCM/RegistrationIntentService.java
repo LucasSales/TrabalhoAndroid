@@ -52,7 +52,8 @@ public class RegistrationIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String senderId = "480708892495";
-        boolean status = sharedPreferences.getBoolean("status",false);
+        boolean status = sharedPreferences.getBoolean("status", false);
+
         /*try {
             // [START register_for_gcm]
             // Initially this call goes out to the network to retrieve the token, subsequent calls
@@ -125,7 +126,8 @@ public class RegistrationIntentService extends IntentService {
         //É aqui que se registra um cara
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        usuario.setNickname("Kadu");
+        Log.i("MEUNOME", "MEUNOME" + Constantes.NOME_USUARIO);
+        usuario.setNickname(Constantes.NOME_USUARIO);
 
 
         String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/Fronteira.php";

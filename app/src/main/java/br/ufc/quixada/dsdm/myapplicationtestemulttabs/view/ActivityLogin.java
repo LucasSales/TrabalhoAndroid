@@ -44,6 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
     private LoginManager loginManager;
     private  TextView tvNome;
     private ProfileTracker profileTracker;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +66,9 @@ public class ActivityLogin extends AppCompatActivity {
             protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     profileTracker.startTracking();
 
-                String nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
+                nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
                 tvNome.setText(nome);
-
+                Constantes.NOME_USUARIO = nome;
             }
         };
 
@@ -75,6 +76,7 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(getApplicationContext(), "Logou", Toast.LENGTH_LONG);
+
                 verificaLogin();
 
             }

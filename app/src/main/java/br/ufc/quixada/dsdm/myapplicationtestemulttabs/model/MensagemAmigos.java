@@ -9,8 +9,26 @@ public class MensagemAmigos {
     private String texto;
     private String ultimo_texto;
     private String ultima_visualizacao;
+    private String token;
     private long id_mensagem;
+    private int id;
     private String img_amigo;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public MensagemAmigos(String nome_amigo, String texto, String ultimo_texto, String ultima_visualizacao, long id_mensagem, String img_amigo) {
         this.nome_amigo = nome_amigo;

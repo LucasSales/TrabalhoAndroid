@@ -53,7 +53,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static  ListView listView;
-    private static ArrayList<MensagemAmigos> listaMensagemAmigo;
+
     //private static AmigoDAO aDao;
     private static TextView tvvazio;
     private  ServiceLocal service;
@@ -248,6 +248,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
         BroadcastReceiver mRegistrationBroadcastReceiver;
         static List<MensagemJson> listMensagens;
+        static ArrayList<MensagemAmigos> listaMensagemAmigo;
         //private MensagemLocalDAO dao = new MensagemLocalDAO(getContext());
 
         /**
@@ -323,6 +324,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                     if(!msgListaLocal.isEmpty()){
                         MensagemAmigos msgAmigo = new MensagemAmigos();
                         msgAmigo.setNome_amigo(amigo.getNick());
+                        msgAmigo.setId(amigo.getId());
+                        msgAmigo.setToken(amigo.getRegistro());
                         if(tamanho > 0)
                             msgAmigo.setUltimo_texto(msgListaLocal.get(tamanho - 1).getMensagem().toString());
                         else
@@ -339,46 +342,32 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
                 listView.setAdapter(adapter);
             }
-            //List<MensagemLocal> msgLocal = dao.buscar();
-            //if(msgLocal != null){
+            final List<MensagemAmigos> Array = new ArrayList<>();
+            /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            //}
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //mando o id do amig q ta no BD para o listAmigos
+                    inter.putExtra("id", a.getId());
+                    inter.putExtra("nomeAmigo", a.getNick());
+                    inter.putExtra("token", a.getRegistro());
+                    Log.i("TABAMIGOS",a.getRegistro());
+                    startActivity(inter);
 
 
-            /*MensagemAmigos msn = new MensagemAmigos();
-
-            if(listMensagens == null){
-
-
-                msn.setNome_amigo("Lucas Sales");
-                msn.setUltima_visualizacao("10:50");
-                msn.setUltimo_texto("Não tem msg");
-                msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
-
-            }else{
-                msn.setNome_amigo("A miseravi");
-                msn.setUltima_visualizacao("10:50");
-                msn.setUltimo_texto(listMensagens.get(0).getMensagem().toString());
-                msn.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
-
-            }
-
-            listaMensagemAmigo.add(msn);
-            if(!listaMensagemAmigo.isEmpty()){
-                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
-                listView.setAdapter(adapter);
-
-            }else{
-                tvvazio.setText("Nenhuma Nota");
-            }*/
+                }
+            });*/
 
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                    MensagemAmigos a = PlaceholderFragment.this.listaMensagemAmigo.get(position);
                     Intent inter = new Intent(rootView.getContext(), ActivityBatePapo.class);
+                    inter.putExtra("id", a.getId());
+                    inter.putExtra("nomeAmigo", a.getNome_amigo());
+                    inter.putExtra("token", a.getToken());
                     startActivity(inter);
 
                 }
