@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ import java.util.List;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.MainActivity;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemJson;
@@ -44,6 +46,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
+import com.facebook.FacebookSdk;
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {
@@ -393,12 +396,13 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             super.onResume();
             LocalBroadcastManager.getInstance(getContext()).registerReceiver(mRegistrationBroadcastReceiver,
                     new IntentFilter(Constantes.BROADCAST_NOME));
+
         }
 
         @Override
         public void onPause() {
-            LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
             super.onPause();
+            LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         }
 
     }

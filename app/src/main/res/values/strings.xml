@@ -16,4 +16,6 @@
     <string name="title_activity_bate_papo">BatePapoActivity</string>
     <string name="title_activity_activity_login">ActivityLogin</string>
     <string name="title_activity_activity_configuracoes">ActivityConfiguracoes</string>
+
+    <string name="facebook_app_id">521141691379935</string>
 </resources>
