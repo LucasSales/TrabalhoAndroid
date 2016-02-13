@@ -24,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.Gson;
@@ -46,7 +45,7 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.googleGCM.RegistrationIntentService;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
-import com.facebook.FacebookSdk;
+
 
 
 public class MainActivityTabMensagens extends AppCompatActivity {

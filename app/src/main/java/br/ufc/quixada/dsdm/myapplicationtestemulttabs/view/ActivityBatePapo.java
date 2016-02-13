@@ -44,7 +44,7 @@ public class ActivityBatePapo extends AppCompatActivity{
     private Adaptador_Mensagens_BatePapo adapter;
     private Integer id;
     private String nomeAmigo;
-    String token;
+    private String tokenAmigo;
     private  ServiceLocal service;
     private boolean conectado = false;
     private ImageView imgBtn;
@@ -131,8 +131,8 @@ public class ActivityBatePapo extends AppCompatActivity{
         //pega o id do amigo que eu estou enviando a msg
         //id = getIntent().getIntExtra("id", -1);
         nomeAmigo = getIntent().getStringExtra("nomeAmigo");
-        token = getIntent().getStringExtra("token");
-        Log.i("Nome AMIGO:","eaeae : " + token);
+        tokenAmigo = getIntent().getStringExtra("token");
+        Log.i("Nome AMIGO:","eaeae : " + tokenAmigo);
 
         final String url = "http://"+Constantes.IP_SERVIDOR+"/Servidor/FronteiraCadastroMSG.php";
 

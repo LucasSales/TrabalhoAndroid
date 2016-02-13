@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -34,6 +35,7 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     CallbackManager callbackManager;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_login);
@@ -41,10 +43,10 @@ public class ActivityLogin extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        Button loginButton = (Button) findViewById(R.id.button_login);
 
-        loginButton.setReadPermissions("user_friends");
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        //loginButton.setReadPermissions("user_friends");
+        /*loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -63,7 +65,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onError(FacebookException e) {
 
             }
-        });
+        });*/
     }
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
