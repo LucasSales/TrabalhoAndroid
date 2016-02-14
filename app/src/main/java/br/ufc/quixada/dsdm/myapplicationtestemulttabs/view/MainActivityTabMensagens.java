@@ -272,7 +272,10 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             listaMensagemAmigo = new ArrayList<>();
 
+            final MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(getContext());
 
+            final AmigoDAO daoAmigo = new AmigoDAO(getContext());
+            final List<Amigo> listAmigos = daoAmigo.buscar();
 
             mRegistrationBroadcastReceiver = new BroadcastReceiver() {
                 @Override
@@ -292,6 +295,18 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                         }
                     }
 
+                    MensagemLocal salva = new MensagemLocal();
+                    for(MensagemJson mj : listMensagens){
+                        for(Amigo a : listAmigos){
+                            if(a.getRegistro().equals(mj.getIdFrom())){
+                                salva.setNomeAmigo(a.getNick());
+                                salva.setIdAmigo(a.getId());
+                                salva.setMensagem(mj.getMensagem());
+                                daoMsgLocal.inserir(salva);
+                                Log.i("SALVANDO MSG","HEUHEUHEU");
+                            }
+                        }
+                    }
 
 
 
@@ -303,13 +318,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
 
-
-
-
-            MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(getContext());
-
-            AmigoDAO daoAmigo = new AmigoDAO(getContext());
-            List<Amigo> listAmigos = daoAmigo.buscar();
 
 
             if(listAmigos != null){
