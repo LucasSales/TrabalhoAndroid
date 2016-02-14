@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
 
 /**
@@ -41,7 +42,7 @@ public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Amigo> {
         TextView txtNomeAmigo = (TextView) convertView.findViewById(R.id.txtnomeamigo);
         ImageView imagem = (ImageView) convertView.findViewById(R.id.imageViewAmigo);
 
-        Picasso.with(context).load("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg").resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
+        Picasso.with(context).load(Constantes.URL_FOTO).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
 
         txtNomeAmigo.setText(modelo.getNick());
 

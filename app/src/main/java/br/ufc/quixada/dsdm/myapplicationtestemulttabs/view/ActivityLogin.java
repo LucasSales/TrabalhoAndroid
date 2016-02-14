@@ -45,6 +45,7 @@ public class ActivityLogin extends AppCompatActivity {
     private  TextView tvNome;
     private ProfileTracker profileTracker;
     private String nome;
+    private String urlFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,10 @@ public class ActivityLogin extends AppCompatActivity {
                     profileTracker.startTracking();
 
                 nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
+                urlFoto = "http://graph.facebook.com/ " + currentProfile.getId() + "/picture?type=large";
                 tvNome.setText(nome);
                 Constantes.NOME_USUARIO = nome;
+                Constantes.URL_FOTO = urlFoto;
             }
         };
 
