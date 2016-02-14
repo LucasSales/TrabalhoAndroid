@@ -95,14 +95,6 @@ public class MyGcmListenerService extends GcmListenerService {
 
             sendNotification(messageJson);
 
-            /*Gson gson = new Gson();
-            final MensagemJson[] mensagens = gson.fromJson(messageJson, MensagemJson[].class);
-            List<MensagemJson> list = Arrays.asList(mensagens);
-
-            for(MensagemJson mj: list){
-                sendNotification(mj.getMensagem());
-                Log.i("Entro no for","Entro no for notification"+list.size());
-            }*/
         }
         // [END_EXCLUDE]
     }
