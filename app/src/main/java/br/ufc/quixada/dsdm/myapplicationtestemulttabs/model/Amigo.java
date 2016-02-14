@@ -8,6 +8,15 @@ public class Amigo {
     private int idAmigo;
     private String nick;
     private String registro;
+    private String urlfoto;
+
+    public String getUrlfoto() {
+        return urlfoto;
+    }
+
+    public void setUrlfoto(String urlfoto) {
+        this.urlfoto = urlfoto;
+    }
 
     public String getRegistro() {
         return registro;

@@ -42,7 +42,7 @@ public class Adaptador_Msn_Lista_Amigo extends ArrayAdapter<Amigo> {
         TextView txtNomeAmigo = (TextView) convertView.findViewById(R.id.txtnomeamigo);
         ImageView imagem = (ImageView) convertView.findViewById(R.id.imageViewAmigo);
 
-        Picasso.with(context).load(Constantes.URL_FOTO).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
+        Picasso.with(context).load(modelo.getUrlfoto()).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(imagem);
 
         txtNomeAmigo.setText(modelo.getNick());
 

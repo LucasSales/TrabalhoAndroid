@@ -25,6 +25,7 @@ public class UsuarioDAO {
         ContentValues valores = new ContentValues();
         valores.put("_id",usuario.getRegistrationId());
         valores.put("nome",usuario.getNickname());
+        valores.put("imagem",usuario.getUrlFoto());
 
         db.insert("usuario",null,valores);
     }
@@ -39,7 +40,7 @@ public class UsuarioDAO {
     }
     public List<Usuario> buscar(){
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-        String[] colunas = new String[]{"_id","nome"};
+        String[] colunas = new String[]{"_id","nome","imagem"};
         Cursor cursor = db.query("usuario",colunas,null,null,null,null,"nome ASC");
 
 
@@ -50,6 +51,7 @@ public class UsuarioDAO {
 
                 user.setRegistrationId(cursor.getString(0));
                 user.setNickname(cursor.getString(1));
+                user.setUrlFoto(cursor.getString(2));
 
                 listaUsuarios.add(user);
             }while(cursor.moveToNext());

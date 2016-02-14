@@ -7,11 +7,20 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.domain.NotificationConf;
  */
 public class Usuario {
     private String registrationId;
+    private String urlFoto;
     private long id;
     private String nickname;
 
     public Usuario(){
 
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
     public Usuario(String registrationId) {

@@ -330,7 +330,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                         else
                             msgAmigo.setUltimo_texto(msgListaLocal.get(0).getMensagem().toString());
 
-                        msgAmigo.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
+                        msgAmigo.setImg_amigo(amigo.getUrlfoto());
 
                         listaMensagemAmigo.add(msgAmigo);
                     }

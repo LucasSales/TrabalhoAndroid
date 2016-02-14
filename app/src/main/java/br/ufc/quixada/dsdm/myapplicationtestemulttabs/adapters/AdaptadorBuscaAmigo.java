@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
@@ -49,7 +51,7 @@ public class AdaptadorBuscaAmigo extends ArrayAdapter<Amigo> {
         button.setOnClickListener(onClickListener);
         button.setTag(amigos.get(position));
 
-        img.setImageResource(R.drawable.ic_person_add_white_24dp);
+        Picasso.with(context).load(amigo.getUrlfoto()).resize(50,50).centerCrop().error(R.drawable.ic_action_name).placeholder(R.drawable.ic_action_name2).into(img);
 
         txtNick.setText(amigo.getNick());
 

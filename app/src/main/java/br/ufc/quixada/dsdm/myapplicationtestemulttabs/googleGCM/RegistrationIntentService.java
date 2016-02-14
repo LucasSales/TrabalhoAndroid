@@ -126,7 +126,8 @@ public class RegistrationIntentService extends IntentService {
         //É aqui que se registra um cara
         Usuario usuario = new Usuario();
         usuario.setRegistrationId(token);
-        Log.i("MEUNOME", "MEUNOME" + Constantes.NOME_USUARIO);
+        usuario.setUrlFoto(Constantes.URL_FOTO);
+        Log.i("MEUNOME", "MEUNOME" + Constantes.URL_FOTO);
         usuario.setNickname(Constantes.NOME_USUARIO);
 
 
