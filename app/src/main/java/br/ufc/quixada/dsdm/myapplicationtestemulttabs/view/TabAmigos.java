@@ -41,7 +41,7 @@ public class  TabAmigos extends Fragment{
     public static TabAmigos newInstance(int numeroSessao){
         TabAmigos fragment = new TabAmigos();
         Bundle bundle = new Bundle();
-        bundle.putInt(NUMERO_SESSAO,numeroSessao);
+        bundle.putInt(NUMERO_SESSAO, numeroSessao);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -73,7 +73,7 @@ public class  TabAmigos extends Fragment{
                 inter.putExtra("id", a.getId());
                 inter.putExtra("nomeAmigo", a.getNick());
                 inter.putExtra("token", a.getRegistro());
-                Log.i("TABAMIGOS",a.getRegistro());
+                Log.i("TABAMIGOS", a.getRegistro());
                 startActivity(inter);
             }
         });
@@ -112,7 +112,7 @@ public class  TabAmigos extends Fragment{
                                 // excluindo mensagem
                                 Amigo a = TabAmigos.this.Array.get(pos);
 
-                               amigoDAO.deletar(a.getId());
+                                amigoDAO.deletar(a.getId());
                                 adapter.excluindoMensagemAmigo(a, adapter);
 
                             }
@@ -130,5 +130,17 @@ public class  TabAmigos extends Fragment{
         return rootView;
 
 
+    }
+
+   public void atualizarLista(){
+       Array = amigoDAO.buscar();
+
+       if(!Array.isEmpty()){
+           adapter = new Adaptador_Msn_Lista_Amigo(getActivity(), Array);
+           listView.setAdapter(adapter);
+
+       }else{
+           vazio.setText("Nenhum Amigo");
+       }
     }
 }

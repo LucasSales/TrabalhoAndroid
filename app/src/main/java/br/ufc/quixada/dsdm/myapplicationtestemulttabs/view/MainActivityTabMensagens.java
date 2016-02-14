@@ -160,6 +160,14 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 0){
+            TabAmigos t = (TabAmigos) mSectionsPagerAdapter.getItem(2);
+            t.atualizarLista();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -190,19 +198,27 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             finish();
         }else if(id == R.id.action_add_amigo){
             Intent i = new Intent(this,ActivityAdicionarAmigo.class);
-            startActivity(i);
+            startActivityForResult(i, 0);
+
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        PlaceholderFragment placeholderFragment;
+        TabGrupo tabGrupo;
+        TabAmigos tabAmigos;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            this.tabAmigos = TabAmigos.newInstance(3);
+            this.tabGrupo = TabGrupo.newInstance(2);
+            this.placeholderFragment = PlaceholderFragment.newInstance(1);
         }
 
         @Override
@@ -211,11 +227,11 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position){
                 case 0:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return this.placeholderFragment;
                 case 1:
-                    return TabGrupo.newInstance(position+1);
+                    return this.tabGrupo;
                 case 2:
-                    return TabAmigos.newInstance(position+1);
+                    return this.tabAmigos;
             }
             return null;
         }
