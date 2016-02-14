@@ -33,8 +33,8 @@ public class AmigoDAO {
         db.insert("amigos",null,valores);
     }
 
-    public void deletar(Amigo amigo){
-        db.delete("amigos", "_id=" + amigo.getIdAmigo(), null);
+    public void deletar(int id_amigo){
+        db.delete("amigos", "_id=" + id_amigo, null);
     }
 
     public void atualizar(Amigo amigo){
