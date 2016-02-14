@@ -67,8 +67,6 @@ public class  TabAmigos extends Fragment{
                 inter.putExtra("token", a.getRegistro());
                 Log.i("TABAMIGOS",a.getRegistro());
                 startActivity(inter);
-
-
             }
         });
 

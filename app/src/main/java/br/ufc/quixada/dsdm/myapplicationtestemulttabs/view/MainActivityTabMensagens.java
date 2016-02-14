@@ -249,7 +249,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         BroadcastReceiver mRegistrationBroadcastReceiver;
         static List<MensagemJson> listMensagens;
         static ArrayList<MensagemAmigos> listaMensagemAmigo;
-        //private MensagemLocalDAO dao = new MensagemLocalDAO(getContext());
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -271,7 +270,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            mRegistrationBroadcastReceiver =  new BroadCastMsg();
             listaMensagemAmigo = new ArrayList<>();
 
 
@@ -281,7 +279,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 public void onReceive(Context context, Intent intent) {
 
                     String mensagens = intent.getStringExtra("mensagem");
-
+                    Log.i("MSG","Tem Mensagens");
 
                     if(!mensagens.isEmpty()){
                         Gson gson = new Gson();
@@ -309,12 +307,10 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
 
             MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(getContext());
-            //List<MensagemLocal> msgListaLocal = daoMsgLocal.buscar();
 
             AmigoDAO daoAmigo = new AmigoDAO(getContext());
             List<Amigo> listAmigos = daoAmigo.buscar();
 
-            //List<MensagemAmigos> msgListAmigos= new ArrayList<>();
 
             if(listAmigos != null){
 
@@ -322,14 +318,18 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                     List<MensagemLocal> msgListaLocal = daoMsgLocal.buscarPorID(amigo.getId());
                     int tamanho = msgListaLocal.size();
                     if(!msgListaLocal.isEmpty()){
+
                         MensagemAmigos msgAmigo = new MensagemAmigos();
+
                         msgAmigo.setNome_amigo(amigo.getNick());
                         msgAmigo.setId(amigo.getId());
                         msgAmigo.setToken(amigo.getRegistro());
+
                         if(tamanho > 0)
                             msgAmigo.setUltimo_texto(msgListaLocal.get(tamanho - 1).getMensagem().toString());
                         else
                             msgAmigo.setUltimo_texto(msgListaLocal.get(0).getMensagem().toString());
+
                         msgAmigo.setImg_amigo("http://pre07.deviantart.net/e5e6/th/pre/f/2011/036/7/9/homer_simpson___06___simpsons_by_frasier_and_niles-d38uqts.jpg");
 
                         listaMensagemAmigo.add(msgAmigo);
@@ -342,21 +342,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
                 listView.setAdapter(adapter);
             }
-            final List<MensagemAmigos> Array = new ArrayList<>();
-            /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //mando o id do amig q ta no BD para o listAmigos
-                    inter.putExtra("id", a.getId());
-                    inter.putExtra("nomeAmigo", a.getNick());
-                    inter.putExtra("token", a.getRegistro());
-                    Log.i("TABAMIGOS",a.getRegistro());
-                    startActivity(inter);
-
-
-                }
-            });*/
 
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -372,6 +358,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
                 }
             });
+
 
 
             LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("mensagens"));

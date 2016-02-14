@@ -133,13 +133,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onEvent(final PushMessage2 pushMessage){
+    /*public void onEvent(final PushMessage2 pushMessage){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 tv.setText(pushMessage.getMensagem());
             }
         });
-    }
+    }*/
 
 }

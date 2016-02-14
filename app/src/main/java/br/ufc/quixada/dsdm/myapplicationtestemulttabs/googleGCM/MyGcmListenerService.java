@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,9 +36,13 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.util.Arrays;
+import java.util.List;
+
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemJson;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.view.MainActivityTabMensagens;
 import de.greenrobot.event.EventBus;
 
@@ -55,7 +60,6 @@ public class MyGcmListenerService extends GcmListenerService {
     // [START receive_message]
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        //final String message = data.getString("msg");
         final String messageJson = data.getString("msg");
 
         Log.d(TAG, "From: " + from);
@@ -90,6 +94,15 @@ public class MyGcmListenerService extends GcmListenerService {
             LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
 
             sendNotification(messageJson);
+
+            /*Gson gson = new Gson();
+            final MensagemJson[] mensagens = gson.fromJson(messageJson, MensagemJson[].class);
+            List<MensagemJson> list = Arrays.asList(mensagens);
+
+            for(MensagemJson mj: list){
+                sendNotification(mj.getMensagem());
+                Log.i("Entro no for","Entro no for notification"+list.size());
+            }*/
         }
         // [END_EXCLUDE]
     }
@@ -108,12 +121,13 @@ public class MyGcmListenerService extends GcmListenerService {
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_ic_notification)
-                .setContentTitle("GCM Message")
+                .setSmallIcon(R.drawable.mensageiro_icon)
+                .setContentTitle("MENSSAGEIRO")
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
+
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
