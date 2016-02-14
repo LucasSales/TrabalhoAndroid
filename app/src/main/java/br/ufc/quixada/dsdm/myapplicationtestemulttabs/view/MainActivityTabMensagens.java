@@ -2,6 +2,7 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.view;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +23,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -32,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.AdaptadorMensagemLocal;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.adapters.Adaptador_Msn_Lista;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.constantes.Constantes;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
@@ -249,6 +254,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         BroadcastReceiver mRegistrationBroadcastReceiver;
         static List<MensagemJson> listMensagens;
         static ArrayList<MensagemAmigos> listaMensagemAmigo;
+        Adaptador_Msn_Lista adapter;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -348,7 +354,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }
 
             if(listaMensagemAmigo != null){
-                Adaptador_Msn_Lista adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
+                adapter = new Adaptador_Msn_Lista(getActivity(), listaMensagemAmigo);
                 listView.setAdapter(adapter);
             }
 
@@ -367,7 +373,57 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
                 }
             });
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> av, View v, final int pos, long id) {
 
+
+                    AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
+                    builderSingle.setIcon(R.drawable.mr_ic_settings_dark);
+                    builderSingle.setTitle(R.string.opcaoAlertDialog);
+
+                    final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.select_dialog_singlechoice);
+                    arrayAdapter.add("Excluir");
+
+
+                    builderSingle.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String strName = arrayAdapter.getItem(which);
+                            AlertDialog.Builder builderInner = new AlertDialog.Builder(getContext());
+                            builderInner.setMessage(strName);
+                            builderInner.setTitle("Your Selected Item is");
+                            builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    // excluindo mensagem
+                                    MensagemAmigos a = PlaceholderFragment.this.listaMensagemAmigo.get(pos);
+                                    MensagemLocalDAO msgDAO = new MensagemLocalDAO(getContext());
+
+                                    msgDAO.deleteMsnPorId(a.getId());
+                                    adapter.excluindoMensagemAmigo(a, adapter);
+                                }
+                            });
+                            builderInner.show();
+                        }
+                    });
+                    builderSingle.show();
+
+
+                    Toast.makeText(PlaceholderFragment.this.getContext(), "click longo", Toast.LENGTH_SHORT).show();
+
+
+                    return true;
+                }
+            });
 
 
             LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("mensagens"));

@@ -36,6 +36,12 @@ public class MensagemLocalDAO {
         db.delete("mensagem", "_idAmigo=" + mensagem.getIdAmigo(), null);
     }
 
+    public void deleteMsnPorId(int id){
+
+        db.delete("mensagem", "_idAmigo=" +id, null);
+
+    }
+
     /*public void atualizar(Amigo amigo){
         ContentValues valores = new ContentValues();
         valores.put("nick",amigo.getNick());

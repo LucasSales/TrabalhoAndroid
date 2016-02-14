@@ -6,6 +6,7 @@
     <string name="title_section3">Amigos</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="opcaoAlertDialog">Selecione a Opção</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>

@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemAmigos;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 
 /**
  * Created by Robson Cavalcante on 10/12/2015.
@@ -53,5 +54,11 @@ public class Adaptador_Msn_Lista extends ArrayAdapter<MensagemAmigos> {
 
 
         return convertView;
+    }
+    public void excluindoMensagemAmigo( MensagemAmigos ml, Adaptador_Msn_Lista adapter){
+        if(adapter != null)
+            adapter.remove(ml);
+        adapter.notifyDataSetChanged();
+
     }
 }
