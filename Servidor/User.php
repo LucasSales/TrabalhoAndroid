@@ -11,6 +11,25 @@ class User{
     private $nick;
     private $email;
     private $senha;
+    private $urlFoto;
+
+    /**
+     * @return mixed
+     */
+    public function getUrlFoto()
+    {
+        return $this->urlFoto;
+    }
+
+    /**
+     * @param mixed $urlFoto
+     */
+    public function setUrlFoto($urlFoto)
+    {
+        $this->urlFoto = $urlFoto;
+    }
+
+
 
     /**
      * @return mixed

@@ -27,14 +27,14 @@ if(isset($_POST['jsonObject'])) {
     $mensagem = $conMsg->buscaMsgLocal($a,$id->id);
 
 
-        //$ids = $conMsg->buscaMsgIdsLoc($a,$id->id);
+    $ids = $conMsg->buscaMsgIdsLoc($a,$id->id);
 
-        //$boo = $conMsg->vista($ids);
+    $boo = $conMsg->vista($ids);
 
-        $ctrl = new ControladorGCM();
+    $ctrl = new ControladorGCM();
 
 
-        echo json_encode($ctrl->enviarDadoParaTelefone([$token],["msg"=>$mensagem]));
+    echo json_encode($ctrl->enviarDadoParaTelefone([$token],["msg"=>$mensagem]));
 
 
 }

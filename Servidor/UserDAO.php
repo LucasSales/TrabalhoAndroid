@@ -19,13 +19,13 @@ class UserDAO{
     public function cadastrar(User $user){
 
         try {
-            $sql = "insert into usuario(registro,nick) values (?,?)";
+            $sql = "insert into usuario(registro,nick,urlfoto) values (?,?,?)";
 
             $a = $this->conexao->prepare($sql);
 
             $a->bindParam(1, $user->getRegistroId());
             $a->bindParam(2, $user->getNick());
-
+            $a->bindParam(3, $user->getUrlFoto());
 
             return $a->execute();
 

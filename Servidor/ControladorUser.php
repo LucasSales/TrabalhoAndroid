@@ -17,10 +17,11 @@ class ControladorUser{
         $this->dao = new UserDAO(Conexao::getConexao());
     }
 
-    public function cadastrar($registro_id,$nick){
+    public function cadastrar($registro_id,$nick,$urlFoto){
         $user = new User();
         $user->setRegistroId($registro_id);
         $user->setNick($nick);
+        $user->setUrlFoto($urlFoto);
         return $this->dao->cadastrar($user);
     }
 

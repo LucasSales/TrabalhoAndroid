@@ -3,7 +3,8 @@ create table usuario(
 	registro varchar(250),
 	email varchar(250),
 	senha varchar(250),
-	nick varchar(50)
+	nick varchar(50),
+	urlfoto text
 );
 
 create table amigo(

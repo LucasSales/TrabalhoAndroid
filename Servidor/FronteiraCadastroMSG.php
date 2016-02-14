@@ -11,6 +11,7 @@ if(isset($_POST['jsonObject'])){
     $longitude = $jsonObject->message->local->longitude;
     $mensagem = $jsonObject->message->message;
 
+
     //echo "asdasd ".$jsonObject;
     $controlador = ControladorMensagem::getInstance();
 

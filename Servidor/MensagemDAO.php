@@ -57,7 +57,7 @@ class MensagemDAO{
         try {
             $idsFormatados = implode(',',$ids);
 
-            $sql = "select * from mensagem where id_loc in (".$idsFormatados.") and idTo = ?";
+            $sql = "select * from mensagem where id_loc in (".$idsFormatados.") and idTo = ? and visto = 0";
 
             $a = $this->conexao->prepare($sql);
 
@@ -72,7 +72,8 @@ class MensagemDAO{
             $resultadoRetorno = array();
 
             while ($resultado = $a->fetchObject())
-                array_push($resultadoRetorno, $resultado->mensagem);
+                array_push($resultadoRetorno, $resultado);
+                //array_push($resultadoRetorno, $resultado->mensagem);
 
             return $resultadoRetorno;
         }catch (Exception $e){
@@ -98,7 +99,7 @@ class MensagemDAO{
             $resultadoRetorno = array();
 
             while ($resultado = $a->fetchObject())
-                array_push($resultadoRetorno, $resultado->mensagem);
+                array_push($resultadoRetorno, $resultado->id);
 
             return $resultadoRetorno;
         }catch (Exception $e){
@@ -110,7 +111,7 @@ class MensagemDAO{
     public function visto($id){
         try {
             $idsFormatados = implode(',',$id);
-            $sql = "insert into mensagem (visto) values (1) where id in '.$idsFormatados.'";
+            $sql = "update mensagem set visto='1' where id in (".$idsFormatados.")";
 
             $a = $this->conexao->prepare($sql);
 
