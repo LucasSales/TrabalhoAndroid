@@ -33,7 +33,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
         db.execSQL("create table mensagem(" +
                 "_idAmigo integer," +
                 "texto text not null," +
-                "nomeAmigo text" +
+                "nomeAmigo text," +
+                "enviadoPor integer" +
                 ");");
     }
 

@@ -27,6 +27,7 @@ public class MensagemLocalDAO {
         valores.put("nomeAmigo", mensagem.getNomeAmigo());
         valores.put("texto", mensagem.getMensagem());
         valores.put("_idAmigo",mensagem.getIdAmigo());
+        valores.put("enviadoPor",mensagem.getEnviadoPor());
 
         db.insert("mensagem",null,valores);
     }
@@ -43,7 +44,7 @@ public class MensagemLocalDAO {
     }*/
     public List<MensagemLocal> buscar(){
         List<MensagemLocal> listaMensagens = new ArrayList<>();
-        String[] colunas = new String[]{"_idAmigo","texto","nomeAmigo"};
+        String[] colunas = new String[]{"_idAmigo","texto","nomeAmigo","enviadoPor"};
         Cursor cursor = db.query("mensagem",colunas,null,null,null,null,null);
 
 
@@ -57,7 +58,7 @@ public class MensagemLocalDAO {
                 msg.setIdAmigo(cursor.getInt(0));
                 msg.setMensagem(cursor.getString(1));
                 msg.setNomeAmigo(cursor.getString(2));
-
+                msg.setEnviadoPor(cursor.getInt(3));
 
                 listaMensagens.add(msg);
             }while(cursor.moveToNext());
@@ -80,7 +81,7 @@ public class MensagemLocalDAO {
                 msg.setIdAmigo(cursor.getInt(0));
                 msg.setMensagem(cursor.getString(1));
                 msg.setNomeAmigo(cursor.getString(2));
-
+                msg.setEnviadoPor(cursor.getInt(3));
 
                 listaMensagens.add(msg);
             }while(cursor.moveToNext());

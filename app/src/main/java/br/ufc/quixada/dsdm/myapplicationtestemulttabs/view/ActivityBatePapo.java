@@ -74,7 +74,7 @@ public class ActivityBatePapo extends AppCompatActivity{
 
         if(!listaMsgLocal.isEmpty()) {
 
-            adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+            adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal);
             listView.setAdapter(adml);
         }
 
@@ -159,6 +159,7 @@ public class ActivityBatePapo extends AppCompatActivity{
                     msglocal.setMensagem(msg.getMessage());
                     msglocal.setIdAmigo(id);
                     msglocal.setNomeAmigo(nomeAmigo);
+                    msglocal.setEnviadoPor(1);
                     mensagemLocalDAO.inserir(msglocal);
                     //Log.i("ID", "TEMA ALGIO AQUI CARAI:" + msglocal.getIdAmigo());
 
@@ -178,7 +179,7 @@ public class ActivityBatePapo extends AppCompatActivity{
 
                             if(!listaMsgLocal.isEmpty()) {
 
-                                    adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal, 1);
+                                    adml = new AdaptadorMensagemLocal(ActivityBatePapo.this, listaMsgLocal);
 
                                     listView.setAdapter(adml);
 

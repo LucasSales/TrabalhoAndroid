@@ -6,7 +6,16 @@ package br.ufc.quixada.dsdm.myapplicationtestemulttabs.model;
 public class MensagemLocal {
     private String mensagem;
     private String nomeAmigo;
+    private int enviadoPor;
     private int idAmigo;
+
+    public int getEnviadoPor() {
+        return enviadoPor;
+    }
+
+    public void setEnviadoPor(int enviadoPor) {
+        this.enviadoPor = enviadoPor;
+    }
 
     public String getMensagem() {
         return mensagem;
@@ -30,5 +39,10 @@ public class MensagemLocal {
 
     public void setIdAmigo(int idAmigo) {
         this.idAmigo = idAmigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Msg "+mensagem+" nomeAntigo "+nomeAmigo+" enviaadoPor "+enviadoPor+" idAmigo "+idAmigo;
     }
 }

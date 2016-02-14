@@ -19,13 +19,12 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
 public class AdaptadorMensagemLocal extends ArrayAdapter<MensagemLocal> {
     private List<MensagemLocal> lista;
     private Activity context;
-    private int quemMandou;
-    public AdaptadorMensagemLocal(Activity context, List<MensagemLocal> lista, int quemMandou) {
+
+    public AdaptadorMensagemLocal(Activity context, List<MensagemLocal> lista) {
         super(context, R.layout.layout_mensagem_enviada,lista);
 
         this.lista = lista;
         this.context = context;
-        this.quemMandou = quemMandou;
     }
 
 
@@ -34,23 +33,23 @@ public class AdaptadorMensagemLocal extends ArrayAdapter<MensagemLocal> {
 
 
         MensagemLocal ml = lista.get(position);
-        if(quemMandou == 1){
-            if (convertView == null) {
+        if(ml.getEnviadoPor() == 1){
+            //if (convertView == null) {
                 LayoutInflater layoutInflater = context.getLayoutInflater();
                 convertView = layoutInflater.inflate(R.layout.layout_mensagem_enviada, null);
-            }
+            //}
             TextView txtEuMandei = (TextView) convertView.findViewById(R.id.quem_envia);
             Log.i("MENSAGEMADAPTADOR","É essa: " + ml.getMensagem());
             txtEuMandei.setText(ml.getMensagem());
 
            return convertView;
         }else{
-            if (convertView == null) {
+            //if (convertView == null) {
                 LayoutInflater layoutInflater = context.getLayoutInflater();
                 convertView = layoutInflater.inflate(R.layout.layout_mensagem_recebida, null);
-            }
+            //}
            TextView txtEuRecebi = (TextView) convertView.findViewById(R.id.quem_recebe);
-
+            Log.i("teste", ml.toString());
             txtEuRecebi.setText(ml.getMensagem());
 
             return convertView;

@@ -302,6 +302,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                                 salva.setNomeAmigo(a.getNick());
                                 salva.setIdAmigo(a.getId());
                                 salva.setMensagem(mj.getMensagem());
+                                salva.setEnviadoPor(0);
                                 daoMsgLocal.inserir(salva);
                                 Log.i("SALVANDO MSG","HEUHEUHEU");
                             }
