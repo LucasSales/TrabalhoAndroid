@@ -317,7 +317,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                         }
                     }
 
-                    MensagemLocal salva = new MensagemLocal();
+                    /*MensagemLocal salva = new MensagemLocal();
                     for(MensagemJson mj : listMensagens){
                         for(Amigo a : listAmigos){
                             if(a.getRegistro().equals(mj.getIdFrom())){
@@ -328,7 +328,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                                 daoMsgLocal.inserir(salva);
                             }
                         }
-                    }
+                    }*/
 
 
 

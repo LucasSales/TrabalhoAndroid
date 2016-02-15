@@ -42,7 +42,10 @@ import java.util.List;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.controle.BroadCastMsg;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.Amigo;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.AmigoDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemJson;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocal;
+import br.ufc.quixada.dsdm.myapplicationtestemulttabs.model.MensagemLocalDAO;
 import br.ufc.quixada.dsdm.myapplicationtestemulttabs.view.MainActivityTabMensagens;
 import de.greenrobot.event.EventBus;
 
@@ -106,6 +109,31 @@ public class MyGcmListenerService extends GcmListenerService {
      * @param message GCM message received.
      */
     private void sendNotification(String message) {
+        List<MensagemJson> listMensagens;
+        final AmigoDAO daoAmigo = new AmigoDAO(this);
+        final List<Amigo> listAmigos = daoAmigo.buscar();
+        final MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(this);
+
+        Gson gson = new Gson();
+        final MensagemJson[] ob = gson.fromJson(message, MensagemJson[].class);
+        listMensagens = Arrays.asList(ob);
+
+
+        MensagemLocal salva = new MensagemLocal();
+        for(MensagemJson mj : listMensagens){
+            for(Amigo a : listAmigos){
+                if(a.getRegistro().equals(mj.getIdFrom())){
+                    salva.setNomeAmigo(a.getNick());
+                    salva.setIdAmigo(a.getId());
+                    salva.setMensagem(mj.getMensagem());
+                    salva.setEnviadoPor(0);
+                    daoMsgLocal.inserir(salva);
+                }
+            }
+        }
+
+
+
         Intent intent = new Intent(this, MainActivityTabMensagens.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

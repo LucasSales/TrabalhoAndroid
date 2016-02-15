@@ -102,9 +102,9 @@ public class ServiceLocal extends Service implements GoogleApiClient.ConnectionC
     protected void iniciarAtualizacaoLocalizacao() {
         Log.d("Android Service", "Entrou IniciarAtualização");
         LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(5000);
+        mLocationRequest.setInterval(1000);
         mLocationRequest.setSmallestDisplacement(1);
-        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);

@@ -63,9 +63,6 @@ public class ActivityBatePapo extends AppCompatActivity{
         imgBtn = (ImageView) findViewById(R.id.enviarMsg);
         imgBtn.setImageResource(R.drawable.ic_send_black_24dp);
 
-        Intent i = new Intent(this, ServiceLocal.class);
-        startService(i);
-
         mensagemLocalDAO = new MensagemLocalDAO(this);
 
         id = getIntent().getIntExtra("id", -1);
