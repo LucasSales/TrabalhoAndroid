@@ -9,6 +9,6 @@
         android:id="@+id/quem_recebe"
         android:layout_below="@+id/quem_envia"
         android:layout_alignParentStart="true"
-        android:background="@drawable/novo"/>
+        android:background="@drawable/bubble_recebe"/>
 
 </LinearLayout>

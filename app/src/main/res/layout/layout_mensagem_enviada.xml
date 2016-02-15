@@ -10,7 +10,7 @@
         android:layout_height="53dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/quem_envia"
-        android:background="@drawable/novo"
+        android:background="@drawable/bubble_manda"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
