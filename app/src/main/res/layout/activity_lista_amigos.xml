@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listViewListaAmigos2"
-        android:layout_below="@+id/toggleButton" />
+         />
 
     <TextView
         android:layout_width="wrap_content"
