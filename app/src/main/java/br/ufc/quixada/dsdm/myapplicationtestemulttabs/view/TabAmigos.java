@@ -100,7 +100,7 @@ public class  TabAmigos extends Fragment{
                         String strName = arrayAdapter.getItem(which);
                         AlertDialog.Builder builderInner = new AlertDialog.Builder(getContext());
                         builderInner.setMessage(strName);
-                        builderInner.setTitle("Your Selected Item is");
+                        builderInner.setTitle("Você vai excluir seu amigo");
                         builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

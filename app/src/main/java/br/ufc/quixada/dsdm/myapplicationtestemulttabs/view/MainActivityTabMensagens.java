@@ -195,7 +195,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             Intent i = new Intent(this,ActivityConfiguracoes.class);
             startActivity(i);
         }else if(id == R.id.action_logout){
-            Constantes.SAIU_APP = true;
             finish();
         }else if(id == R.id.action_add_amigo){
             Intent i = new Intent(this,ActivityAdicionarAmigo.class);
