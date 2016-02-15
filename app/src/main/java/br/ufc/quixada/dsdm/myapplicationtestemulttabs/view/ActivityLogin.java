@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -46,6 +48,7 @@ public class ActivityLogin extends AppCompatActivity {
     private ProfileTracker profileTracker;
     private String nome;
     private String urlFoto;
+    private AccessToken ac;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,37 +59,51 @@ public class ActivityLogin extends AppCompatActivity {
 
         setContentView(R.layout.activity_activity_login);
 
+
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         tvNome = (TextView)findViewById(R.id.editText_login);
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
+        ac = AccessToken.getCurrentAccessToken();
 
-        profileTracker = new ProfileTracker() {
-            @Override
-            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+
+        boolean logado = true;
+
+        if(ac == null || ac.isExpired()){
+            logado = false;
+        }
+
+
+        if(!logado)
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
+
+
+            profileTracker = new ProfileTracker() {
+                @Override
+                protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     profileTracker.startTracking();
 
-                nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
-                urlFoto = "http://graph.facebook.com/ " + currentProfile.getId() + "/picture?type=large";
-                tvNome.setText(nome);
-                Constantes.NOME_USUARIO = nome;
-                Constantes.URL_FOTO = urlFoto;
-            }
-        };
+                    nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
+                    urlFoto = "http://graph.facebook.com/ " + currentProfile.getId() + "/picture?type=large";
+                    tvNome.setText(nome);
+                    Constantes.NOME_USUARIO = nome;
+                    Constantes.URL_FOTO = urlFoto;
+                }
+            };
+
+            if (logado && profileTracker.isTracking())
+                verificaLogin();
 
         loginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(), "Logou", Toast.LENGTH_LONG);
-
                 verificaLogin();
 
             }
 
             @Override
             public void onCancel() {
-
+               Log.i("Passou no cancel", "Aqui");
             }
 
             @Override
@@ -149,6 +166,7 @@ public class ActivityLogin extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         profileTracker.stopTracking();
+
     }
 
 
