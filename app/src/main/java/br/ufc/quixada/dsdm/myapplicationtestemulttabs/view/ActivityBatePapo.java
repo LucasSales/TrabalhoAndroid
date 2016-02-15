@@ -58,7 +58,6 @@ public class ActivityBatePapo extends AppCompatActivity{
 
         listaAmigos = new ArrayList();
         listView = (ListView)findViewById(R.id.listViewMsnBatePapo);
-        vazio = (TextView) findViewById(R.id.textViewNenhumaMsn);
 
         imgBtn = (ImageView) findViewById(R.id.enviarMsg);
         imgBtn.setImageResource(R.drawable.ic_send_black_24dp);

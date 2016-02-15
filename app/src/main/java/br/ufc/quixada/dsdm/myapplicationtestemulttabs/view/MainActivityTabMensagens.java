@@ -60,9 +60,10 @@ public class MainActivityTabMensagens extends AppCompatActivity {
     private static  ListView listView;
 
     //private static AmigoDAO aDao;
-    private static TextView tvvazio;
+    /*private static TextView tvvazio;
     private  ServiceLocal service;
-    private boolean conectado = false;
+    private boolean conectado = false;*/
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -126,7 +127,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         }
     }*/
     //SERVICE PARA PEGAR LOCALIZACAO
-    private ServiceConnection mConnection = new ServiceConnection() {
+    /*private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
@@ -140,7 +141,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         public void onServiceDisconnected(ComponentName arg0) {
             conectado = false;
         }
-    };
+    };*/
 
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
@@ -182,16 +183,24 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         i = new Intent( this, ActivityCriarGrupo.class );
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
 
         int id = item.getItemId();
 
-        if(id == R.id.action_nova_mensagem){
+        //if(id == R.id.action_nova_mensagem){
             //Intent i;
             //i = new Intent( this, ActivityListaAmigos.class );
             //startActivity(i);
-        }else if (id == R.id.action_settings) {
+        //}else
+        if (id == R.id.action_settings) {
             Intent i = new Intent(this,ActivityConfiguracoes.class);
             startActivity(i);
         }else if(id == R.id.action_logout){
@@ -254,6 +263,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             }
             return null;
         }
+
 
 
     }
@@ -432,7 +442,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                     builderSingle.show();
 
 
-                    Toast.makeText(PlaceholderFragment.this.getContext(), "click longo", Toast.LENGTH_SHORT).show();
 
 
                     return true;
@@ -459,6 +468,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             super.onPause();
             LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
         }
+
+
 
     }
 

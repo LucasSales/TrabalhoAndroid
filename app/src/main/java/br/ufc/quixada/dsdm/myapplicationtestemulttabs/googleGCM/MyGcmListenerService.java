@@ -90,14 +90,15 @@ public class MyGcmListenerService extends GcmListenerService {
          * that a message was received.
          */
 
-        if(messageJson != null) {
+        if(!messageJson.toString().equals("false")) {
+            if(!messageJson.isEmpty()){
+                Log.i("messagem","me: " + messageJson.toString());
+                Intent registrationComplete = new Intent("MENSAGENS");
+                registrationComplete.putExtra("mensagem", messageJson);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
 
-            Intent registrationComplete = new Intent("MENSAGENS");
-            registrationComplete.putExtra("mensagem", messageJson);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
-
-            sendNotification(messageJson);
-
+                sendNotification(messageJson);
+            }
         }
         // [END_EXCLUDE]
     }
@@ -109,50 +110,66 @@ public class MyGcmListenerService extends GcmListenerService {
      * @param message GCM message received.
      */
     private void sendNotification(String message) {
-        List<MensagemJson> listMensagens;
-        final AmigoDAO daoAmigo = new AmigoDAO(this);
-        final List<Amigo> listAmigos = daoAmigo.buscar();
-        final MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(this);
 
-        Gson gson = new Gson();
-        final MensagemJson[] ob = gson.fromJson(message, MensagemJson[].class);
-        listMensagens = Arrays.asList(ob);
+        if(!message.isEmpty()){
+            List<MensagemJson> listMensagens;
+            final AmigoDAO daoAmigo = new AmigoDAO(this);
+            final List<Amigo> listAmigos = daoAmigo.buscar();
+            final MensagemLocalDAO daoMsgLocal = new MensagemLocalDAO(this);
+
+            Gson gson = new Gson();
+            final MensagemJson[] ob = gson.fromJson(message, MensagemJson[].class);
+            listMensagens = Arrays.asList(ob);
 
 
-        MensagemLocal salva = new MensagemLocal();
-        for(MensagemJson mj : listMensagens){
-            for(Amigo a : listAmigos){
-                if(a.getRegistro().equals(mj.getIdFrom())){
-                    salva.setNomeAmigo(a.getNick());
-                    salva.setIdAmigo(a.getId());
-                    salva.setMensagem(mj.getMensagem());
-                    salva.setEnviadoPor(0);
-                    daoMsgLocal.inserir(salva);
+            MensagemLocal salva = new MensagemLocal();
+            for(MensagemJson mj : listMensagens){
+                for(Amigo a : listAmigos){
+                    if(a.getRegistro().equals(mj.getIdFrom())){
+                        salva.setNomeAmigo(a.getNick());
+                        salva.setIdAmigo(a.getId());
+                        salva.setMensagem(mj.getMensagem());
+                        salva.setEnviadoPor(0);
+                        daoMsgLocal.inserir(salva);
+                    }
                 }
             }
+
+
+
+
+
+
+            Intent intent = new Intent(this, MainActivityTabMensagens.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+
+            Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.mensageiro_icon)
+                    .setContentTitle("MENSSAGEIRO")
+                    //.setContentText(message)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setContentIntent(pendingIntent);
+
+            for(MensagemJson messageJ : listMensagens){
+                notificationBuilder.setContentText(messageJ.getMensagem());
+            }
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+
+
+
+
+
+
         }
 
-
-
-        Intent intent = new Intent(this, MainActivityTabMensagens.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
-
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.mensageiro_icon)
-                .setContentTitle("MENSSAGEIRO")
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
-
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
 

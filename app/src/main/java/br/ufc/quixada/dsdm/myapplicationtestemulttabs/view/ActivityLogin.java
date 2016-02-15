@@ -40,11 +40,11 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.service.ServiceLocal;
 
 public class ActivityLogin extends AppCompatActivity {
 
-    private TextView info;
-    private LoginButton loginButton;
+    //private TextView info;
+    //private LoginButton loginButton;
     private CallbackManager callbackManager;
     private LoginManager loginManager;
-    private  TextView tvNome;
+    //private  TextView tvNome;
     private ProfileTracker profileTracker;
     private String nome;
     private String urlFoto;
@@ -60,7 +60,7 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_activity_login);
 
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+        //loginButton = (LoginButton) findViewById(R.id.login_button);
 
 
         ac = AccessToken.getCurrentAccessToken();
@@ -103,7 +103,7 @@ public class ActivityLogin extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-               Log.i("Passou no cancel", "Aqui");
+               Log.d("error", "Falha no login");
             }
 
             @Override
@@ -127,7 +127,7 @@ public class ActivityLogin extends AppCompatActivity {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -140,7 +140,7 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void verificaLogin(){
         Intent intent = new Intent(this,MainActivityTabMensagens.class);
