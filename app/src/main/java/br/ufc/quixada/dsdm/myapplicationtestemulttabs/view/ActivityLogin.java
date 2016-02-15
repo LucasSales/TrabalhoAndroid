@@ -60,9 +60,8 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_activity_login);
 
 
-        info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        tvNome = (TextView)findViewById(R.id.editText_login);
+
 
         ac = AccessToken.getCurrentAccessToken();
 
@@ -83,11 +82,12 @@ public class ActivityLogin extends AppCompatActivity {
                 protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     profileTracker.startTracking();
 
-                    nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
-                    urlFoto = "http://graph.facebook.com/ " + currentProfile.getId() + "/picture?type=large";
-                    tvNome.setText(nome);
-                    Constantes.NOME_USUARIO = nome;
-                    Constantes.URL_FOTO = urlFoto;
+                    if(currentProfile!=null) {
+                        nome = currentProfile.getFirstName() + " " + currentProfile.getLastName();
+                        urlFoto = "http://graph.facebook.com/ " + currentProfile.getId() + "/picture?type=large";
+                        Constantes.NOME_USUARIO = nome;
+                        Constantes.URL_FOTO = urlFoto;
+                    }
                 }
             };
 
@@ -145,6 +145,7 @@ public class ActivityLogin extends AppCompatActivity {
     public void verificaLogin(){
         Intent intent = new Intent(this,MainActivityTabMensagens.class);
         startActivity(intent);
+       // finish();
     }
 
     @Override

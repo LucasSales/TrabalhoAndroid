@@ -339,7 +339,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
 
             };
 
-            tvvazio = (TextView) rootView.findViewById(R.id.textViewVazioMensagem);
             listView = (ListView) rootView.findViewById(R.id.listViewMensagem);
 
 

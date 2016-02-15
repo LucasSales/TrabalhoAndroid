@@ -35,16 +35,16 @@
 
         <activity
             android:name=".view.MainActivityTabMensagens"
-            android:label="@string/app_name" >
+            android:label="@string/title_section1" >
         </activity>
         <activity
             android:name=".view.ActivityCriarGrupo"
-            android:label="@string/title_activity_activity_criar_grupo"
+            android:label="@string/title_section2"
             android:parentActivityName=".view.MainActivityTabMensagens" >
         </activity>
         <activity
             android:name=".view.ActivityListaAmigos"
-            android:label="@string/title_activity_activity_ListaAmigos"
+            android:label="@string/title_section3"
             android:parentActivityName=".view.MainActivityTabMensagens" >
         </activity>
         <activity
@@ -54,7 +54,7 @@
         </activity>
         <activity
             android:name=".view.ActivityLogin"
-            android:label="@string/title_activity_activity_login" >
+            android:label="@string/app_name" >
 
             <!-- Depois colocar no Login -->
             <intent-filter>

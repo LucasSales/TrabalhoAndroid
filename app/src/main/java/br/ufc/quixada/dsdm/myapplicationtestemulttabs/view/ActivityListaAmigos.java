@@ -18,8 +18,6 @@ import br.ufc.quixada.dsdm.myapplicationtestemulttabs.R;
 
 public class ActivityListaAmigos extends AppCompatActivity {
 
-    private ArrayList array;
-    private TextView vazio;
     private ListView listView;
 
 
@@ -28,26 +26,7 @@ public class ActivityListaAmigos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_amigos);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        array = new ArrayList<>();
-        vazio = (TextView) findViewById(R.id.textViewNenhumAmigo);
         listView = (ListView) findViewById(R.id.listViewListaAmigos2);
-
-
-
-        MensagemAmigos msn = new MensagemAmigos();
-
-        msn.setNome_amigo("Robson Cavalcante");
-        msn.setImg_amigo("http://cdn.slidesharecdn.com/profile-photo-RobsonCavalcante8-96x96.jpg?cb=1443582394");
-
-
-        array.add(msn);
-        if(!array.isEmpty()){
-            Adaptador_Msn_Lista_Amigo adapter = new Adaptador_Msn_Lista_Amigo(this, array);
-            listView.setAdapter(adapter);
-
-        }else{
-            vazio.setText("Nenhum Amigo");
-        }
 
 
 

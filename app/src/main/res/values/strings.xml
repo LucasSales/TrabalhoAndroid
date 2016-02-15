@@ -10,14 +10,15 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
-    <string name="title_activity_activity_criar_grupo">ActivityCriarGrupo</string>
+    <string name="title_activity_activity_criar_grupo">CriarGrupo</string>
     <string name="avanca">Avançar</string>
     <string name="nome_grupo">Digite o Nome do Grupo</string>
     <string name="title_activity_activity_ListaAmigos">Amigos</string>
-    <string name="title_activity_bate_papo">BatePapoActivity</string>
-    <string name="title_activity_activity_login">ActivityLogin</string>
-    <string name="title_activity_activity_configuracoes">ActivityConfiguracoes</string>
+    <string name="title_activity_bate_papo">Bate Papo</string>
+    <string name="title_activity_activity_login">Login</string>
+    <string name="title_activity_activity_configuracoes">Configurações</string>
 
     <string name="facebook_app_id">521141691379935</string>
     <string name="face_lucas">1055175281207680</string>
+    <string name="Saldacao">Nós nunca iremos publicar sem sua permissão.</string>
 </resources>

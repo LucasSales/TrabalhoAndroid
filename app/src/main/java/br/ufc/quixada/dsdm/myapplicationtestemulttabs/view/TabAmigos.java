@@ -31,7 +31,6 @@ public class  TabAmigos extends Fragment{
     private static final String NUMERO_SESSAO = "numero_sessao";
 
 
-    private TextView vazio;
     private ListView listView;
     private List<Amigo> Array;
     private  AmigoDAO amigoDAO;
@@ -51,7 +50,6 @@ public class  TabAmigos extends Fragment{
 
         amigoDAO = new AmigoDAO(getActivity());
 
-        vazio = (TextView) rootView.findViewById(R.id.textViewVazio);
         listView = (ListView) rootView.findViewById(R.id.listViewMensagemAmigos);
         Array = amigoDAO.buscar();
 
@@ -59,8 +57,6 @@ public class  TabAmigos extends Fragment{
            adapter = new Adaptador_Msn_Lista_Amigo(getActivity(), Array);
             listView.setAdapter(adapter);
 
-        }else{
-            vazio.setText("Nenhuma Mensagem");
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -139,8 +135,6 @@ public class  TabAmigos extends Fragment{
            adapter = new Adaptador_Msn_Lista_Amigo(getActivity(), Array);
            listView.setAdapter(adapter);
 
-       }else{
-           vazio.setText("Nenhum Amigo");
        }
     }
 }
