@@ -32,8 +32,8 @@ public class MensagemLocalDAO {
         db.insert("mensagem",null,valores);
     }
 
-    public void deletar(MensagemLocal mensagem){
-        db.delete("mensagem", "_idAmigo=" + mensagem.getIdAmigo(), null);
+    public void deletarTudo(){
+        db.delete("mensagem",null, null);
     }
 
     public void deleteMsnPorId(int id){

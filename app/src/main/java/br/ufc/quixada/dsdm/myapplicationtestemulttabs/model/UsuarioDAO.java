@@ -35,8 +35,8 @@ public class UsuarioDAO {
 
         db.update("usuario", valores, "_id=?", new String[]{"" + usuario.getRegistrationId()});
     }
-    public void deletar(Usuario usuario){
-        db.delete("usuario", "_id=" + usuario.getRegistrationId(), null);
+    public void deletar(){
+        db.delete("usuario", null, null);
     }
     public List<Usuario> buscar(){
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();

@@ -31,6 +31,7 @@
         android:id="@+id/button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:hint="@string/excluirConta" />
+        android:hint="@string/excluirConta"
+        android:onClick="onClickExcluir"/>
 
 </RelativeLayout>

@@ -36,6 +36,9 @@ public class AmigoDAO {
     public void deletar(int id_amigo){
         db.delete("amigos", "_id=" + id_amigo, null);
     }
+    public void deletarTudo(){
+        db.delete("amigos", null, null);
+    }
 
     public void atualizar(Amigo amigo){
         ContentValues valores = new ContentValues();
