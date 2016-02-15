@@ -222,4 +222,11 @@ public class ActivityBatePapo extends AppCompatActivity{
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this,MainActivityTabMensagens.class);
+        startActivity(i);
+        finish();
+    }
 }

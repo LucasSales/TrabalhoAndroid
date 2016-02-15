@@ -163,8 +163,8 @@ public class MainActivityTabMensagens extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0){
-            TabAmigos t = (TabAmigos) mSectionsPagerAdapter.getItem(2);
+        if(requestCode == 0) {
+            TabAmigos t = (TabAmigos) mSectionsPagerAdapter.getItem(1);
             t.atualizarLista();
         }
     }
@@ -212,13 +212,13 @@ public class MainActivityTabMensagens extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         PlaceholderFragment placeholderFragment;
-        TabGrupo tabGrupo;
+        //TabGrupo tabGrupo;
         TabAmigos tabAmigos;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            this.tabAmigos = TabAmigos.newInstance(3);
-            this.tabGrupo = TabGrupo.newInstance(2);
+            this.tabAmigos = TabAmigos.newInstance(2);
+            //this.tabGrupo = TabGrupo.newInstance(2);
             this.placeholderFragment = PlaceholderFragment.newInstance(1);
         }
 
@@ -230,9 +230,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 case 0:
                     return this.placeholderFragment;
                 case 1:
-                    return this.tabGrupo;
-                case 2:
                     return this.tabAmigos;
+                //case 2:
+                    //return this.tabAmigos;
             }
             return null;
         }
@@ -240,7 +240,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -249,9 +249,9 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                 case 0:
                     return "Mensagens";
                 case 1:
-                    return "Grupos";
-                case 2:
-                    return "Amigos";
+                    return "Amigo";
+                //case 2:
+                    //return "Amigos";
             }
             return null;
         }
@@ -327,7 +327,6 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                                 salva.setMensagem(mj.getMensagem());
                                 salva.setEnviadoPor(0);
                                 daoMsgLocal.inserir(salva);
-                                Log.i("SALVANDO MSG","HEUHEUHEU");
                             }
                         }
                     }
@@ -415,7 +414,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
                             String strName = arrayAdapter.getItem(which);
                             AlertDialog.Builder builderInner = new AlertDialog.Builder(getContext());
                             builderInner.setMessage(strName);
-                            builderInner.setTitle("Your Selected Item is");
+                            builderInner.setTitle("Você vai excluir sua conversa");
                             builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -447,6 +446,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
             return rootView;
         }
 
+
         @Override
         public void onResume() {
             super.onResume();
@@ -462,5 +462,7 @@ public class MainActivityTabMensagens extends AppCompatActivity {
         }
 
     }
+
+
 
 }
