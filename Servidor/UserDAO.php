@@ -100,6 +100,21 @@ class UserDAO{
         }
     }
 
+    public function deletar($registro){
+        try {
+            $sql = "delete from usuario where registro = ?";
+
+            $a = $this->conexao->prepare($sql);
+
+            $a->bindParam(1, $registro);
+
+            return $a->execute();
+
+        }catch (Exception $e) {
+            return false;
+        }
+    }
+
     public function buscaPorToken($token){
         try{
             $sql = "select *from usuario where registro = ?";

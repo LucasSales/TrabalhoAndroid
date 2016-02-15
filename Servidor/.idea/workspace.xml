@@ -32,8 +32,8 @@
       <file leaf-file-name="teste.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teste.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375">
-              <caret line="19" column="166" selection-start-line="19" selection-start-column="166" selection-end-line="19" selection-end-column="166" />
+            <state vertical-scroll-proportion="-18.75">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="e#10#341#0#PHP" expanded="true" />
               </folding>
@@ -41,11 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FronteiraPegarMSG.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FronteiraPegarMSG.php">
+      <file leaf-file-name="FronteiraBusca.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FronteiraBusca.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17207792">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            <state vertical-scroll-proportion="-4.375">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="22" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FronteiraDeletarUsuario.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FronteiraDeletarUsuario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.024350649">
+              <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -79,14 +89,15 @@
         <option value="$PROJECT_DIR$/Mensagem.php" />
         <option value="$PROJECT_DIR$/ControladorMensagem.php" />
         <option value="$PROJECT_DIR$/User.php" />
-        <option value="$PROJECT_DIR$/UserDAO.php" />
         <option value="$PROJECT_DIR$/FronteiraCadastroMSG.php" />
-        <option value="$PROJECT_DIR$/ControladorUser.php" />
         <option value="$PROJECT_DIR$/Fronteira.php" />
         <option value="$PROJECT_DIR$/SQL/mensageiro.sql" />
         <option value="$PROJECT_DIR$/FronteiraPegarMSG.php" />
         <option value="$PROJECT_DIR$/MensagemDAO.php" />
         <option value="$PROJECT_DIR$/teste.php" />
+        <option value="$PROJECT_DIR$/FronteiraDeletarUsuario.php" />
+        <option value="$PROJECT_DIR$/ControladorUser.php" />
+        <option value="$PROJECT_DIR$/UserDAO.php" />
       </list>
     </option>
   </component>
@@ -234,9 +245,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -267,14 +278,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ControladorUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UserDAO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -598,14 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FronteiraBusca.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SQL/mensageiro.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12886597">
@@ -629,28 +624,6 @@
           <folding>
             <element signature="e#6#85#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UserDAO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4301948">
-          <caret line="102" column="20" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
-          <folding>
-            <marker date="1455474011263" expanded="true" signature="318:375" placeholder="insert into usuario... " />
-            <marker date="1455474011263" expanded="true" signature="777:810" placeholder="select *from... usuario" />
-            <marker date="1455474011263" expanded="true" signature="1291:1326" placeholder="select *from... usuario" />
-            <marker date="1455474011263" expanded="true" signature="1803:1836" placeholder="select *from... usuario" />
-            <marker date="1455474011263" expanded="true" signature="2174:2213" placeholder="select *from... usuario" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ControladorUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84415585">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,8 +679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/teste.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="19" column="166" selection-start-line="19" selection-start-column="166" selection-end-line="19" selection-end-column="166" />
+        <state vertical-scroll-proportion="-18.75">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#10#341#0#PHP" expanded="true" />
           </folding>
@@ -716,8 +689,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FronteiraPegarMSG.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17207792">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        <state vertical-scroll-proportion="-1.9166666">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="39" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FronteiraBusca.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="22" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6834416">
+          <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
+          <folding>
+            <marker date="1455505314706" expanded="true" signature="318:375" placeholder="insert into usuario... " />
+            <marker date="1455505314706" expanded="true" signature="777:810" placeholder="select *from... usuario" />
+            <marker date="1455505314706" expanded="true" signature="1291:1326" placeholder="select *from... usuario" />
+            <marker date="1455505314706" expanded="true" signature="1803:1836" placeholder="select *from... usuario" />
+            <marker date="1455505314706" expanded="true" signature="2172:2210" placeholder="delete from " />
+            <marker date="1455505314706" expanded="true" signature="2183:2198" placeholder="insert into usuario... " />
+            <marker date="1455505314706" expanded="true" signature="2491:2530" placeholder="select *from... usuario" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ControladorUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33279222">
+          <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FronteiraDeletarUsuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024350649">
+          <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
           <folding />
         </state>
       </provider>

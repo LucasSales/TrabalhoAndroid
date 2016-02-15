@@ -25,6 +25,10 @@ class ControladorUser{
         return $this->dao->cadastrar($user);
     }
 
+    public function deletarUsuario($registro){
+        return $this->dao->deletar($registro);
+    }
+
     public function buscar($registro_id){
         $user = new User();
         $user->setId($registro_id);
